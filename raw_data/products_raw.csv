@@ -1,0 +1,501 @@
+product_id,sku,product_name,category,subcategory,brand,cost,price,season,launch_date,status
+1,SKU0001,New Balance Backpacks 1,accessories,Backpacks,New Balance,25.62,38.29,Spring,2024-05-14,ACTIVE
+2,SKU0002,Nike Hoodies 2,apparel,Hoodies,Nike,11.86,15.18,Summer,2024-07-08,SEASONAL
+3,SKU0003,New Balance Running Shoes 3,footwear,Running Shoes,New Balance,29.45,37.88,Winter,2022-07-18,DISCONTINUED
+4,SKU0004,Under Armour Saandals 4,Footwear,Sandals,Under Armour,42.16,52.7,Fall,2024-01-11,SEASONAL
+5,SKU0005,Adidas T-Shirts 5,Apparel,T-Shirts,Adidas,64.11,102.2,Winter,2023-07-24,DISCONTINUED
+6,SKU0006,Puma Socks 6,ACCESSORIES,Socks,Puma,56.91,84.27,Summer,2024-12-29,SEASONAL
+7,SKU0007,Reebok Shorts 7,apparel,Shorts,Reebok,74.78,110.32,Spring,2023-04-15,ACTIVE
+8,SKU0008,Adidas Sandals 8,FOOTWEAR,Sandals,Adidas,76.0,117.84,Winter,2024-07-28,ACTIVE
+9,SKU0009,New Balance Running Shoes 9,footwear,Running Shoes,New Balance,28.39,40.71,Summer,2022-10-11,SEASONAL
+10,SKU0010,Under Armour Sneakerss 10,footwear,Sneakers,Under Armour,53.92,81.79,Winter,2024-08-16,SEASONAL
+11,SKU0011,New Balance Sneakers 11,Footwear,Sneakers,New Balance,57.72,81.66,Spring,2023-08-25,DISCONTINUED
+12,SKU0012,New Balance T-Shirts 12,APPAREL,T-Shirts,New Balance,28.44,39.82,Fall,2024-11-05,SEASONAL
+13,SKU0013,Under Armour Jackets 13,apparel,Jackets,Under Armour,76.74,120.4,Winter,2022-02-09,ACTIVE
+14,SKU0014,Adidas Running Shoes 14,FOOTWEAR,Running Shoes,Adidas,49.71,61.22,All Year,2022-09-15,ACTIVE
+15,SKU0015,Nike Bags 15,ACCESSORIES,Bags,Nike,71.07,97.31,Summer,2023-10-01,DISCONTINUED
+16,SKU0016,Reebok Hats 16,Accessories,Hats,Reebok,41.6,54.05,All Year,2023-04-17,SEASONAL
+17,SKU0017,New Balance T-Shirts 17,apparel,T-Shirts,New Balance,26.03,40.66,Summer,2023-07-25,SEASONAL
+18,SKU0018,New Balance Running Shoes 18,footwear,Running Shoes,New Balance,49.97,69.41,Summer,2022-07-13,ACTIVE
+19,SKU0019,Reebok Hats 19,ACCESSORIES,Hats,Reebok,70.47,86.09,Spring,2024-04-04,SEASONAL
+20,SKU0020,Nike Running Shoes 20,footwear,Running Shoes,Nike,41.4,56.67,Spring,2024-06-26,SEASONAL
+21,SKU0021,Under  Armour Pants 21,apparel,Pants,Under Armour,16.53,24.82,Winter,2023-03-14,DISCONTINUED
+22,SKU0022,Adidas Shorts 22,apparel,Shorts,Adidas,28.56,43.23,All Year,2024-09-23,ACTIVE
+23,SKU0023,Adidas Hoodies 23,APPAREL,Hoodies,Adidas,47.95,71.89,All Year,2024-12-23,ACTIVE
+24,SKU0024,Under Armour T-Shirts 24,Apparel,T-Shirts,Under Armour,51.65,75.93,All Year,2023-05-20,SEASONAL
+25,SKU0025,Adidas Bags 25,accessories,Bags,Adidas,50.86,71.67,Fall,2023-05-04,DISCONTINUED
+26,SKU0026,Reebok Sandals 26,footwear,Sandals,Reebok,62.63,76.97,Spring,2022-05-31,SEASONAL
+27,SKU0027,Nike Jackets 27,Apparel,Jackets,Nike,71.66,111.2,All Year,2023-09-12,SEASONAL
+28,SKU0028,New Balance Backpacks 28,Accessories,Backpacks,New Balance,30.96,45.37,Spring,2022-08-08,SEASONAL
+29,SKU0029,Puma Hats 29,accessories,Hats,Puma,60.23,77.18,Winter,2023-05-30,ACTIVE
+30,SKU0030,Under Armour Shorts 30,Apparel,Shorts,Under Armour,10.25,15.46,Winter,2024-05-25,SEASONAL
+31,SKU0031,New Balance T-Shirts 31,apparel,T-Shirts,New Balance,48.19,73.92,Summer,2022-03-27,DISCONTINUED
+32,SKU0032,Nike Sandals 32,footwear,Sandals,Nike,56.69,76.05,All Year,2022-11-13,ACTIVE
+33,SKU0033,Adidas Shorts 33,apparel,Shorts,Adidas,74.71,113.03,Summer,2023-07-01,ACTIVE
+34,SKU0034,Under Armour  Gloves 34,accessories,Gloves,Under Armour,42.95,54.97,Summer,2023-04-02,ACTIVE
+35,SKU0035,Puma Gloves 35,accessories,Gloves,Puma,14.86,22.43,All Year,2023-11-10,ACTIVE
+36,SKU0036,JD Essentials Hoodies 36,APPAREL,Hoodies,JD Essentials,28.58,35.54,Fall,2024-06-12,SEASONAL
+37,SKU0037,JD Essentials Gloves 37,accessories,Gloves,JD Essentials,13.11,18.02,Summer,2024-01-16,DISCONTINUED
+38,SKU0038,JD Essentials Jackets 38,Apparel,Jackets,JD Essentials,69.36,103.2,Winter,2023-10-31,DISCONTINUED
+39,SKU0039,Nike Bags 39,ACCESSORIES,Bags,Nike,56.55,76.44,All Year,2023-09-09,DISCONTINUED
+40,SKU0040,Puma Hats 40,accessories,Hats,Puma,65.0,93.77,Summer,2024-11-12,DISCONTINUED
+41,SKU0041,Puma Backpacks 41,accessories,Backpacks,Puma,54.31,72.45,Fall,2023-04-06,ACTIVE
+42,SKU0042,Nike T-Shirts 42,apparel,T-Shirts,Nike,52.79,79.58,All Year,2023-02-03,SEASONAL
+43,SKU0043,Reebok Gloves 43,ACCESSORIES,Gloves,Reebok,55.92,67.23,Spring,2024-05-20,ACTIVE
+44,SKU0044,Reebok Pantts 44,Apparel,Pants,Reebok,27.44,42.24,All Year,2023-10-12,DISCONTINUED
+45,SKU0045,Reebok Bags 45,Accessories,Bags,Reebok,48.35,75.37,Fall,2023-05-22,SEASONAL
+46,SKU0046,New Balance Boots 46,Footwear,Boots,New Balance,40.79,60.59,All Year,2022-06-15,ACTIVE
+47,SKU0047,New Balance Shorts 47,apparel,Shorts,New Balance,24.98,34.12,Spring,2023-02-28,DISCONTINUED
+48,SKU0048,Under Armour Sneakers 48,Footwear,Sneakers,Under Armour,50.3,69.96,Winter,2024-05-08,SEASONAL
+49,SKU0049,Under Armour Bags 49,Accessories,Bags,Under Armour,25.44,32.76,Fall,2024-04-08,SEASONAL
+50,SKU0050,JD Essentials Hoodies 50,APPAREL,Hoodies,JD Essentials,73.49,105.59,Winter,2022-10-05,DISCONTINUED
+51,SKU0051,Reebok Jackets 51,apparel,Jackets,Reebok,41.83,55.84,Winter,2023-06-01,ACTIVE
+52,SKU0052,Puma Sneakers 52,footwear,Sneakers,Puma,14.8,23.43,Summer,2023-02-13,ACTIVE
+53,SKU0053,Nike Socks 53,accessories,Socks,Nike,18.01,28.44,Fall,2022-12-10,SEASONAL
+54,SKU0054,Under Armour Backpacks 54,Accessories,Backpacks,Under Armour,77.53,96.39,Winter,2024-03-23,SEASONAL
+55,SKU0055,New Balance Pants 55,apparel,Pants,New Balance,27.0,39.93,Spring,2022-03-26,DISCONTINUED
+56,SKU0056,Adidas Hats 56,ACCESSORIES,Hats,Adidas,33.89,52.18,Fall,2024-07-30,SEASONAL
+57,SKU0057,New Balance Hoodies 57,APPAREL,Hoodies,New Balance,55.53,80.32,Winter,2024-06-11,SEASONAL
+58,SKU0058,Under Armour Hats 58,ACCESSORIES,Hats,Under Armour,75.42,98.92,All Year,2024-02-16,DISCONTINUED
+59,SKU0059,Nike Jackets 59,APPAREL,Jackets,Nike,34.84,45.41,Fall,2022-01-21,SEASONAL
+60,SKU0060,New Balance Hoodies 60,apparel,Hoodies,New Balance,48.86,63.33,Winter,2022-02-05,ACTIVE
+61,SKU0061,New Balance Boots 61,footwear,Boots,New Balance,56.48,76.11,All Year,2023-11-09,DISCONTINUED
+62,SKU0062,Puma Hats 62,ACCESSORIES,Hats,Puma,18.45,23.56,Summer,2023-01-28,ACTIVE
+63,SKU0063,New Balance Hats 63,ACCESSORIES,Hats,New Balance,63.21,90.94,Fall,2023-04-11,DISCONTINUED
+64,SKU0064,New Balance T-Shirts 64,APPAREL,T-Shirts,New Balance,29.2,46.42,Summer,2024-10-02,ACTIVE
+65,SKU0065,Reebok Jackets 65,Apparel,Jackets,Reebok,33.85,53.69,Spring,2022-05-14,DISCONTINUED
+66,SKU0066,Nike Sneakeers 66,footwear,Sneakers,Nike,49.4,65.28,Winter,2023-04-08,SEASONAL
+67,SKU0067,Puma Boots 67,FOOTWEAR,Boots,Puma,79.3,104.85,Spring,2023-03-02,SEASONAL
+68,SKU0068,Nike T-Shirts 68,APPAREL,T-Shirts,Nike,48.64,61.41,Winter,2023-08-20,ACTIVE
+69,SKU0069,New Balance Jackets 69,APPAREL,Jackets,New Balance,14.98,19.37,All Year,2023-02-10,DISCONTINUED
+70,SKU0070,New Balance Hoodiies 70,Apparel,Hoodies,New Balance,28.59,35.93,All Year,2023-08-15,DISCONTINUED
+71,SKU0071,New Balance Jackets 71,APPAREL,Jackets,New Balance,29.06,41.15,Winter,2023-10-23,SEASONAL
+72,SKU0072,Nike Sneakers 72,footwear,Sneakers,Nike,68.52,97.99,Fall,2022-03-24,ACTIVE
+73,SKU0073,Puma Boots 73,Footwear,Boots,Puma,50.97,74.11,Fall,2024-04-16,DISCONTINUED
+74,SKU0074,Under Armour Sneakers 74,Footwear,Sneakers,Under Armour,38.82,54.28,All Year,2022-03-17,DISCONTINUED
+75,SKU0075,Puma JJackets 75,APPAREL,Jackets,Puma,64.08,,All Year,2024-08-04,DISCONTINUED
+76,SKU0076,Puma Pants 76,apparel,Pants,Puma,44.89,61.81,Summer,2023-08-13,DISCONTINUED
+77,SKU0077,Adidas Backpacks 77,ACCESSORIES,Backpacks,Adidas,52.62,68.18,All Year,2024-04-15,ACTIVE
+78,SKU0078,Adidas Shorts 78,apparel,Shorts,Adidas,20.78,32.69,Winter,2024-09-15,DISCONTINUED
+79,SKU0079,Nike Pants 79,APPAREL,Pants,Nike,74.53,104.59,Fall,2024-04-29,DISCONTINUED
+80,SKU0080,Puma Backpacks 80,ACCESSORIES,Backpacks,Puma,68.62,98.26,Winter,2024-09-18,DISCONTINUED
+81,SKU0081,Reebok Boots 81,Footwear,Boots,Reebok,70.87,112.85,Winter,2022-03-31,DISCONTINUED
+82,SKU0082,Reebok Gloves 82,ACCESSORIES,Gloves,Reebok,65.47,95.64,Summer,2024-10-25,SEASONAL
+83,SKU0083,Adidas Boots 83,footwear,Boots,Adidas,41.98,62.51,Summer,2022-06-03,DISCONTINUED
+84,SKU0084,New Balaance Boots 84,FOOTWEAR,Boots,New Balance,33.0,48.5,Winter,2022-03-15,SEASONAL
+85,SKU0085,Nike Jackets 85,apparel,Jackets,Nike,40.38,50.05,Winter,2022-12-07,SEASONAL
+86,SKU0086,Puma Sneakers 86,footwear,Sneakers,Puma,30.54,41.23,All Year,2023-01-04,ACTIVE
+87,SKU0087,Under Armour Pants 87,apparel,Pants,Under Armour,57.82,80.89,Fall,2024-07-30,DISCONTINUED
+88,SKU0088,Puma Gloves 88,accessories,Gloves,Puma,21.06,28.99,Winter,2023-05-28,DISCONTINUED
+89,SKU0089,Under Armour Boots 89,footwear,Boots,Under Armour,26.6,38.01,Fall,2022-02-14,SEASONAL
+90,SKU0090,JD Essentials Sneakers 90,FOOTWEAR,Sneakers,JD Essentials,64.48,102.49,Fall,2023-04-17,SEASONAL
+91,SKU0091,JD Essentials Running Shoes 91,footwear,Running Shoes,JD Essentials,62.89,94.77,Spring,2022-03-22,DISCONTINUED
+92,SKU0092,New BBalance Sandals 92,footwear,Sandals,New Balance,73.67,98.03,All Year,2024-01-20,SEASONAL
+93,SKU0093,Puma Socks 93,ACCESSORIES,Socks,Puma,76.09,120.75,Spring,2024-08-17,ACTIVE
+94,SKU0094,Under Armour Shorts 94,apparel,Shorts,Under Armour,,53.98,Winter,2024-01-25,SEASONAL
+95,SKU0095,JD Essentials Hats 95,Accessories,Hats,JD Essentials,54.7,73.77,All Year,2023-11-03,SEASONAL
+96,SKU0096,New Balance T-Shirts 96,Apparel,T-Shirts,New Balance,73.66,97.3,Spring,2023-09-16,DISCONTINUED
+97,SKU0097,JDD Essentials Hoodies 97,apparel,Hoodies,JD Essentials,41.76,61.31,Winter,2022-11-13,DISCONTINUED
+98,SKU0098,JD Essentials Gloves 98,accessories,Gloves,JD Essentials,76.61,92.93,Summer,2024-01-13,ACTIVE
+99,SKU0099,New Balance Bags 99,ACCESSORIES,Bags,New Balance,37.87,48.32,Winter,2022-07-07,SEASONAL
+100,SKU0100,Adidas Pants 1000,Apparel,Pants,Adidas,33.35,53.21,All Year,2023-03-01,SEASONAL
+101,SKU0101,Under  Armour Jackets 101,apparel,Jackets,Under Armour,73.04,87.73,Summer,2023-05-29,ACTIVE
+102,SKU0102,Nike T-SShirts 102,Apparel,T-Shirts,Nike,65.3,84.57,Spring,2022-09-17,SEASONAL
+103,SKU0103,New Balancee Sneakers 103,Footwear,Sneakers,New Balance,41.38,55.65,Summer,2022-03-30,SEASONAL
+104,SKU0104,Reebok Hats 104,Accessories,Hats,Reebok,12.18,19.48,Spring,2024-10-01,SEASONAL
+105,SKU0105,Puma Sneakers 105,footwear,Sneakers,Puma,14.6,19.13,Fall,2024-02-20,SEASONAL
+106,SKU0106,JD Essentials Gloves 106,ACCESSORIES,Gloves,JD Essentials,16.94,25.08,All Year,2023-03-17,DISCONTINUED
+107,SKU0107,Puma Boots 107,footwear,Boots,Puma,37.91,56.56,Fall,2024-02-06,ACTIVE
+108,SKU0108,Adidas Backpacks 108,ACCESSORIES,Backpacks,Adidas,16.53,20.47,All Year,2022-05-03,SEASONAL
+109,SKU0109,New Baalance Hats 109,Accessories,Hats,New Balance,34.75,50.95,Spring,2023-08-13,SEASONAL
+110,SKU0110,JD Essentials Sneakers 110,FOOTWEAR,Sneakers,JD Essentials,20.83,29.01,All Year,2024-01-23,ACTIVE
+111,SKU0111,Under Armour Running Shoes 111,Footwear,Running Shoes,Under Armour,49.27,74.25,All Year,2022-02-23,SEASONAL
+112,SKU0112,Adidas Hats 112,Accessories,Hats,Adidas,59.19,,Summer,2024-03-31,ACTIVE
+113,SKU0113,Adidas T-Shirts 113,Apparel,T-Shirts,Adidas,25.06,34.28,Fall,2022-06-23,ACTIVE
+114,SKU0114,Adidas Pants 114,apparel,Pants,Adidas,29.05,42.55,Fall,2023-03-18,SEASONAL
+115,SKU0115,Adidas Shorts 115,APPAREL,Shorts,Adidas,57.49,80.18,Winter,2022-04-23,ACTIVE
+116,SKU0116,Underr Armour Hoodies 116,APPAREL,Hoodies,Under Armour,,37.13,Summer,2022-09-22,DISCONTINUED
+117,SKU0117,JD Essentials Socks 117,Accessories,Socks,JD Essentials,56.76,76.15,Winter,2022-02-08,DISCONTINUED
+118,SKU0118,Reebok Pants 118,APPAREL,Pants,Reebok,59.66,81.56,Fall,2022-12-18,SEASONAL
+119,SKU0119,Adidas Sandals 119,Footwear,Sandals,Adidas,17.41,23.93,Fall,2023-11-27,ACTIVE
+120,SKU0120,JD Essentials Sneakers 120,footwear,Sneakers,JD Essentials,47.14,60.22,Summer,2023-04-29,ACTIVE
+121,SKU0121,Nike Hoodies 121,APPAREL,Hoodies,Nike,63.22,92.44,Winter,2024-08-08,SEASONAL
+122,SKU0122,New Balance Bags 122,ACCESSORIES,Bags,New Balance,53.72,83.03,Spring,2024-08-18,DISCONTINUED
+123,SKU0123,JD  Essentials Hats 123,ACCESSORIES,Hats,JD Essentials,45.51,60.26,Fall,2022-06-07,SEASONAL
+124,SKU0124,JD Essentials Pants 124,Apparel,Pants,JD Essentials,50.62,80.07,All Year,2023-01-21,DISCONTINUED
+125,SKU0125,Nike Bags 125,ACCESSORIES,Bags,Nike,41.54,63.32,Spring,2024-10-30,SEASONAL
+126,SKU0126,New Balance Hoodies 126,apparel,Hoodies,New Balance,40.76,57.43,Fall,2024-03-04,DISCONTINUED
+127,SKU0127,Under Armour Sneakers 127,Footwear,Sneakers,Under Armour,33.43,44.52,Fall,2022-11-04,DISCONTINUED
+128,SKU0128,Puma Hoodies 128,Apparel,Hoodies,Puma,55.92,81.91,Spring,2023-09-27,SEASONAL
+129,SKU0129,Under Armour Sandals  129,Footwear,Sandals,Under Armour,59.2,93.47,Spring,2024-05-17,SEASONAL
+130,SKU0130,Puma Sandals 130,footwear,Sandals,Puma,24.99,39.46,Summer,2022-11-14,ACTIVE
+131,SKU0131,New Balance Sneakers 131,footwear,Sneakers,New Balance,63.64,79.7,All Year,2022-12-06,SEASONAL
+132,SKU0132,Puma Boots 132,footwear,Boots,Puma,26.63,36.69,Winter,2023-04-25,SEASONAL
+133,SKU0133,Under Armour Shorts 133,APPAREL,Shorts,Under Armour,57.48,82.09,Winter,2024-10-26,SEASONAL
+134,SKU0134,Under Armour Running Shoes 134,footwear,Running Shoes,Under Armour,71.11,86.82,Spring,2024-11-22,ACTIVE
+135,SKU0135,Puma Running Shoes 135,footwear,Running Shoes,Puma,45.93,70.38,Winter,2023-12-17,ACTIVE
+136,SKU0136,JD Essentials Boots 136,footwear,Boots,JD Essentials,37.03,45.64,Spring,2023-11-18,ACTIVE
+137,SKU0137,Under Armour Jackets 137,apparel,Jackets,Under Armour,68.18,102.51,Spring,2022-02-08,DISCONTINUED
+138,SKU0138,New Balance Pants 138,apparel,Pants,New Balance,39.63,59.86,Summer,2024-05-09,SEASONAL
+139,SKU0139,Adidas Backpacks 139,ACCESSORIES,Backpacks,Adidas,44.99,63.63,Summer,2023-08-20,DISCONTINUED
+140,SKU0140,Nike Jackets 140,Apparel,Jackets,Nike,23.11,33.91,All Year,2024-11-05,SEASONAL
+141,SKU0141,Under Armour Gloves 141,accessories,Gloves,Under Armour,54.5,,Spring,2023-12-08,ACTIVE
+142,SKU0142,Under Armour Backpacks 142,Accessories,Backpacks,Under Armour,62.97,78.92,Summer,2024-08-09,SEASONAL
+143,SKU0143,Under Armouur Running Shoes 143,Footwear,Running Shoes,Under Armour,60.12,94.84,Summer,2022-03-27,DISCONTINUED
+144,SKU0144,Under Armour Boots 144,Footwear,Boots,Under Armour,27.73,41.63,Spring,2023-11-11,DISCONTINUED
+145,SKU0145,Reebok Shorts 145,APPAREL,Shorts,Reebok,72.62,98.38,Winter,2024-01-23,SEASONAL
+146,SKU0146,Adidas Boots 146,footwear,Boots,Adidas,79.66,101.34,Fall,2023-08-29,DISCONTINUED
+147,SKU0147,Nike Boots 147,Footwear,Boots,Nike,34.61,42.12,Winter,2023-07-17,SEASONAL
+148,SKU0148,Puma Shorts 148,apparel,Shorts,Puma,62.49,78.99,Winter,2022-03-13,ACTIVE
+149,SKU0149,Puma Jackets 149,apparel,Jackets,Puma,49.71,71.68,Fall,2024-06-28,ACTIVE
+150,SKU0150,Puma Bags 150,accessories,Bags,Puma,55.47,72.1,Winter,2024-11-26,DISCONTINUED
+151,SKU0151,Under Armour Hats 151,accessories,Hats,Under Armour,41.24,65.92,Winter,2023-02-14,ACTIVE
+152,SKU0152,Nike Shorts 152,apparel,Shorts,Nike,41.16,50.84,Fall,2023-12-13,SEASONAL
+153,SKU0153,Puma Pants 153,Apparel,Pants,Puma,69.6,103.34,Fall,2024-11-07,ACTIVE
+154,SKU0154,Nike Hoodies 154,apparel,Hoodies,Nike,11.84,16.83,All Year,2022-09-23,SEASONAL
+155,SKU0155,Reebok Jackets 155,apparel,Jackets,Reebok,60.32,85.07,Spring,2022-09-14,DISCONTINUED
+156,SKU0156,Reebok Gloves 156,accessories,Gloves,Reebok,34.12,52.93,Summer,2022-09-22,DISCONTINUED
+157,SKU0157,JD Essentials Backpacks 157,accessories,Backpacks,JD Essentials,21.53,28.61,All Year,2023-08-05,ACTIVE
+158,SKU0158,Nike Sandals 158,footwear,Sandals,Nike,53.01,65.59,All Year,2022-11-12,ACTIVE
+159,SKU0159,Puma Bags 159,Accessories,Bags,Puma,49.45,75.66,All Year,2023-06-27,SEASONAL
+160,SKU0160,JD Essentials Shorts 160,Apparel,Shorts,JD Essentials,44.86,65.09,Winter,2023-05-17,SEASONAL
+161,SKU0161,Adidas Boots 161,FOOTWEAR,Boots,Adidas,21.07,28.79,Summer,2023-10-03,SEASONAL
+162,SKU0162,Reebok Sanddals 162,Footwear,Sandals,Reebok,35.94,51.2,Fall,2024-07-09,ACTIVE
+163,SKU0163,Puma T-Shirts 163,apparel,T-Shirts,Puma,70.49,96.38,Fall,2023-10-03,ACTIVE
+164,SKU0164,Reebok Pants 164,APPAREL,Pants,Reebok,31.6,38.21,Summer,2023-03-17,SEASONAL
+165,SKU0165,Puma Sneakers 165,footwear,Sneakers,Puma,71.76,104.89,Spring,2024-06-01,ACTIVE
+166,SKU0166,Under Armour Sandals 166,Footwear,Sandals,Under Armour,13.17,16.07,Fall,2022-05-31,DISCONTINUED
+167,SKU0167,Puma Bags 167,ACCESSORIES,Bags,Puma,53.63,77.46,Fall,2023-11-26,SEASONAL
+168,SKU0168,JD Essentials Running Shoes 168,footwear,Running Shoes,JD Essentials,45.01,54.83,Winter,2024-11-29,DISCONTINUED
+169,SKU0169,Nike Pants 169,Apparel,Pants,Nike,52.91,66.93,Fall,2023-11-20,SEASONAL
+170,SKU0170,New Balance Gloves 170,Accessories,Gloves,New Balance,43.24,52.18,Winter,2023-09-23,SEASONAL
+171,SKU0171,JD Essentials Backpacks 171,Accessories,Backpacks,JD Essentials,77.69,117.56,Spring,2024-09-10,ACTIVE
+172,SKU0172,Under Armour Bags 172,Accessories,Bags,Under Armour,20.34,29.95,Spring,2023-01-26,ACTIVE
+173,SKU0173,Nike Boots 173,FOOTWEAR,Boots,Nike,24.27,34.0,Spring,2022-10-10,SEASONAL
+174,SKU0174,New Balance Jackets 174,Apparel,Jackets,New Balance,36.38,57.58,All Year,2023-12-27,SEASONAL
+175,SKU0175,JD Essentials Hats 175,Accessories,Hats,JD Essentials,77.01,101.01,Fall,2023-08-15,SEASONAL
+176,SKU0176,Puma Shorts 176,Apparel,Shorts,Puma,49.23,77.48,All Year,2024-02-17,DISCONTINUED
+177,SKU0177,Adidas Sandals 177,footwear,Sandals,Adidas,59.99,80.3,Winter,2023-03-15,ACTIVE
+178,SKU0178,New Balance Bags 178,ACCESSORIES,Bags,New Balance,17.65,26.41,All Year,2023-04-08,SEASONAL
+179,SKU0179,Reebok T-Shirts 179,apparel,T-Shirts,Reebok,43.07,63.42,Summer,2024-04-13,SEASONAL
+180,SKU0180,Under Armour Running Shoes 180,FOOTWEAR,Running Shoes,Under Armour,32.48,47.37,All Year,2023-04-21,SEASONAL
+181,SKU0181,Nike Backpacks 181,Accessories,Backpacks,Nike,68.63,107.99,Winter,2023-01-17,SEASONAL
+182,SKU0182,Puma Sneakers 182,footwear,Sneakers,Puma,17.51,27.9,All Year,2024-12-09,DISCONTINUED
+183,SKU0183,Puma Shorts 183,Apparel,Shorts,Puma,17.89,22.63,Summer,2022-01-29,SEASONAL
+184,SKU0184,Nike Running Shoes 184,FOOTWEAR,Running Shoes,Nike,54.71,74.53,Winter,2022-07-15,ACTIVE
+185,SKU0185,Nikee Jackets 185,APPAREL,Jackets,Nike,36.85,50.8,All Year,2022-01-24,DISCONTINUED
+186,SKU0186,Adidas Socks 186,ACCESSORIES,Socks,Adidas,42.58,53.82,Fall,2022-08-29,SEASONAL
+187,SKU0187,Nike Running Shoes 187,FOOTWEAR,Running Shoes,Nike,43.47,60.08,All Year,2024-08-22,SEASONAL
+188,SKU0188,New Balance Socks 188,accessories,Socks,New Balance,71.12,87.67,Spring,2022-08-18,ACTIVE
+189,SKU0189,JD Essentials Socks 189,Accessories,Socks,JD Essentials,21.52,33.18,All Year,2024-09-28,ACTIVE
+190,SKU0190,Reeebok Backpacks 190,ACCESSORIES,Backpacks,Reebok,39.08,55.71,Fall,2022-02-14,DISCONTINUED
+191,SKU0191,JD Essentials Running Shooes 191,footwear,Running Shoes,JD Essentials,39.66,58.7,Spring,2024-08-24,ACTIVE
+192,SKU0192,Under  Armour Running Shoes 192,FOOTWEAR,Running Shoes,Under Armour,54.91,81.91,Winter,2024-07-07,DISCONTINUED
+193,SKU0193,New Balance Running Shoes 193,footwear,Running Shoes,New Balance,18.3,29.23,Summer,2022-01-08,ACTIVE
+194,SKU0194,JD Essentials Boots 194,FOOTWEAR,Boots,JD Essentials,26.08,36.1,Spring,2022-03-07,SEASONAL
+195,SKU0195,Nike Sneakers 195,Footwear,Sneakers,Nike,17.06,20.7,Spring,2023-05-17,SEASONAL
+196,SKU0196,Nike Shorts 196,APPAREL,Shorts,Nike,62.81,94.87,Summer,2023-10-16,SEASONAL
+197,SKU0197,Nike Hats 197,Accessories,Hats,Nike,20.03,29.33,Spring,2022-12-25,SEASONAL
+198,SKU0198,Reebok Bags 1998,ACCESSORIES,Bags,Reebok,34.11,49.71,Winter,2024-04-16,ACTIVE
+199,SKU0199,Under Armour Running Shoes 199,FOOTWEAR,Running Shoes,Under Armour,26.87,34.67,Winter,2022-04-29,SEASONAL
+200,SKU0200,Reebok Running Shoes 200,FOOTWEAR,Running Shoes,Reebok,24.23,35.34,Spring,2023-01-26,ACTIVE
+201,SKU0201,Underr Armour Sneakers 201,FOOTWEAR,Sneakers,Under Armour,66.33,95.19,Summer,2023-11-13,DISCONTINUED
+202,SKU0202,New Balance Hoodiies 202,apparel,Hoodies,New Balance,79.97,111.28,Summer,2024-03-23,ACTIVE
+203,SKU0203,Reebok Hats 203,ACCESSORIES,Hats,Reebok,55.41,73.33,Winter,2022-07-21,SEASONAL
+204,SKU0204,Puma Running Shoes 204,FOOTWEAR,Running Shoes,Puma,13.2,,All Year,2024-05-05,DISCONTINUED
+205,SKU0205,Nike Jackets 205,apparel,Jackets,Nike,68.34,95.66,Fall,2024-09-27,SEASONAL
+206,SKU0206,Reebok Gloves 206,Accessories,Gloves,Reebok,65.65,83.22,All Year,2022-05-01,SEASONAL
+207,SKU0207,Under Armour T-Shhirts 207,apparel,T-Shirts,Under Armour,19.62,28.49,Summer,2024-11-01,DISCONTINUED
+208,SKU0208,New Balance Boots 208,footwear,Boots,New Balance,,14.86,Fall,2023-08-11,ACTIVE
+209,SKU0209,Under Armour Gloves 209,Accessories,Gloves,Under Armour,22.55,35.34,All Year,2024-12-14,DISCONTINUED
+210,SKU0210,Adidas Boots 210,FOOTWEAR,Boots,Adidas,38.42,54.79,Spring,2022-03-06,ACTIVE
+211,SKU0211,JD Essentials Boots 211,FOOTWEAR,Boots,JD Essentials,54.57,80.83,Fall,2022-07-15,SEASONAL
+212,SKU0212,Under Armour Hoodies 212,apparel,Hoodies,Under Armour,49.67,64.99,Fall,2022-03-09,ACTIVE
+213,SKU0213,JD Essentials Running Shhoes 213,footwear,Running Shoes,JD Essentials,67.45,103.09,All Year,2023-05-08,SEASONAL
+214,SKU0214,Reebok Sandals 214,Footwear,Sandals,Reebok,19.8,31.59,Fall,2022-04-20,ACTIVE
+215,SKU0215,Puma Sneakers 215,footwear,Sneakers,Puma,52.97,76.18,Fall,2024-07-11,DISCONTINUED
+216,SKU0216,Reebok Pants 216,APPAREL,Pants,Reebok,57.58,84.31,Summer,2022-05-31,ACTIVE
+217,SKU0217,New Balance Boots 217,footwear,Boots,New Balance,20.8,28.2,Fall,2024-06-29,DISCONTINUED
+218,SKU0218,Adidas Running Shoes 218,footwear,Running Shoes,Adidas,41.42,58.89,Fall,2022-07-10,SEASONAL
+219,SKU0219,Adidas Gloves 219,ACCESSORIES,Gloves,Adidas,37.15,45.84,Summer,2024-12-03,ACTIVE
+220,SKU0220,Nike Socks 220,ACCESSORIES,Socks,Nike,28.79,36.23,Fall,2024-09-18,ACTIVE
+221,SKU0221,New Balance Running Shoes 221,FOOTWEAR,Running Shoes,New Balance,51.57,65.92,Winter,2023-11-12,SEASONAL
+222,SKU0222,Puma Boots 222,FOOTWEAR,Boots,Puma,67.65,98.8,All Year,2023-02-16,DISCONTINUED
+223,SKU0223,Puma Boots 223,footwear,Boots,Puma,58.65,81.9,Winter,2023-07-29,DISCONTINUED
+224,SKU0224,JD Essentials Running Shoes 224,footwear,Running Shoes,JD Essentials,22.59,34.04,Summer,2024-06-16,DISCONTINUED
+225,SKU0225,New Balance Gloves 225,accessories,Gloves,New Balance,54.33,70.46,Winter,2022-06-01,DISCONTINUED
+226,SKU0226,Reebok Bags 226,ACCESSORIES,Bags,Reebok,74.64,115.53,Fall,2022-06-24,ACTIVE
+227,SKU0227,Nike Jackets 227,Apparel,Jackets,Nike,13.1,20.87,Fall,2024-05-31,ACTIVE
+228,SKU0228,Nike Jackets 228,apparel,Jackets,Nike,46.32,66.34,Winter,2024-08-06,SEASONAL
+229,SKU0229,Nike Bags 229,Accessories,Bags,Nike,11.72,14.55,Spring,2022-10-18,DISCONTINUED
+230,SKU0230,Under Armour Boots 230,FOOTWEAR,Boots,Under Armour,43.8,60.9,Fall,2022-05-18,DISCONTINUED
+231,SKU0231,Adidas T-Shirts 231,Apparel,T-Shirts,Adidas,55.36,81.43,Summer,2024-11-22,ACTIVE
+232,SKU0232,JD Essentials Hats 232,accessories,Hats,JD Essentials,42.34,64.32,Winter,2024-03-21,ACTIVE
+233,SKU0233,Reebok Socks 233,Accessories,Socks,Reebok,37.22,55.16,Spring,2022-07-28,SEASONAL
+234,SKU0234,Nike Jackets 234,APPAREL,Jackets,Nike,28.36,43.82,All Year,2024-03-06,SEASONAL
+235,SKU0235,Puma Sneakers 235,Footwear,Sneakers,Puma,42.05,53.36,All Year,2022-06-23,SEASONAL
+236,SKU0236,Nike T-Shirts 236,APPAREL,T-Shirts,Nike,22.81,33.7,Summer,2024-02-25,DISCONTINUED
+237,SKU0237,New Balance Pants 237,APPAREL,Pants,New Balance,75.15,95.39,Summer,2023-10-07,DISCONTINUED
+238,SKU0238,Adidas Hats 238,accessories,Hats,Adidas,23.66,32.03,Winter,2024-10-04,DISCONTINUED
+239,SKU0239,Nikke Gloves 239,ACCESSORIES,Gloves,Nike,12.16,18.29,All Year,2023-08-15,ACTIVE
+240,SKU0240,JD Essentials Boots 240,Footwear,Boots,JD Essentials,50.09,65.48,All Year,2022-03-27,SEASONAL
+241,SKU0241,Reebok Running Shooes 241,Footwear,Running Shoes,Reebok,68.1,102.19,Winter,2023-06-23,DISCONTINUED
+242,SKU0242,Under Armour T-Shirts 242,APPAREL,T-Shirts,Under Armour,24.69,36.91,All Year,2024-05-26,ACTIVE
+243,SKU0243,Under Armour Socks 243,accessories,Socks,Under Armour,14.16,18.98,Fall,2023-08-23,DISCONTINUED
+244,SKU0244,New Balance Bags 244,ACCESSORIES,Bags,New Balance,19.49,29.24,Fall,2022-09-17,SEASONAL
+245,SKU0245,New Balance Hoodies 245,apparel,Hoodies,New Balance,27.33,42.02,Fall,2024-04-28,DISCONTINUED
+246,SKU0246,Reebok Sneakers 246,footwear,Sneakers,Reebok,29.48,46.42,Fall,2022-01-06,SEASONAL
+247,SKU0247,New Balance Shorts 247,Apparel,Shorts,New Balance,35.08,42.98,Winter,2023-03-10,DISCONTINUED
+248,SKU0248,Puma Sandals 248,FOOTWEAR,Sandals,Puma,19.14,29.49,Spring,2022-04-05,ACTIVE
+249,SKU0249,Adidas Backpacks 249,ACCESSORIES,Backpacks,Adidas,21.06,29.12,Summer,2023-09-11,ACTIVE
+250,SKU0250,Puma Sandals  250,footwear,Sandals,Puma,56.52,82.49,Summer,2024-05-29,SEASONAL
+251,SKU0251,Adidas T-Shirts 251,Apparel,T-Shirts,Adidas,15.46,22.22,Spring,2023-12-05,ACTIVE
+252,SKU0252,Reebok Running Shoes  252,Footwear,Running Shoes,Reebok,36.81,54.93,Fall,2022-10-08,DISCONTINUED
+253,SKU0253,Adidas Hoodies 253,Apparel,Hoodies,Adidas,10.59,15.46,Summer,2024-04-23,SEASONAL
+254,SKU0254,Adidas Socks 254,ACCESSORIES,Socks,Adidas,19.8,24.74,Winter,2023-10-07,ACTIVE
+255,SKU0255,Nike T-Shirts 255,APPAREL,T-Shirts,Nike,52.0,75.04,Fall,2023-02-25,SEASONAL
+256,SKU0256,New Balance Socks 256,Accessories,Socks,New Balance,55.23,83.59,Winter,2022-08-19,ACTIVE
+257,SKU0257,JD Essentials Sneakers 257,Footwear,Sneakers,JD Essentials,10.84,14.57,All Year,2024-05-11,DISCONTINUED
+258,SKU0258,Under Armour Socks 258,Accessories,Socks,Under Armour,79.12,,Summer,2022-03-23,ACTIVE
+259,SKU0259,New Balance Sandals 259,Footwear,Sandals,New Balance,63.7,87.23,All Year,2022-11-09,DISCONTINUED
+260,SKU0260,JD Essentials T-Shirts 260,APPAREL,T-Shirts,JD Essentials,78.2,98.7,Spring,2023-09-28,SEASONAL
+261,SKU0261,Adidas Running Shoes 261,Footwear,Running Shoes,Adidas,74.72,93.13,Summer,2022-09-02,ACTIVE
+262,SKU0262,Nike Backpacks 262,accessories,Backpacks,Nike,34.27,48.21,Fall,2022-09-17,SEASONAL
+263,SKU0263,Under Armour Sneakers 263,Footwear,Sneakers,Under Armour,33.45,45.88,All Year,2022-06-07,DISCONTINUED
+264,SKU0264,Adidas Sandals 264,Footwear,Sandals,Adidas,49.68,66.92,All Year,2022-08-25,ACTIVE
+265,SKU0265,Adidas Backpacks 265,Accessories,Backpacks,Adidas,10.86,13.23,Summer,2022-03-14,SEASONAL
+266,SKU0266,Nike Gloves 266,Accessories,Gloves,Nike,39.14,58.24,Fall,2022-09-02,SEASONAL
+267,SKU0267,Nike Socks 267,accessories,Socks,Nike,78.7,124.47,Fall,2023-09-29,DISCONTINUED
+268,SKU0268,Adidas Shorts 268,Apparel,Shorts,Adidas,30.41,46.03,Fall,2024-10-07,ACTIVE
+269,SKU0269,Nike Sockks 269,Accessories,Socks,Nike,38.7,50.05,Spring,2023-11-18,ACTIVE
+270,SKU0270,Adidas Hats 270,ACCESSORIES,Hats,Adidas,78.82,107.82,Summer,2023-07-28,ACTIVE
+271,SKU0271,Reebok Pants 271,apparel,Pants,Reebok,36.07,57.34,Summer,2024-03-18,ACTIVE
+272,SKU0272,Reebok Backpacks 272,Accessories,Backpacks,Reebok,19.15,25.21,Winter,2023-10-31,DISCONTINUED
+273,SKU0273,Adidas Running Shoes 273,FOOTWEAR,Running Shoes,Adidas,19.53,29.45,Winter,2024-08-12,DISCONTINUED
+274,SKU0274,Under Armour Sandals 274,footwear,Sandals,Under Armour,31.58,41.24,Fall,2022-03-24,ACTIVE
+275,SKU0275,New Balance Sneakers 275,footwear,Sneakers,New Balance,34.9,49.05,Summer,2022-03-05,DISCONTINUED
+276,SKU0276,Adidas Running Shoes 276,Footwear,Running Shoes,Adidas,,83.23,Summer,2022-09-25,ACTIVE
+277,SKU0277,JD Essentials Sneakers 277,FOOTWEAR,Sneakers,JD Essentials,74.22,91.29,Winter,2022-09-21,ACTIVE
+278,SKU0278,Reebok Sneakeers 278,footwear,Sneakers,Reebok,74.69,102.57,Winter,2024-05-23,ACTIVE
+279,SKU0279,Puma Running Shoes 279,footwear,Running Shoes,Puma,71.84,87.2,Fall,2024-10-18,DISCONTINUED
+280,SKU0280,Adidas Backpacks 280,ACCESSORIES,Backpacks,Adidas,19.61,25.1,All Year,2022-02-09,DISCONTINUED
+281,SKU0281,JD Essentials Gloves 281,ACCESSORIES,Gloves,JD Essentials,34.08,48.61,Spring,2023-10-16,SEASONAL
+282,SKU0282,Adidas Jackets 282,apparel,Jackets,Adidas,43.02,57.77,Summer,2022-07-25,ACTIVE
+283,SKU0283,JD Essentials Hats 283,accessories,Hats,JD Essentials,74.21,90.71,Winter,2023-12-28,ACTIVE
+284,SKU0284,Puma Pants 284,apparel,Pants,Puma,58.83,92.1,All Year,2022-10-19,SEASONAL
+285,SKU0285,Puma Pants 285,APPAREL,Pants,Puma,12.66,,Winter,2022-01-02,DISCONTINUED
+286,SKU0286,Puma Socks 286,accessories,Socks,Puma,74.31,114.27,All Year,2022-10-18,ACTIVE
+287,SKU0287,Puma Backpacks 287,ACCESSORIES,Backpacks,Puma,56.35,80.83,Summer,2024-06-13,SEASONAL
+288,SKU0288,Nike Sandals 288,Footwear,Sandals,Nike,49.34,76.77,All Year,2022-12-26,DISCONTINUED
+289,SKU0289,Nike Sandals 289,Footwear,Sandals,Nike,10.13,15.0,All Year,2022-03-08,ACTIVE
+290,SKU0290,Nike Bags 290,ACCESSORIES,Bags,Nike,17.29,24.18,Fall,2023-10-17,ACTIVE
+291,SKU0291,Reeebok Hats 291,accessories,Hats,Reebok,24.68,36.46,Spring,2022-04-09,DISCONTINUED
+292,SKU0292,Nike Boots 292,Footwear,Boots,Nike,44.52,60.17,Winter,2023-04-07,ACTIVE
+293,SKU0293,Pumaa Sneakers 293,footwear,Sneakers,Puma,28.28,35.12,Summer,2022-06-03,SEASONAL
+294,SKU0294,JD Essentials Pants 294,APPAREL,Pants,JD Essentials,59.32,81.42,Winter,2022-11-18,ACTIVE
+295,SKU0295,Nike Hoodies 295,APPAREL,Hoodies,Nike,48.79,76.61,Fall,2023-05-02,ACTIVE
+296,SKU0296,JD Essentials Pants 296,APPAREL,Pants,JD Essentials,20.75,27.89,All Year,2024-09-10,ACTIVE
+297,SKU0297,Nike Hoodies 297,apparel,Hoodies,Nike,78.39,108.92,Winter,2024-09-28,SEASONAL
+298,SKU0298,Nike Boots 298,footwear,Boots,Nike,36.7,46.78,Fall,2023-04-09,DISCONTINUED
+299,SKU0299,Under Armour Socks 299,accessories,Socks,Under Armour,16.77,24.61,All Year,2023-04-11,SEASONAL
+300,SKU0300,Reebok Pants 300,APPAREL,Pants,Reebok,58.09,91.47,Fall,2022-06-11,DISCONTINUED
+301,SKU0301,JD Essentials Bags 301,accessories,Bags,JD Essentials,66.03,97.13,Winter,2022-12-21,ACTIVE
+302,SKU0302,Adidas Hoodies 302,apparel,Hoodies,Adidas,79.18,108.81,All Year,2023-06-13,DISCONTINUED
+303,SKU0303,Reebok Backpacks 303,accessories,Backpacks,Reebok,48.64,75.03,Spring,2024-12-06,DISCONTINUED
+304,SKU0304,Nike Hoodies 304,APPAREL,Hoodies,Nike,50.79,80.55,Spring,2023-08-09,SEASONAL
+305,SKU0305,Reebok Sandals 305,FOOTWEAR,Sandals,Reebok,50.04,69.52,All Year,2024-04-02,ACTIVE
+306,SKU0306,Adidas Running Shoes 306,FOOTWEAR,Running Shoes,Adidas,74.46,116.07,Fall,2023-09-29,DISCONTINUED
+307,SKU0307,Under Armour Sneakers 307,Footwear,Sneakers,Under Armour,31.03,46.47,Winter,2022-07-02,ACTIVE
+308,SKU0308,New Balance Boots 308,footwear,Boots,New Balance,46.16,62.3,Spring,2023-09-30,SEASONAL
+309,SKU0309,Under Armour Socks 309,ACCESSORIES,Socks,Under Armour,71.55,86.69,Spring,2023-05-26,ACTIVE
+310,SKU0310,New Balance Sandals 310,footwear,Sandals,New Balance,35.78,49.58,Spring,2023-05-11,DISCONTINUED
+311,SKU0311,Nike Boots 311,Footwear,Boots,Nike,43.22,61.4,Fall,2022-07-05,DISCONTINUED
+312,SKU0312,Nike T-Shirts 312,APPAREL,T-Shirts,Nike,64.59,83.05,Summer,2023-07-06,SEASONAL
+313,SKU0313,Under Armour Sneakers 313,Footwear,Sneakers,Under Armour,63.73,76.7,All Year,2022-01-18,ACTIVE
+314,SKU0314,New Balance Sandals 314,Footwear,Sandals,New Balance,54.99,75.31,Fall,2023-03-23,DISCONTINUED
+315,SKU0315,JDD Essentials Boots 315,Footwear,Boots,JD Essentials,45.81,67.11,All Year,2023-08-02,DISCONTINUED
+316,SKU0316,Adidas Gloves 316,accessories,Gloves,Adidas,29.35,39.04,Fall,2023-01-21,ACTIVE
+317,SKU0317,Under Armour Backpacks 317,accessories,Backpacks,Under Armour,66.7,90.82,Spring,2024-10-15,DISCONTINUED
+318,SKU0318,Reebok Boots 318,FOOTWEAR,Boots,Reebok,50.81,81.19,Summer,2024-12-30,SEASONAL
+319,SKU0319,JD Essentials Sandals 319,Footwear,Sandals,JD Essentials,21.9,32.04,Winter,2022-09-20,SEASONAL
+320,SKU0320,New Balance Running Shoes 320,Footwear,Running Shoes,New Balance,55.81,71.93,Winter,2023-11-10,DISCONTINUED
+321,SKU0321,Reebok Sandals 321,Footwear,Sandals,Reebok,42.94,66.41,Spring,2024-08-25,ACTIVE
+322,SKU0322,JD Essentials Gloves 322,accessories,Gloves,JD Essentials,13.78,21.24,Winter,2024-07-26,ACTIVE
+323,SKU0323,Unnder Armour Running Shoes 323,Footwear,Running Shoes,Under Armour,33.28,53.07,Winter,2023-07-15,ACTIVE
+324,SKU0324,Reebok Hoodies 324,Apparel,Hoodies,Reebok,64.58,80.84,Winter,2024-09-04,DISCONTINUED
+325,SKU0325,Nike Pants 325,apparel,Pants,Nike,76.5,119.1,Spring,2022-01-09,SEASONAL
+326,SKU0326,New Balance Socks 326,accessories,Socks,New Balance,31.85,39.53,Spring,2022-04-04,DISCONTINUED
+327,SKU0327,Reebok Sandals 327,FOOTWEAR,Sandals,Reebok,79.68,106.54,Summer,2022-12-04,DISCONTINUED
+328,SKU0328,New Balance Hoodies 328,apparel,Hoodies,New Balance,24.78,29.95,Spring,2024-02-08,SEASONAL
+329,SKU0329,JD Essentials Sneakers 329,Footwear,Sneakers,JD Essentials,,82.34,Winter,2024-06-28,DISCONTINUED
+330,SKU0330,Reebok Jackets 330,Apparel,Jackets,Reebok,,35.94,Spring,2024-12-01,DISCONTINUED
+331,SKU0331,Reebok Socks 331,Accessories,Socks,Reebok,17.34,25.79,Spring,2024-10-16,ACTIVE
+332,SKU0332,Under Armour Hats 332,accessories,Hats,Under Armour,24.12,35.73,Winter,2023-03-02,SEASONAL
+333,SKU0333,Adidas Running Shoess 333,FOOTWEAR,Running Shoes,Adidas,16.23,20.19,Spring,2024-11-13,ACTIVE
+334,SKU0334,Puma Backpacks 334,Accessories,Backpacks,Puma,41.97,66.77,Summer,2022-03-22,DISCONTINUED
+335,SKU0335,Reebok Sandals 335,Footwear,Sandals,Reebok,16.65,25.03,Summer,2023-11-05,DISCONTINUED
+336,SKU0336,New Balance  Sandals 336,Footwear,Sandals,New Balance,67.05,85.36,Fall,2024-02-29,SEASONAL
+337,SKU0337,Adidass Running Shoes 337,FOOTWEAR,Running Shoes,Adidas,60.85,96.91,All Year,2024-09-15,SEASONAL
+338,SKU0338,JD Essentials Socks 338,ACCESSORIES,Socks,JD Essentials,35.1,42.52,Summer,2024-09-16,DISCONTINUED
+339,SKU0339,Adidas Shortss 339,APPAREL,Shorts,Adidas,55.85,67.3,All Year,2023-04-04,SEASONAL
+340,SKU0340,Reebok Sneakers 340,Footwear,Sneakers,Reebok,27.4,36.67,All Year,2022-04-22,ACTIVE
+341,SKU0341,Under Armour Bags 341,accessories,Bags,Under Armour,44.71,56.61,Fall,2023-07-24,ACTIVE
+342,SKU0342,New Balance Bags 342,accessories,Bags,New Balance,67.2,82.76,Spring,2024-10-17,DISCONTINUED
+343,SKU0343,New Balance Boots 343,footwear,Boots,New Balance,17.19,,Spring,2023-09-16,SEASONAL
+344,SKU0344,Puma Gloves 344,accessories,Gloves,Puma,13.8,17.79,All Year,2024-08-26,SEASONAL
+345,SKU0345,Adiddas Gloves 345,ACCESSORIES,Gloves,Adidas,56.12,67.39,Fall,2024-12-05,DISCONTINUED
+346,SKU0346,Nike Backpacks 346,accessories,Backpacks,Nike,67.53,101.09,Summer,2023-01-20,ACTIVE
+347,SKU0347,Under Armour Boots 347,footwear,Boots,Under Armour,60.18,74.81,All Year,2022-09-10,DISCONTINUED
+348,SKU0348,Reeebok Running Shoes 348,Footwear,Running Shoes,Reebok,61.53,87.45,All Year,2022-12-29,SEASONAL
+349,SKU0349,Adidas Socks 349,accessories,Socks,Adidas,52.04,80.82,All Year,2023-05-24,DISCONTINUED
+350,SKU0350,Reebok Sandals 350,FOOTWEAR,Sandals,Reebok,19.67,28.34,All Year,2023-10-05,SEASONAL
+351,SKU0351,Nike Socks 351,Accessories,Socks,Nike,60.01,88.49,Summer,2024-10-28,SEASONAL
+352,SKU0352,Neew Balance Hats 352,Accessories,Hats,New Balance,34.66,48.25,Winter,2024-12-29,DISCONTINUED
+353,SKU0353,Adidas Sneakers 353,footwear,Sneakers,Adidas,13.71,16.76,Fall,2023-05-29,ACTIVE
+354,SKU0354,Nike Jackets 354,Apparel,Jackets,Nike,12.26,18.7,All Year,2023-04-05,SEASONAL
+355,SKU0355,Nike Gloves 355,Accessories,Gloves,Nike,65.78,97.25,Winter,2024-03-04,DISCONTINUED
+356,SKU0356,Adidas Baags 356,ACCESSORIES,Bags,Adidas,27.59,39.96,Summer,2024-01-24,SEASONAL
+357,SKU0357,Nike Bags 357,Accessories,Bags,Nike,77.5,102.12,Summer,2022-12-22,SEASONAL
+358,SKU0358,Adidas Gloves 358,accessories,Gloves,Adidas,48.96,61.3,Fall,2024-08-13,SEASONAL
+359,SKU0359,Puma Hoodies 359,apparel,Hoodies,Puma,64.16,93.04,All Year,2024-01-04,ACTIVE
+360,SKU0360,Nike Bags 360,ACCESSORIES,Bags,Nike,46.44,70.33,Winter,2022-07-08,DISCONTINUED
+361,SKU0361,Puma Jackets 361,apparel,Jackets,Puma,25.29,37.96,Spring,2022-08-23,SEASONAL
+362,SKU0362,New Balance Running Shoes 362,FOOTWEAR,Running Shoes,New Balance,53.48,84.69,Spring,2024-03-01,DISCONTINUED
+363,SKU0363,Adidas Hats 363,Accessories,Hats,Adidas,67.55,91.19,Spring,2023-08-31,SEASONAL
+364,SKU0364,Adidas Pants 364,APPAREL,Pants,Adidas,21.72,,Spring,2023-03-08,SEASONAL
+365,SKU0365,Under Armouur Gloves 365,accessories,Gloves,Under Armour,47.64,70.56,Spring,2022-11-11,ACTIVE
+366,SKU0366,Adidas Sandaals 366,Footwear,Sandals,Adidas,13.8,20.94,Summer,2023-06-14,DISCONTINUED
+367,SKU0367,Reebok Boots 367,FOOTWEAR,Boots,Reebok,,46.49,Spring,2022-04-04,SEASONAL
+368,SKU0368,Adidas Pants 368,APPAREL,Pants,Adidas,58.01,83.69,Winter,2024-03-20,SEASONAL
+369,SKU0369,JD Essentials Hoodies 369,APPAREL,Hoodies,JD Essentials,62.27,94.57,Summer,2023-09-03,SEASONAL
+370,SKU0370,Adidas Hats 370,Accessories,Hats,Adidas,,61.03,All Year,2022-06-24,DISCONTINUED
+371,SKU0371,Nike Jackets 371,Apparel,Jackets,Nike,55.22,77.59,Fall,2023-02-02,ACTIVE
+372,SKU0372,Under Armour  Pants 372,Apparel,Pants,Under Armour,62.57,99.86,Spring,2023-08-19,SEASONAL
+373,SKU0373,Nike T-Shirts 373,APPAREL,T-Shirts,Nike,44.1,58.76,Spring,2023-08-07,SEASONAL
+374,SKU0374,Reebok Jackets 374,apparel,Jackets,Reebok,53.14,70.27,Fall,2023-10-10,DISCONTINUED
+375,SKU0375,Nike Jackets 375,apparel,Jackets,Nike,59.85,87.16,Fall,2024-09-09,DISCONTINUED
+376,SKU0376,Reebok Sandals 376,FOOTWEAR,Sandals,Reebok,22.3,32.17,Summer,2023-02-07,DISCONTINUED
+377,SKU0377,New Balance Baackpacks 377,Accessories,Backpacks,New Balance,11.3,15.85,Winter,2023-03-12,ACTIVE
+378,SKU0378,JD Essentials Bags 378,ACCESSORIES,Bags,JD Essentials,64.26,86.52,Fall,2022-10-02,DISCONTINUED
+379,SKU0379,Reebok Backpacks 379,Accessories,Backpacks,Reebok,10.74,13.91,Summer,2024-11-18,ACTIVE
+380,SKU0380,JD Essentials Running Shoes 380,footwear,Running Shoes,JD Essentials,56.16,89.13,Fall,2022-03-24,ACTIVE
+381,SKU0381,Puma Sneakers 381,footwear,Sneakers,Puma,13.0,16.68,Winter,2024-07-20,ACTIVE
+382,SKU0382,Adidas Jackets 382,Apparel,Jackets,Adidas,46.5,71.23,All Year,2022-12-23,DISCONTINUED
+383,SKU0383,JD Essentials Hats 383,ACCESSORIES,Hats,JD Essentials,68.48,96.33,All Year,2024-04-11,DISCONTINUED
+384,SKU0384,JD Essentialss Boots 384,FOOTWEAR,Boots,JD Essentials,71.74,98.71,Fall,2023-03-10,ACTIVE
+385,SKU0385,JD Essentials Jackets 385,apparel,Jackets,JD Essentials,18.28,23.62,Winter,2024-09-07,DISCONTINUED
+386,SKU0386,New Balance Hoodies 386,Apparel,Hoodies,New Balance,11.57,14.08,All Year,2022-03-22,SEASONAL
+387,SKU0387,Puma Hoodies 387,apparel,Hoodies,Puma,46.16,62.88,Fall,2022-06-25,ACTIVE
+388,SKU0388,Under Armour Boots 388,Footwear,Boots,Under Armour,25.36,34.6,Summer,2024-11-12,DISCONTINUED
+389,SKU0389,Reebok Jackets 389,Apparel,Jackets,Reebok,14.82,,All Year,2024-10-29,SEASONAL
+390,SKU0390,Nike Sneakers 390,footwear,Sneakers,Nike,53.03,64.46,Spring,2022-07-10,DISCONTINUED
+391,SKU0391,JD Essentials Bags 391,accessories,Bags,JD Essentials,72.79,109.91,Fall,2022-03-30,SEASONAL
+392,SKU0392,Under Armour Socks 392,ACCESSORIES,Socks,Under Armour,63.81,85.52,All Year,2022-07-20,DISCONTINUED
+393,SKU0393,Under Armour Shorts 393,APPAREL,Shorts,Under Armour,70.13,92.1,Summer,2022-01-12,SEASONAL
+394,SKU0394,JD Essentials BBags 394,accessories,Bags,JD Essentials,10.5,15.35,Fall,2022-08-07,ACTIVE
+395,SKU0395,Puma Sandals 395,Footwear,Sandals,Puma,39.65,53.38,Summer,2024-04-26,SEASONAL
+396,SKU0396,Puma Socks 396,ACCESSORIES,Socks,Puma,43.86,69.97,Winter,2022-10-10,SEASONAL
+397,SKU0397,Reebok Hoodies 397,Apparel,Hoodies,Reebok,76.45,94.81,All Year,2022-04-17,ACTIVE
+398,SKU0398,Undder Armour Sneakers 398,Footwear,Sneakers,Under Armour,20.17,31.67,Summer,2024-01-30,ACTIVE
+399,SKU0399,Reebok Gloves 399,accessories,Gloves,Reebok,46.47,68.99,Summer,2024-10-09,DISCONTINUED
+400,SKU0400,Puma Pants 400,apparel,Pants,Puma,64.88,91.11,Spring,2024-01-07,ACTIVE
+401,SKU0401,Adidas Socks 401,accessories,Socks,Adidas,64.58,86.62,All Year,2022-02-01,SEASONAL
+402,SKU0402,JD Essentials Backpacks 402,accessories,Backpacks,JD Essentials,68.08,106.61,Fall,2023-04-09,SEASONAL
+403,SKU0403,JD Essentials Shortss 403,APPAREL,Shorts,JD Essentials,22.25,31.21,Fall,2022-08-28,SEASONAL
+404,SKU0404,New Balance Sandals 404,Footwear,Sandals,New Balance,36.4,50.72,Winter,2024-08-01,SEASONAL
+405,SKU0405,Pumma T-Shirts 405,APPAREL,T-Shirts,Puma,54.36,86.85,Fall,2024-04-24,DISCONTINUED
+406,SKU0406,New Balance Backpacks 406,Accessories,Backpacks,New Balance,27.38,33.87,Spring,2023-01-01,DISCONTINUED
+407,SKU0407,JD Essentials Running Shoes 407,FOOTWEAR,Running Shoes,JD Essentials,76.3,112.41,Summer,2023-04-26,SEASONAL
+408,SKU0408,Nike Hoodies 408,APPAREL,Hoodies,Nike,27.48,39.78,Spring,2024-10-05,SEASONAL
+409,SKU0409,Under Armour T-Shirts 409,Apparel,T-Shirts,Under Armour,53.45,74.67,Fall,2024-10-02,ACTIVE
+410,SKU0410,Nike Gloves 410,ACCESSORIES,Gloves,Nike,18.98,26.77,Spring,2024-10-26,DISCONTINUED
+411,SKU0411,Reebok Running Shoes 411,Footwear,Running Shoes,Reebok,58.88,,Summer,2024-02-17,SEASONAL
+412,SKU0412,JD Essentials Jackets 412,APPAREL,Jackets,JD Essentials,23.1,30.15,Fall,2024-01-20,ACTIVE
+413,SKU0413,Reebok Running Shoes 413,FOOTWEAR,Running Shoes,Reebok,36.06,55.59,Summer,2023-04-14,ACTIVE
+414,SKU0414,JD Essentials Socks 414,ACCESSORIES,Socks,JD Essentials,36.66,46.13,Spring,2022-12-28,DISCONTINUED
+415,SKU0415,Under Armour Sandals 415,footwear,Sandals,Under Armour,27.57,42.55,Summer,2022-05-03,ACTIVE
+416,SKU0416,Reebok Sneakers 416,FOOTWEAR,Sneakers,Reebok,28.18,37.88,Fall,2022-02-10,DISCONTINUED
+417,SKU0417,Nike Pants 417,APPAREL,Pants,Nike,55.49,78.54,Fall,2024-11-11,DISCONTINUED
+418,SKU0418,Reebok Backpacks 418,ACCESSORIES,Backpacks,Reebok,42.46,67.2,Fall,2024-05-13,SEASONAL
+419,SKU0419,Under Armour Gloves 419,Accessories,Gloves,Under Armour,15.54,20.78,Fall,2024-03-20,DISCONTINUED
+420,SKU0420,Reebok Boots 420,FOOTWEAR,Boots,Reebok,69.79,87.24,Spring,2023-03-08,ACTIVE
+421,SKU0421,Adidas Sneakers 421,footwear,Sneakers,Adidas,43.12,52.67,Spring,2022-08-01,DISCONTINUED
+422,SKU0422,New Balance Backpacks 422,accessories,Backpacks,New Balance,37.29,48.17,Summer,2022-09-26,SEASONAL
+423,SKU0423,New Balance T-Shirts 423,apparel,T-Shirts,New Balance,74.07,114.49,Fall,2024-06-30,ACTIVE
+424,SKU0424,JD Essentials Socks 424,Accessories,Socks,JD Essentials,54.17,78.78,All Year,2023-09-27,DISCONTINUED
+425,SKU0425,Undeer Armour Running Shoes 425,Footwear,Running Shoes,Under Armour,31.55,,All Year,2022-10-07,DISCONTINUED
+426,SKU0426,New Balance Sneakers 426,FOOTWEAR,Sneakers,New Balance,,106.11,Fall,2023-04-19,ACTIVE
+427,SKU0427,Reebok Socks 427,ACCESSORIES,Socks,Reebok,40.6,52.78,Winter,2023-03-28,DISCONTINUED
+428,SKU0428,JD Essentials Hoodies 428,APPAREL,Hoodies,JD Essentials,73.7,112.25,All Year,2023-07-05,DISCONTINUED
+429,SKU0429,Nike Hoodies 429,apparel,Hoodies,Nike,54.58,78.98,Summer,2023-10-19,ACTIVE
+430,SKU0430,Adidas Pants 430,apparel,Pants,Adidas,17.16,22.44,Summer,2022-07-04,ACTIVE
+431,SKU0431,Puma Hoodies 431,APPAREL,Hoodies,Puma,65.0,90.96,Spring,2023-11-08,ACTIVE
+432,SKU0432,Under Armour Jackets 432,apparel,Jackets,Under Armour,48.02,61.11,Winter,2022-01-26,ACTIVE
+433,SKU0433,Under Armour Gloves 433,accessories,Gloves,Under Armour,27.3,43.62,Spring,2024-12-03,SEASONAL
+434,SKU0434,New Balance Shorts 434,APPAREL,Shorts,New Balance,75.54,95.44,All Year,2024-12-02,ACTIVE
+435,SKU0435,Nike Sandals 435,FOOTWEAR,Sandals,Nike,13.65,20.02,Winter,2023-10-27,ACTIVE
+436,SKU0436,Adidas Pants 436,APPAREL,Pants,Adidas,27.02,42.9,All Year,2022-11-14,DISCONTINUED
+437,SKU0437,Reebok HHoodies 437,apparel,Hoodies,Reebok,53.31,83.82,Spring,2023-12-30,SEASONAL
+438,SKU0438,Under Armour Pantss 438,Apparel,Pants,Under Armour,44.15,58.57,Fall,2024-06-17,SEASONAL
+439,SKU0439,Puma Shorts 439,apparel,Shorts,Puma,27.55,33.5,All Year,2024-09-30,ACTIVE
+440,SKU0440,Puma Bags 440,accessories,Bags,Puma,42.79,66.2,Summer,2022-05-22,SEASONAL
+441,SKU0441,Under Armour Jackets 441,APPAREL,Jackets,Under Armour,35.7,42.85,Summer,2022-02-08,SEASONAL
+442,SKU0442,Puma Running Shoes 442,Footwear,Running Shoes,Puma,56.08,79.39,Winter,2022-11-12,SEASONAL
+443,SKU0443,New Balance Boots 443,FOOTWEAR,Boots,New Balance,16.74,24.5,Summer,2022-03-06,ACTIVE
+444,SKU0444,Adidas Hooddies 444,APPAREL,Hoodies,Adidas,54.92,74.44,All Year,2023-06-09,ACTIVE
+445,SKU0445,Adidas Sneakers 445,footwear,Sneakers,Adidas,24.61,34.37,Spring,2024-01-10,SEASONAL
+446,SKU0446,Under Armour Hats 446,ACCESSORIES,Hats,Under Armour,67.66,88.39,Fall,2022-06-09,ACTIVE
+447,SKU0447,New Balance Backpacks 447,accessories,Backpacks,New Balance,36.97,47.22,Summer,2024-04-30,SEASONAL
+448,SKU0448,Puma Pants 448,Apparel,Pants,Puma,59.18,81.13,All Year,2024-04-02,SEASONAL
+449,SKU0449,JD Essentials Running Shoes 449,Footwear,Running Shoes,JD Essentials,41.01,54.99,Fall,2024-02-01,DISCONTINUED
+450,SKU0450,JD Essentials Hats 450,ACCESSORIES,Hats,JD Essentials,48.19,65.06,Fall,2024-07-15,DISCONTINUED
+451,SKU0451,Puma Sneakers 451,footwear,Sneakers,Puma,46.23,73.85,Summer,2023-03-16,DISCONTINUED
+452,SKU0452,JD Essentials Jackets 452,Apparel,Jackets,JD Essentials,49.95,71.36,Summer,2022-10-11,DISCONTINUED
+453,SKU0453,Nike Running Shoes 453,Footwear,Running Shoes,Nike,31.02,44.3,Spring,2023-10-27,DISCONTINUED
+454,SKU0454,Under Armour Pants 454,APPAREL,Pants,Under Armour,51.67,68.21,Spring,2022-04-25,DISCONTINUED
+455,SKU0455,Under Armmour Boots 455,FOOTWEAR,Boots,Under Armour,63.93,95.84,Winter,2022-04-21,DISCONTINUED
+456,SKU0456,JD Essentials Hats 456,accessories,Hats,JD Essentials,32.88,48.63,Winter,2024-07-01,SEASONAL
+457,SKU0457,Nike Backpacks 457,Accessories,Backpacks,Nike,65.05,81.91,Spring,2024-03-28,DISCONTINUED
+458,SKU0458,Reebok Pants 458,APPAREL,Pants,Reebok,19.13,23.99,All Year,2023-02-06,SEASONAL
+459,SKU0459,Nike Bags 459,Accessories,Bags,Nike,28.64,39.29,Spring,2024-04-27,DISCONTINUED
+460,SKU0460,Puma Running Shoes 460,FOOTWEAR,Running Shoes,Puma,55.88,84.26,Winter,2022-10-26,DISCONTINUED
+461,SKU0461,New Balance Hoodies 461,apparel,Hoodies,New Balance,63.04,97.15,All Year,2022-10-30,DISCONTINUED
+462,SKU0462,Puma T-Shirts 462,APPAREL,T-Shirts,Puma,11.59,14.88,All Year,2023-06-14,SEASONAL
+463,SKU0463,New Balance Running Shoes 463,Footwear,Running Shoes,New Balance,11.29,16.18,Summer,2022-05-04,DISCONTINUED
+464,SKU0464,Puma Pants  464,Apparel,Pants,Puma,55.83,67.18,Fall,2022-08-09,ACTIVE
+465,SKU0465,Nike Boots 465,Footwear,Boots,Nike,45.6,67.66,All Year,2024-12-24,ACTIVE
+466,SKU0466,Reebok Pants 466,apparel,Pants,Reebok,59.87,72.8,Winter,2024-03-16,SEASONAL
+467,SKU0467,New Balance Jackets 467,apparel,Jackets,New Balance,53.77,69.6,Spring,2023-06-12,DISCONTINUED
+468,SKU0468,Nike Jackets 468,Apparel,Jackets,Nike,72.8,106.49,All Year,2023-04-11,DISCONTINUED
+469,SKU0469,Reebok Hoodies 469,Apparel,Hoodies,Reebok,73.68,98.12,Summer,2023-02-19,ACTIVE
+470,SKU0470,Reebok Running Shoes 470,Footwear,Running Shoes,Reebok,78.3,98.51,Fall,2022-05-19,SEASONAL
+471,SKU0471,Nike Backpacks 471,Accessories,Backpacks,Nike,71.57,106.7,Winter,2024-04-22,DISCONTINUED
+472,SKU0472,Nike Sandals 472,Footwear,Sandals,Nike,17.47,22.26,Fall,2023-04-18,SEASONAL
+473,SKU0473,Puma T-Shirrts 473,apparel,T-Shirts,Puma,64.59,80.97,Fall,2023-01-12,DISCONTINUED
+474,SKU0474,Nike Running Shoes 474,FOOTWEAR,Running Shoes,Nike,,18.46,Winter,2023-04-01,SEASONAL
+475,SKU0475,Adidas Socks 475,accessories,Socks,Adidas,76.83,105.7,Winter,2023-05-21,DISCONTINUED
+476,SKU0476,New Balance Boots 476,footwear,Boots,New Balance,52.81,79.06,Spring,2024-12-02,ACTIVE
+477,SKU0477,Nike Sneakers 477,FOOTWEAR,Sneakers,Nike,37.69,56.31,Spring,2023-01-24,DISCONTINUED
+478,SKU0478,Under Armour Sandals 478,FOOTWEAR,Sandals,Under Armour,42.29,57.89,All Year,2022-10-19,DISCONTINUED
+479,SKU0479,New Balance Backpacks 479,ACCESSORIES,Backpacks,New Balance,22.58,32.38,Winter,2024-04-26,DISCONTINUED
+480,SKU0480,Reebok Running Shoes 480,footwear,Running Shoes,Reebok,59.88,76.69,Summer,2022-09-11,ACTIVE
+481,SKU0074,New Balance Shorts 481,Apparel,Shorts,New Balance,46.67,63.17,Summer,2024-02-15,SEASONAL
+482,SKU0415,Puma Running Shoes 482,footwear,Running Shoes,Puma,56.17,70.78,Spring,2024-05-09,DISCONTINUED
+483,SKU0395,Puma Boots 483,Footwear,Boots,Puma,18.23,22.84,Fall,2022-01-26,DISCONTINUED
+484,SKU0278,JD Essentials Sneakers 484,FOOTWEAR,Sneakers,JD Essentials,26.65,38.26,Spring,2022-01-14,ACTIVE
+485,SKU0400,New Balance Bags 485,ACCESSORIES,Bags,New Balance,67.77,82.65,Spring,2022-10-25,ACTIVE
+486,SKU0173,Puma Bags 486,Accessories,Bags,Puma,16.14,20.07,Fall,2022-12-30,DISCONTINUED
+487,SKU0269,Adidas Hatss 487,Accessories,Hats,Adidas,30.95,41.7,Winter,2022-05-13,DISCONTINUED
+488,SKU0376,New Balance Sneakers 488,footwear,Sneakers,New Balance,33.04,45.12,Spring,2022-08-12,SEASONAL
+489,SKU0078,Adidas Bags 489,Accessories,Bags,Adidas,58.21,91.6,All Year,2023-10-11,DISCONTINUED
+490,SKU0443,Puma Bags 490,Accessories,Bags,Puma,53.0,74.12,Summer,2023-04-22,SEASONAL
+491,SKU0010,Adiidas Sneakers 491,footwear,Sneakers,Adidas,53.78,67.07,Winter,2024-04-27,ACTIVE
+492,SKU0282,Adidas Running Shoes 492,FOOTWEAR,Running Shoes,Adidas,58.3,75.89,All Year,2023-10-26,ACTIVE
+493,SKU0434,Puma Jackets 493,Apparel,Jackets,Puma,49.82,78.92,Fall,2024-09-08,DISCONTINUED
+494,SKU0299,Reebok Hoodies 494,Apparel,Hoodies,Reebok,42.24,65.31,Winter,2022-04-25,SEASONAL
+495,SKU0031,JD Essentials Sandals 495,Footwear,Sandals,JD Essentials,24.58,36.24,Fall,2022-05-16,ACTIVE
+496,SKU0094,Reebok Sandals 496,footwear,Sandals,Reebok,68.97,98.52,Fall,2023-10-07,SEASONAL
+497,SKU0056,Adidas Shorts 497,APPAREL,Shorts,Adidas,26.63,36.77,Fall,2022-12-25,ACTIVE
+498,SKU0424,Adidas Running Shoes 498,footwear,Running Shoes,Adidas,11.75,16.37,Winter,2024-12-08,DISCONTINUED
+499,SKU0034,Under Armour Sneakers 499,footwear,Sneakers,Under Armour,46.13,73.67,Winter,2024-12-05,ACTIVE
+500,SKU0204,New Balance T-Shirts 500,APPAREL,T-Shirts,New Balance,71.03,94.71,Fall,2022-02-16,SEASONAL

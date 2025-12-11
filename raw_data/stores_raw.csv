@@ -1,0 +1,32 @@
+store_id,store_name,store_type,region,address,opening_date,manager_id
+1,Store 001,High Street,Vancouver,"650 W Georgia St, Vancouver, BC",2019-02-15,M001
+2,Store 002,Mall,Ontario,"1 Yonge St, Toronto, ON",2019-10-16,M002
+3,Store 003,High Street,Vancouver,"1055 Canada Pl, Vancouver, BC",2018-11-02,M003
+4,Store 004,Mall,Ontario,"121 King St W, Toronto, ON",2021-06-29,M004
+5,Store 005,Outlet,Vancouver,"400 Robson St, Vancouver, BC",2021-01-16,M005
+6,Store 006,High Street,Ontario,"1000 Finch Ave W, Toronto, ON",2018-10-17,M006
+7,Store 007,Outlet,Vancouver,"650 W Georgia St, Vancouver, BC",2018-12-17,M007
+8,Store 008,Mall,Ontario,"1 Yonge St, Toronto, ON",2021-01-12,M008
+9,Store 009,High Street,Vancouver,"1055 Canada Pl, Vancouver, BC",2020-08-22,M009
+10,Store 010,Outlet,Ontario,"121 King St W, Toronto, ON",2018-04-21,M010
+11,Store 011,Mall,Vancouver,"400 Robson St, Vancouver, BC",2021-12-14,M011
+12,Store 012,Outlet,Ontario,"1000 Finch Ave W, Toronto, ON",2019-12-30,M012
+13,Store 013,High Street,Vancouver,"650 W Georgia St, Vancouver, BC",2022-04-03,M013
+14,Store 014,Outlet,Ontario,"1 Yonge St, Toronto, ON",2022-04-15,M014
+15,Store 015,High Street,Vancouver,"1055 Canada Pl, Vancouver, BC",2022-07-23,M015
+16,Store 016,Outlet,Ontario,"121 King St W, Toronto, ON",2019-09-28,M016
+17,Store 017,Outlet,Vancouver,"400 Robson St, Vancouver, BC",2019-04-20,M017
+18,Store 018,Mall,Ontario,"1000 Finch Ave W, Toronto, ON",2020-01-15,M018
+19,Store 019,High Street,Vancouver,"650 W Georgia St, Vancouver, BC",2019-11-08,M019
+20,Store 020,High Street,Ontario,"1 Yonge St, Toronto, ON",2018-05-14,M020
+21,Store 021,High Street,Vancouver,"1055 Canada Pl, Vancouver, BC",2020-08-02,M021
+22,Store 022,Mall,Ontario,"121 King St W, Toronto, ON",2021-03-22,M022
+23,Store 023,Mall,Vancouver,"400 Robson St, Vancouver, BC",2022-08-02,M023
+24,Store 024,Outlet,Ontario,"1000 Finch Ave W, Toronto, ON",2021-08-23,M024
+25,Store 025,Mall,Vancouver,"650 W Georgia St, Vancouver, BC",2020-03-31,M025
+26,Store 026,Outlet,Ontario,"1 Yonge St, Toronto, ON",2019-05-15,M026
+27,Store 027,Outlet,Vancouver,"1055 Canada Pl, Vancouver, BC",2018-05-16,M027
+28,Store 028,High Street,Ontario,"121 King St W, Toronto, ON",2020-06-01,M028
+29,Store 029,High Street,Vancouver,"400 Robson St, Vancouver, BC",2021-11-22,M029
+30,Store 030,Mall,Ontario,"1000 Finch Ave W, Toronto, ON",2018-06-09,M030
+19,Store 019,High Street,Vancouver,"650 W Georgia St, Vancouver, BC",2019-11-08,M019
