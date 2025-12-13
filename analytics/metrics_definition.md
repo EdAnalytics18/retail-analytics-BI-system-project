@@ -1,4 +1,4 @@
-# 📐 Metrics Definitions (Updated & Clarified)
+# 📐 Metrics Definitions
 
 This document defines the **core business KPIs** supported by the Retail Analytics BI System.  
 All metrics are calculated from **Gold-layer (core) tables**, ensuring consistency, accuracy,
