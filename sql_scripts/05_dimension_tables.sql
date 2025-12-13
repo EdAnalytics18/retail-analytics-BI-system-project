@@ -23,26 +23,26 @@ GO
 
 CREATE TABLE core.dim_date (
     date_sk        INT PRIMARY KEY,
-    full_date      DATE UNIQUE,
-    year_num       INT,
-    quarter_num    INT,
-    month_num      INT,
+    full_date      DATE NOT NULL UNIQUE,
+    year_num       INT NOT NULL,
+    quarter_num    INT NOT NULL,
+    month_num      INT NOT NULL,
     month_name     VARCHAR(20),
-    day_num        INT,
+    day_num        INT NOT NULL,
     day_name       VARCHAR(20),
-    is_weekend     BIT,
+    is_weekend     BIT NOT NULL,
     load_timestamp DATETIME DEFAULT GETDATE()
 );
 GO
 
+-- Generate calendar dates (MAXRECURSION disabled intentionally)
 ;WITH dates AS (
     SELECT CAST('2018-01-01' AS DATE) AS dt
     UNION ALL
     SELECT DATEADD(DAY, 1, dt)
     FROM dates
-    WHERE dt <= '2030-12-31'
+    WHERE dt < '2030-12-31'
 )
-
 INSERT INTO core.dim_date
 SELECT
     CONVERT(INT, FORMAT(dt, 'yyyyMMdd')) AS date_sk,
@@ -72,9 +72,9 @@ GO
 
 CREATE TABLE core.dim_product (
     product_sk     INT IDENTITY(1,1) PRIMARY KEY,
-    product_id     INT UNIQUE,
-    sku            VARCHAR(50),
-    product_name   VARCHAR(100),
+    product_id     INT NOT NULL UNIQUE,
+    sku            VARCHAR(100),
+    product_name   VARCHAR(255),
     category       VARCHAR(50),
     subcategory    VARCHAR(50),
     brand          VARCHAR(50),
@@ -84,11 +84,35 @@ CREATE TABLE core.dim_product (
     season         VARCHAR(50),
     launch_date    DATE,
     status         VARCHAR(50),
-    load_timestamp DATETIME DEFAULT GETDATE()
+    load_timestamp DATETIME,
+    source_file    VARCHAR(255)
 );
 GO
 
-INSERT INTO core.dim_product
+;WITH deduplicate AS (
+    SELECT *,
+           ROW_NUMBER() OVER (
+               PARTITION BY product_id
+               ORDER BY load_timestamp DESC
+           ) AS rn
+    FROM staging.products_clean
+)
+INSERT INTO core.dim_product (
+    product_id,
+    sku,
+    product_name,
+    category,
+    subcategory,
+    brand,
+    cost,
+    price,
+    margin,
+    season,
+    launch_date,
+    status,
+    load_timestamp,
+    source_file
+)
 SELECT
     product_id,
     sku,
@@ -101,8 +125,11 @@ SELECT
     margin,
     season,
     launch_date,
-    status
-FROM staging.products_clean;
+    status,
+    load_timestamp,
+    source_file
+FROM deduplicate
+WHERE rn = 1;
 GO
 
 
@@ -116,19 +143,28 @@ GO
 DROP TABLE IF EXISTS core.dim_store;
 GO
 
- CREATE TABLE core.dim_store (
-    store_sk            INT IDENTITY(1, 1) PRIMARY KEY,
-    store_id            INT UNIQUE,
-    store_name          VARCHAR(100),
-    store_type          VARCHAR(50),
-    region              VARCHAR(50),
-    address             VARCHAR(150),
-    opening_date        DATE,
-    manager_id          VARCHAR(50),
-    load_timestamp      DATETIME DEFAULT GETDATE()
+CREATE TABLE core.dim_store (
+    store_sk       INT IDENTITY(1,1) PRIMARY KEY,
+    store_id       INT NOT NULL UNIQUE,
+    store_name     VARCHAR(255),
+    store_type     VARCHAR(50),
+    region         VARCHAR(50),
+    address        VARCHAR(255),
+    opening_date   DATE,
+    manager_id     VARCHAR(100),
+    load_timestamp DATETIME,
+    source_file    VARCHAR(255)
 );
 GO
 
+;WITH deduplicate AS (
+    SELECT *,
+           ROW_NUMBER() OVER (
+               PARTITION BY store_id
+               ORDER BY load_timestamp DESC
+           ) AS rn
+    FROM staging.stores_clean
+)
 INSERT INTO core.dim_store (
     store_id,
     store_name,
@@ -136,7 +172,9 @@ INSERT INTO core.dim_store (
     region,
     address,
     opening_date,
-    manager_id
+    manager_id,
+    load_timestamp,
+    source_file
 )
 SELECT
     store_id,
@@ -145,6 +183,9 @@ SELECT
     region,
     address,
     opening_date,
-    manager_id
-FROM staging.stores_clean;
+    manager_id,
+    load_timestamp,
+    source_file
+FROM deduplicate
+WHERE rn = 1;
 GO
