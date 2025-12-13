@@ -11,22 +11,33 @@
    -----------------------------------------------------------------------------
    Architecture Layers:
    - staging   - Raw and cleaned source data (ELT pattern)
-   - core      - Conformed dimensions & fact tables (snowflake schema)
+   - core      - Conformed dimension & fact tables (star / snowflake schema)
    - analytics - BI-ready views (reporting & dashboards)
 ============================================================================= */
 
-CREATE DATABASE retail_dw;
+IF DB_ID('retail_dw') IS NULL
+BEGIN
+    CREATE DATABASE retail_dw;
+END
 GO
 
 USE retail_dw;
 GO
 
+
 /* -----------------------------------------------------------------------------
    Create logical schemas to separate responsibilities
 ----------------------------------------------------------------------------- */
-CREATE SCHEMA staging;
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'staging')
+    EXEC('CREATE SCHEMA staging');
 GO
-CREATE SCHEMA core;
+
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'core')
+    EXEC('CREATE SCHEMA core');
 GO
-CREATE SCHEMA analytics;
+
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'analytics')
+    EXEC('CREATE SCHEMA analytics');
 GO
+
+
