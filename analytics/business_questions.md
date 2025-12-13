@@ -1,4 +1,4 @@
-# 📊 Business Questions (Updated & Improved)
+# 📊 Business Questions
 
 This analytics layer is designed to support data-driven decision-making across **Retail, E-commerce, Finance, and Operations** teams.  
 All questions below are **fully supported by the dimensional model** and reflect real-world stakeholder use cases.
