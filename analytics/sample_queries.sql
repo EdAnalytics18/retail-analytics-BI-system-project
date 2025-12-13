@@ -8,13 +8,14 @@
 
 
 /* ============================================================================
-   1. Monthly Net Revenue Trend
+   1. Monthly Net Revenue Trend (POS + E-Commerce)
    ----------------------------------------------------------------------------
    Business Goal:
    - Understand revenue performance over time (seasonality, growth, dips)
    - Used by Finance, FP&A, and Executive teams for forecasting
 
    Logic:
+   - Combine POS and E-Commerce net revenue
    - Aggregate net revenue per month using the Date dimension
 ============================================================================ */
 SELECT
@@ -22,8 +23,15 @@ SELECT
     d.month_num,
     d.month_name,
     SUM(f.net_revenue) AS monthly_net_revenue
-FROM 
-    core.fact_ecom_orders f
+FROM (
+    SELECT date_sk, net_revenue
+    FROM core.fact_pos_transactions
+
+    UNION ALL
+
+    SELECT date_sk, net_revenue
+    FROM core.fact_ecom_orders
+) f
 JOIN 
     core.dim_date d
     ON f.date_sk = d.date_sk
@@ -45,14 +53,15 @@ ORDER BY
      is coming from and how customer behavior differs
 
    Logic:
-   - Use unified sales_items fact to aggregate revenue by channel identifier
+   - Use unified sales_items fact
+   - Aggregate revenue by source system (POS vs ECOM)
 ============================================================================ */
 SELECT
-    source_system,            -- 'POS' or 'ECOM'
+    source_system,     
     SUM(line_revenue) AS total_revenue
 FROM 
-    core.fact_sales_items
-GROUP BY 
+   core.fact_sales_items
+GROUP BY
     source_system;
 
 
@@ -64,19 +73,20 @@ GROUP BY
      promotions, and inventory allocation
 
    Logic:
-   - Join fact_sales_items to dim_product and rank by total revenue
+   - Join fact_sales_items to dim_product
+   - Rank products by total revenue
 ============================================================================ */
 SELECT TOP 10
     p.product_name,
     SUM(f.line_revenue) AS total_revenue
 FROM 
-    core.fact_sales_items f
+   core.fact_sales_items f
 JOIN 
-    core.dim_product p
+   core.dim_product p
     ON f.product_sk = p.product_sk
-GROUP BY 
+GROUP BY
     p.product_name
-ORDER BY 
+ORDER BY
     total_revenue DESC;
 
 
@@ -96,44 +106,48 @@ SELECT
     i.ending_inventory,
     i.safety_stock
 FROM 
-    core.fact_inventory_snapshots i
+   core.fact_inventory_snapshots i
 JOIN 
-    core.dim_product p
+   core.dim_product p
     ON i.product_sk = p.product_sk
 JOIN 
-    core.dim_store s
+   core.dim_store s
     ON i.store_sk = s.store_sk
-WHERE 
+WHERE
     i.ending_inventory < i.safety_stock;
 
 
 /* ============================================================================
-   5. Return Rate by Product
+   5. Return Rate by Product and Channel
    ----------------------------------------------------------------------------
    Business Goal:
-   - Identify products with high return rates that may indicate quality issues,
-     incorrect descriptions, sizing problems, or customer dissatisfaction
+   - Identify products with high return rates by sales channel
+   - Highlights potential quality issues, sizing problems, or customer friction
 
    Logic:
-   - Compare returned units to sold units to compute a return percentage
+   - Compare returned units to sold units
+   - Segment return behavior by POS vs E-Commerce
 ============================================================================ */
 SELECT
     p.product_name,
+    f.source_system,
     SUM(r.quantity_returned) AS returned_units,
     SUM(f.quantity) AS sold_units,
     CAST(
-        SUM(r.quantity_returned) * 1.0 / NULLIF(SUM(f.quantity), 0)
+        SUM(r.quantity_returned) * 1.0
+        / NULLIF(SUM(f.quantity), 0)
         AS DECIMAL(5,2)
     ) AS return_rate
 FROM 
-    core.fact_returns r
+   core.fact_returns r
 JOIN 
-    core.dim_product p
+   core.dim_product p
     ON r.product_sk = p.product_sk
 JOIN 
-    core.fact_sales_items f
-    ON p.product_sk = f.product_sk
-GROUP BY 
-    p.product_name
-ORDER BY 
+   core.fact_sales_items f
+    ON r.product_sk = f.product_sk
+GROUP BY
+    p.product_name,
+    f.source_system
+ORDER BY
     return_rate DESC;
