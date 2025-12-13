@@ -1,107 +1,185 @@
 /* =============================================================================
-   DATA INGESTION - CSV BULK LOAD
+   DATA INGESTION - CSV BULK LOAD (BRONZE / RAW LAYER)
    -----------------------------------------------------------------------------
    Purpose:
    - Load external CSV extracts into raw staging tables
-   - Simulate real enterprise file-based ingestion
+   - Simulate real enterprise file-based ingestion pipelines
+   - Ensure idempotent loads by truncating tables before ingestion
    -----------------------------------------------------------------------------
    Notes:
-   - FIRSTROW = 2 removes headers
-   - KEEPNULLS preserves missing values
-   - FILE PATHS are environment-specific
+   - FIRSTROW = 2 removes CSV headers
+   - KEEPNULLS preserves missing values for data quality analysis
+   - FILE PATHS are environment-specific and centralized below
 ============================================================================= */
-BULK INSERT staging.pos_transactions_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\pos_transactions_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+
+/* =============================================================================
+   INGESTION CONFIGURATION
+   -----------------------------------------------------------------------------
+    UPDATE THIS BASE PATH TO MATCH YOUR LOCAL ENVIRONMENT
+   Examples:
+     Windows: C:\Retail Analytics BI System Project\raw_data\
+============================================================================= */
+
+DECLARE @base_path VARCHAR(255)
+    = 'C:\Retail Analytics BI System Project\raw_data\';
+
+
+/* =============================================================================
+   POS TRANSACTIONS (HEADER LEVEL)
+============================================================================= */
+TRUNCATE TABLE staging.pos_transactions_raw;
+
+EXEC (
+    'BULK INSERT staging.pos_transactions_raw
+     FROM ''' + @base_path + 'pos_transactions_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.pos_items_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\pos_order_items_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   POS ORDER ITEMS (LINE LEVEL)
+============================================================================= */
+TRUNCATE TABLE staging.pos_items_raw;
+
+EXEC (
+    'BULK INSERT staging.pos_items_raw
+     FROM ''' + @base_path + 'pos_order_items_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.ecom_orders_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\ecom_orders_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   E-COMMERCE ORDERS
+============================================================================= */
+TRUNCATE TABLE staging.ecom_orders_raw;
+
+EXEC (
+    'BULK INSERT staging.ecom_orders_raw
+     FROM ''' + @base_path + 'ecom_orders_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.ecom_items_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\ecom_order_items_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   E-COMMERCE ORDER ITEMS
+============================================================================= */
+TRUNCATE TABLE staging.ecom_items_raw;
+
+EXEC (
+    'BULK INSERT staging.ecom_items_raw
+     FROM ''' + @base_path + 'ecom_order_items_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.inventory_snapshots_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\inventory_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   INVENTORY SNAPSHOTS
+============================================================================= */
+TRUNCATE TABLE staging.inventory_snapshots_raw;
+
+EXEC (
+    'BULK INSERT staging.inventory_snapshots_raw
+     FROM ''' + @base_path + 'inventory_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.returns_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\returns_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   RETURNS
+============================================================================= */
+TRUNCATE TABLE staging.returns_raw;
+
+EXEC (
+    'BULK INSERT staging.returns_raw
+     FROM ''' + @base_path + 'returns_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.products_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\products_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   PRODUCTS MASTER DATA
+============================================================================= */
+TRUNCATE TABLE staging.products_raw;
+
+EXEC (
+    'BULK INSERT staging.products_raw
+     FROM ''' + @base_path + 'products_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
 
-BULK INSERT staging.stores_raw
-FROM 'C:\Retail Analytics BI System Project\raw_data\stores_raw.csv'
-WITH (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ',',
-    ROWTERMINATOR = '0x0A',
-    FORMAT = 'CSV',
-    TABLOCK,
-    KEEPNULLS
+
+/* =============================================================================
+   STORES MASTER DATA
+============================================================================= */
+TRUNCATE TABLE staging.stores_raw;
+
+EXEC (
+    'BULK INSERT staging.stores_raw
+     FROM ''' + @base_path + 'stores_raw.csv''
+     WITH (
+         FIRSTROW = 2,
+         FIELDTERMINATOR = '','',
+         ROWTERMINATOR = ''0x0A'',
+         FORMAT = ''CSV'',
+         TABLOCK,
+         KEEPNULLS
+     );'
 );
 GO
