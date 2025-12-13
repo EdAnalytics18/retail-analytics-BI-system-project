@@ -1,8 +1,8 @@
-# Metrics Definitions
+# 📐 Metrics Definitions (Updated & Clarified)
 
-This document defines the **core business KPIs** supported by the Retail Analytics BI System.
-All metrics are calculated from **Gold-layer (core) tables**, ensuring consistency,
-accuracy, and reuse across dashboards and analyses.
+This document defines the **core business KPIs** supported by the Retail Analytics BI System.  
+All metrics are calculated from **Gold-layer (core) tables**, ensuring consistency, accuracy,
+and reuse across dashboards and ad-hoc analyses.
 
 ---
 
@@ -20,7 +20,7 @@ Total sales generated before discounts and refunds, calculated at the line-item 
 ---
 
 ### Net Revenue
-Revenue earned after discounts and shipping adjustments, representing realized revenue.
+Revenue earned after discounts, shipping, and adjustments, representing realized revenue.
 
 **Formula**  
 `SUM(net_revenue)`
@@ -32,13 +32,15 @@ Revenue earned after discounts and shipping adjustments, representing realized r
 ---
 
 ### Average Order Value (AOV)
-Average revenue generated per transaction.
+Average net revenue generated per transaction, calculated **per channel**.
 
 **Formula**  
-`SUM(net_revenue) / COUNT(DISTINCT transaction_id)`
+`POS AOV  = SUM(net_revenue) / COUNT(DISTINCT transaction_id)`  
+`ECOM AOV = SUM(net_revenue) / COUNT(DISTINCT order_id)`
 
 **Source**  
-`core.fact_sales_items`
+- `core.fact_pos_transactions`  
+- `core.fact_ecom_orders`
 
 ---
 
@@ -68,7 +70,7 @@ Total number of distinct transactions across all sales channels.
 
 ## Profitability Metrics
 
-### Gross Margin
+### Unit Gross Margin
 Per-unit profit after cost of goods sold.
 
 **Formula**  
@@ -79,14 +81,15 @@ Per-unit profit after cost of goods sold.
 
 ---
 
-### Total Margin
-Total contribution margin generated from product sales.
+### Total Contribution Margin
+Total margin generated from product sales.
 
 **Formula**  
 `SUM(quantity × margin)`
 
 **Source**  
-`core.fact_sales_items` + `core.dim_product`
+- `core.fact_sales_items`  
+- `core.dim_product`
 
 ---
 
@@ -127,11 +130,25 @@ Total number of return transactions.
 
 ---
 
-### Return Rate
+### Unit-Based Return Rate
 Percentage of sold units that were returned.
 
 **Formula**  
-`SUM(returned_quantity) / SUM(sold_quantity)`
+`SUM(quantity_returned) / SUM(quantity_sold)`
 
 **Source**  
-`core.fact_returns` + `core.fact_sales_items`
+- `core.fact_returns`  
+- `core.fact_sales_items`
+
+---
+
+### Revenue Return Rate (Optional Advanced KPI)
+Percentage of revenue lost due to refunds.
+
+**Formula**  
+`SUM(refund_amount) / SUM(line_revenue)`
+
+**Source**  
+- `core.fact_returns`  
+- `core.fact_sales_items`
+
