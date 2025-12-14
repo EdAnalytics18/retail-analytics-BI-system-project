@@ -1,14 +1,9 @@
-# 🏬 Retail Analytics BI System  
-**End-to-End ELT Data Warehouse for Retail Analytics**
-
-**Author:** Ed Hideaki  
-**Platform:** SQL Server  
-**Stack:** SQL Server • ELT • Dimensional Modeling • BI-Ready Views  
-**Focus:** Retail • E-Commerce • Inventory • Finance • Operations  
+#  Retail Analytics BI System  
+**End-to-End ELT Data Warehouse for Retail Analytics** 
 
 ---
 
-## 📚 Table of Contents
+##  Table of Contents
 
 - [General Info](#-general-info)
 - [Project Objectives](#-project-objectives)
@@ -22,7 +17,7 @@
 
 ---
 
-## 📌 General Info
+##  General Info
 
 Retail organizations typically operate across multiple disconnected operational systems, such as in-store POS platforms, e-commerce systems, inventory management tools, and returns processing systems. While these systems generate large volumes of data, they often lack a centralized analytics foundation that enables consistent, reliable reporting.
 
@@ -32,7 +27,7 @@ This project addresses that gap by designing and implementing a **production-sty
 
 ---
 
-## 🎯 Project Objectives
+##  Project Objectives
 
 The objectives of this project are to:
 
@@ -46,7 +41,7 @@ The objectives of this project are to:
 
 ---
 
-## 🧩 Project Description
+##  Project Description
 
 A retail organization operates across multiple sales channels, including physical stores (POS) and e-commerce platforms. Each system generates its own datasets for sales, inventory, products, and returns, resulting in fragmented data and inconsistent reporting.
 
@@ -63,9 +58,9 @@ This approach mirrors **real-world analytics engineering workflows** used by ret
 
 ---
 
-## 📦 Definition of Key Project Deliverables
+##  Definition of Key Project Deliverables
 
-### 📁 Datasets
+###  Datasets
 
 The project integrates data extracted from multiple operational systems. All source data is ingested as **CSV files** into the staging (Bronze) layer.
 
@@ -82,7 +77,7 @@ Primary datasets include:
 
 ---
 
-### 1️⃣ POS Transactions Dataset
+### 1️. POS Transactions Dataset
 
 **Grain:** One row per in-store transaction  
 **Purpose:** Capture in-store revenue, payment methods, discounts, and taxes  
@@ -100,7 +95,7 @@ Primary datasets include:
 
 ---
 
-### 2️⃣ E-Commerce Orders Dataset
+### 2️. E-Commerce Orders Dataset
 
 **Grain:** One row per e-commerce order  
 **Purpose:** Capture online order revenue and digital attributes  
@@ -119,7 +114,7 @@ Primary datasets include:
 
 ---
 
-### 3️⃣ Sales Line Items Dataset (POS + E-Commerce)
+### 3️. Sales Line Items Dataset (POS + E-Commerce)
 
 **Grain:** One row per product per transaction  
 **Purpose:** Unified view of all product-level sales activity  
@@ -137,7 +132,7 @@ Primary datasets include:
 
 ---
 
-### 4️⃣ Inventory Snapshots Dataset
+### 4️. Inventory Snapshots Dataset
 
 **Grain:** One row per product per store per date  
 **Purpose:** Point-in-time inventory tracking  
@@ -154,7 +149,7 @@ Primary datasets include:
 
 ---
 
-### 5️⃣ Returns Dataset
+### 5️. Returns Dataset
 
 **Grain:** One row per return event  
 **Purpose:** Track refunds and customer dissatisfaction signals  
@@ -171,18 +166,18 @@ Primary datasets include:
 
 ---
 
-## 🗄️ Database Schema & Dimensional Model
+##  Database Schema & Dimensional Model
 
 The data warehouse uses a **star schema** to optimize analytical performance and simplify BI queries.
 
-### ⭐ Fact Tables
+###  Fact Tables
 - `fact_pos_transactions` – In-store transaction revenue  
 - `fact_ecom_orders` – Online order-level revenue  
 - `fact_sales_items` – Unified POS + ECOM line-item sales  
 - `fact_inventory_snapshots` – Point-in-time inventory positions  
 - `fact_returns` – Refunds and return behavior  
 
-### 🧱 Dimension Tables
+###  Dimension Tables
 - `dim_date` – Calendar and time attributes  
 - `dim_product` – Product pricing, cost, margin, lifecycle  
 - `dim_store` – Store attributes and regional hierarchy  
@@ -195,9 +190,9 @@ The data warehouse uses a **star schema** to optimize analytical performance and
 
 ---
 
-## ⚙️ Project Processes
+##  Project Processes
 
-### 1️⃣ Database & Schema Setup
+### 1️. Database & Schema Setup
 - Create database and schemas (`staging`, `core`, `analytics`)  
 - Define raw staging tables (Bronze)  
 - Define cleaned staging tables (Silver)  
@@ -206,7 +201,7 @@ The data warehouse uses a **star schema** to optimize analytical performance and
 
 ---
 
-### 2️⃣ ELT Pipeline (SQL-Based)
+### 2️. ELT Pipeline (SQL-Based)
 
 **Extract**
 - Load CSV files into raw staging tables using `BULK INSERT`
@@ -224,14 +219,14 @@ The data warehouse uses a **star schema** to optimize analytical performance and
 
 ---
 
-### 3️⃣ Analytics Layer
+### 3️. Analytics Layer
 - Build **BI-ready views** that abstract complex joins  
 - Define consistent business logic for KPIs  
 - Optimize for **Power BI, Tableau, Looker, and SQL analysis**  
 
 ---
 
-## 🎯 Business Impact
+##  Business Impact
 
 This warehouse is designed to **drive decisions, not just store data**.
 
@@ -261,7 +256,7 @@ This warehouse is designed to **drive decisions, not just store data**.
 
 ---
 
-## 📈 Business Impact Summary
+##  Business Impact Summary
 
 This system enables the organization to:
 
