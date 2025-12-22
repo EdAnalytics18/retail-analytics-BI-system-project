@@ -166,27 +166,118 @@ Primary datasets include:
 
 ---
 
-##  Database Schema & Dimensional Model
+## Database Schema & Dimensional Model
 
-The data warehouse uses a **star schema** to optimize analytical performance and simplify BI queries.
+The data warehouse is designed using **multiple subject-area star schemas**, rather than a single monolithic model.  
+Each star schema is optimized around a specific analytical use case, making the system more intuitive, performant, and BI-friendly for end users.
 
-###  Fact Tables
-- `fact_pos_transactions` – In-store transaction revenue  
-- `fact_ecom_orders` – Online order-level revenue  
-- `fact_sales_items` – Unified POS + ECOM line-item sales  
-- `fact_inventory_snapshots` – Point-in-time inventory positions  
-- `fact_returns` – Refunds and return behavior  
+This approach mirrors how production retail analytics warehouses are commonly designed to support diverse stakeholder needs while maintaining consistent, conformed dimensions.
 
-###  Dimension Tables
-- `dim_date` – Calendar and time attributes  
-- `dim_product` – Product pricing, cost, margin, lifecycle  
-- `dim_store` – Store attributes and regional hierarchy  
+---
 
-### Why Star Schema?
-- Fast aggregations for BI dashboards  
-- Simple joins for analysts  
-- Clear grain definition prevents metric distortion  
-- Industry-standard design used in production data warehouses  
+## Star Schema Overview (By Business Domain)
+
+### 1️. In-Store Sales Star Schema (POS)
+
+**Fact Table**
+- `fact_pos_transactions` — In-store transaction-level revenue and payment data
+
+**Dimensions**
+- `dim_date` — Calendar and time attributes  
+- `dim_store` — Store metadata and regional hierarchy  
+
+**Primary Use Cases**
+- Store-level revenue and AOV analysis  
+- Cash vs. card payment mix  
+- Regional performance comparisons  
+
+---
+
+### 2. E-Commerce Orders Star Schema
+
+**Fact Table**
+- `fact_ecom_orders` — Online order-level revenue and digital attributes
+
+**Dimensions**
+- `dim_date` — Order date and time attributes  
+
+**Primary Use Cases**
+- Online revenue trend analysis  
+- Channel, device, and traffic source performance  
+- Digital AOV and order volume tracking  
+
+---
+
+### 3️. Sales Line Items Star Schema (POS + E-Commerce)
+
+**Fact Table**
+- `fact_sales_items` — Unified product-level sales across all channels
+
+**Dimensions**
+- `dim_product` — Product attributes, pricing, and margins  
+- `dim_date` — Transaction date  
+- `dim_store` — Store context (where applicable)  
+
+**Primary Use Cases**
+- Product and category performance analysis  
+- Margin and product-mix optimization  
+- Cross-channel sales comparisons  
+
+---
+
+### 4️. Inventory Star Schema
+
+**Fact Table**
+- `fact_inventory_snapshots` — Point-in-time inventory levels by product and store
+
+**Dimensions**
+- `dim_product` — Product master data  
+- `dim_store` — Store and location attributes  
+- `dim_date` — Inventory snapshot date  
+
+**Primary Use Cases**
+- Stock-out and overstock detection  
+- Inventory turnover analysis  
+- Capital efficiency and safety stock monitoring  
+
+---
+
+### 5️. Returns Star Schema
+
+**Fact Table**
+- `fact_returns` — Product return events and refund amounts
+
+**Dimensions**
+- `dim_product` — Returned product details  
+- `dim_store` — Return location (when applicable)  
+- `dim_date` — Return date  
+
+**Primary Use Cases**
+- Return rate and refund impact analysis  
+- Identification of high-return products  
+- Customer experience and quality issue detection  
+
+---
+
+## Conformed Dimensions
+
+All star schemas share a set of **conformed dimensions**, ensuring metric consistency across dashboards and analyses:
+
+- `dim_date` — Standardized calendar attributes  
+- `dim_product` — Centralized product master data  
+- `dim_store` — Unified store and regional hierarchy  
+
+This design enables analysts to seamlessly combine insights across domains without duplicating business logic.
+
+---
+
+## Why Multiple Star Schemas?
+
+- **Improved usability**: Each schema aligns directly with a business question  
+- **Simpler BI queries**: Analysts avoid unnecessary joins and ambiguity  
+- **Clear grain definition**: Prevents metric distortion and double counting  
+- **Performance optimization**: Faster aggregations for dashboards  
+- **Production-grade design**: Commonly used in enterprise retail analytics platforms  
 
 ---
 
