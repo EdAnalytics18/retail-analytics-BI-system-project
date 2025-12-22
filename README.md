@@ -197,7 +197,7 @@ This approach mirrors how production retail analytics warehouses are commonly de
 
 ### 2. E-Commerce Orders Star Schema
 
-![Ecom Star Schema](diagrams/E-Commerce%20Star%20Schema.png.png)
+![Ecom Star Schema](diagrams/E-Commerce%20Star%20Schema.png)
 
 **Fact Table**
 - `fact_ecom_orders` — Online order-level revenue and digital attributes
@@ -213,6 +213,8 @@ This approach mirrors how production retail analytics warehouses are commonly de
 ---
 
 ### 3️. Sales Line Items Star Schema (POS + E-Commerce)
+
+![Sales Line Star Schema](diagrams/Sales%20Line%20Item%20Star%20Schema.png)
 
 **Fact Table**
 - `fact_sales_items` — Unified product-level sales across all channels
