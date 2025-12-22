@@ -197,6 +197,8 @@ This approach mirrors how production retail analytics warehouses are commonly de
 
 ### 2. E-Commerce Orders Star Schema
 
+![Ecom Star Schema](diagrams/E-Commerce%20Star%20Schema.png.png)
+
 **Fact Table**
 - `fact_ecom_orders` — Online order-level revenue and digital attributes
 
