@@ -120,7 +120,7 @@ Primary datasets include:
 
 ### 3️. Sales Line Items Dataset (POS + E-Commerce)
 
-![Sales Line Items Raw Data](images/sales_items_raw.png)
+![Sales Line Items Raw Data](images/sales_Items_raw.png)
 
 **Grain:** One row per product per transaction  
 **Purpose:** Unified view of all product-level sales activity  
