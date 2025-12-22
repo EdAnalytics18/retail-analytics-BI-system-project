@@ -120,6 +120,8 @@ Primary datasets include:
 
 ### 3️. Sales Line Items Dataset (POS + E-Commerce)
 
+![Sales Line Items Raw Data](images/sales_items_raw.png)
+
 **Grain:** One row per product per transaction  
 **Purpose:** Unified view of all product-level sales activity  
 
@@ -138,6 +140,8 @@ Primary datasets include:
 
 ### 4️. Inventory Snapshots Dataset
 
+![Inventory Raw Data](images/inventory_snapshot_raw.png)
+
 **Grain:** One row per product per store per date  
 **Purpose:** Point-in-time inventory tracking  
 
@@ -154,6 +158,8 @@ Primary datasets include:
 ---
 
 ### 5️. Returns Dataset
+
+![Returns Raw Data](images/returns_raw.png)
 
 **Grain:** One row per return event  
 **Purpose:** Track refunds and customer dissatisfaction signals  
