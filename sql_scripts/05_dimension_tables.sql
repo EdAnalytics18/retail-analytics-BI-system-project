@@ -1,41 +1,84 @@
 /* =============================================================================
-   CORE LAYER - DIMENSION TABLES
+   CORE LAYER - ENTERPRISE STAR SCHEMA (DIMENSIONS & FACT TABLES)
+   =============================================================================
+   Executive Summary:
+   This layer represents the trusted analytical backbone of the Retail
+   Analytics BI System. Data here is modeled using a star schema to ensure
+   fast, consistent, and business-friendly analytics.
+
+   The core layer establishes a single source of truth for key business
+   entities (dates, products, stores) that are shared across all fact tables.
+
    -----------------------------------------------------------------------------
-   Purpose:
-   - Store descriptive attributes used to slice facts
-   - Provide conformed dimensions shared across all fact tables
+   Business Value:
+   - Ensures consistent KPIs across Finance, Marketing, and Operations
+   - Enables high-performance BI dashboards and ad-hoc analysis
+   - Eliminates conflicting metric definitions across teams
+   - Provides a stable foundation for forecasting and executive reporting
+
    -----------------------------------------------------------------------------
-   Design Decisions:
-   - Surrogate keys for performance
-   - Natural key uniqueness enforcement
-   - BI-friendly attributes
+   Input Layer:
+   - staging.*_clean tables (Silver / Clean)
+   - These inputs have already:
+     - Enforced correct data types
+     - Standardized categorical values
+     - Flagged bad records without data loss
+     - Flagged duplicates using is_duplicate (not deleted)
+
+   The core layer focuses strictly on dimensional modeling, not data cleanup.
 ============================================================================= */
 
+
+/* =============================================================================
+   DIMENSIONS
+   =============================================================================
+   Purpose:
+   Dimension tables provide descriptive context for fact tables.
+   They allow metrics to be sliced, filtered, and grouped in ways that align
+   with how the business thinks about performance.
+
+   Design Principles:
+   - Surrogate keys for performance and stability
+   - Natural keys retained for traceability
+   - One row per real-world business entity
+============================================================================= */
+
+
 /* -----------------------------------------------------------------------------
-DIM_DATE
-   Grain: One row per calendar date
-   Role:
-   - Unified time dimension for all facts
-   - Enables time-series analysis (YoY, MoM, QoQ)
+   DIM_DATE - CALENDAR DIMENSION
+   -----------------------------------------------------------------------------
+   Description:
+   Centralized calendar dimension used for all date-based reporting.
+
+   Grain:
+   One row per calendar date.
+
+   Why This Matters:
+   - Guarantees consistent definitions of year, quarter, and month
+   - Prevents duplicate date logic across dashboards
+   - Enables time-series analysis, seasonality, and YoY comparisons
+
+   Notes:
+   - Uses an integer surrogate key (YYYYMMDD) for efficient joins
+   - Pre-generated for a fixed date range to simplify analytics
 ----------------------------------------------------------------------------- */
 DROP TABLE IF EXISTS core.dim_date;
 GO
 
 CREATE TABLE core.dim_date (
-    date_sk        INT PRIMARY KEY,
-    full_date      DATE NOT NULL UNIQUE,
-    year_num       INT NOT NULL,
-    quarter_num    INT NOT NULL,
-    month_num      INT NOT NULL,
-    month_name     VARCHAR(20),
-    day_num        INT NOT NULL,
-    day_name       VARCHAR(20),
-    is_weekend     BIT NOT NULL,
-    load_timestamp DATETIME DEFAULT GETDATE()
+    date_sk        INT           NOT NULL PRIMARY KEY,
+    full_date      DATE          NOT NULL UNIQUE,
+    year_num       INT           NOT NULL,
+    quarter_num    INT           NOT NULL,
+    month_num      INT           NOT NULL,
+    month_name     VARCHAR(20)   NOT NULL,
+    day_num        INT           NOT NULL,
+    day_name       VARCHAR(20)   NOT NULL,
+    is_weekend     BIT           NOT NULL,
+    load_timestamp DATETIME2     NOT NULL DEFAULT SYSDATETIME()
 );
 GO
 
--- Generate calendar dates (MAXRECURSION disabled intentionally)
 ;WITH dates AS (
     SELECT CAST('2018-01-01' AS DATE) AS dt
     UNION ALL
@@ -43,7 +86,17 @@ GO
     FROM dates
     WHERE dt < '2030-12-31'
 )
-INSERT INTO core.dim_date
+INSERT INTO core.dim_date (
+    date_sk,
+    full_date,
+    year_num,
+    quarter_num,
+    month_num,
+    month_name,
+    day_num,
+    day_name,
+    is_weekend
+)
 SELECT
     CONVERT(INT, FORMAT(dt, 'yyyyMMdd')) AS date_sk,
     dt,
@@ -53,25 +106,43 @@ SELECT
     DATENAME(MONTH, dt),
     DAY(dt),
     DATENAME(WEEKDAY, dt),
-    CASE WHEN DATENAME(WEEKDAY, dt) IN ('Saturday','Sunday') THEN 1 ELSE 0 END,
-    GETDATE()
+    CASE
+        WHEN DATENAME(WEEKDAY, dt) IN ('Saturday', 'Sunday') THEN 1
+        ELSE 0
+    END
 FROM dates
 OPTION (MAXRECURSION 0);
 GO
 
 
 /* -----------------------------------------------------------------------------
-   DIM_PRODUCT
-   Grain: One row per product (natural key: product_id)
-   Role:
-   - Central product master used across sales, inventory, and returns
-   - Stores pricing, cost, margin, and classification attributes
+   DIM_PRODUCT - PRODUCT MASTER DIMENSION
+   -----------------------------------------------------------------------------
+   Description:
+   Trusted product master data used across all sales, inventory,
+   and profitability reporting.
+
+   Grain:
+   One row per product_id (natural key).
+
+   Source:
+   staging.products_clean
+
+   Business Rules:
+   - Only the latest valid version of each product is promoted
+   - Duplicate records are excluded using deterministic rules
+   - Financial attributes (cost, price, margin) already validated upstream
+
+   Why This Matters:
+   - Prevents duplicated or inconsistent product reporting
+   - Ensures margin calculations are consistent organization-wide
+   - Supports category, brand, and lifecycle analysis
 ----------------------------------------------------------------------------- */
 DROP TABLE IF EXISTS core.dim_product;
 GO
 
 CREATE TABLE core.dim_product (
-    product_sk     INT IDENTITY(1,1) PRIMARY KEY,
+    product_sk     INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     product_id     INT NOT NULL UNIQUE,
     sku            VARCHAR(100),
     product_name   VARCHAR(255),
@@ -84,19 +155,11 @@ CREATE TABLE core.dim_product (
     season         VARCHAR(50),
     launch_date    DATE,
     status         VARCHAR(50),
-    load_timestamp DATETIME,
+    load_timestamp DATETIME2,
     source_file    VARCHAR(255)
 );
 GO
 
-;WITH deduplicate AS (
-    SELECT *,
-           ROW_NUMBER() OVER (
-               PARTITION BY product_id
-               ORDER BY load_timestamp DESC
-           ) AS rn
-    FROM staging.products_clean
-)
 INSERT INTO core.dim_product (
     product_id,
     sku,
@@ -128,23 +191,38 @@ SELECT
     status,
     load_timestamp,
     source_file
-FROM deduplicate
-WHERE rn = 1;
+FROM staging.products_clean
+WHERE is_duplicate = 0
+  AND product_id IS NOT NULL;
 GO
 
 
 /* -----------------------------------------------------------------------------
-   DIM_STORE
-   Grain: One row per physical store location
-   Role:
-   - Store-level analysis for sales, inventory, and returns
-   - Enables regional and store-type performance insights
+   DIM_STORE - STORE / LOCATION DIMENSION
+   -----------------------------------------------------------------------------
+   Description:
+   Represents physical retail locations and their organizational attributes.
+
+   Grain:
+   One row per store_id (natural key).
+
+   Source:
+   staging.stores_clean
+
+   Business Rules:
+   - Only current, non-duplicate store records are included
+   - Regional and store-type attributes standardized upstream
+
+   Why This Matters:
+   - Enables accurate regional and store-level performance analysis
+   - Prevents double-counting due to duplicated store records
+   - Provides consistent organizational context for all store-based KPIs
 ----------------------------------------------------------------------------- */
 DROP TABLE IF EXISTS core.dim_store;
 GO
 
 CREATE TABLE core.dim_store (
-    store_sk       INT IDENTITY(1,1) PRIMARY KEY,
+    store_sk       INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     store_id       INT NOT NULL UNIQUE,
     store_name     VARCHAR(255),
     store_type     VARCHAR(50),
@@ -152,19 +230,11 @@ CREATE TABLE core.dim_store (
     address        VARCHAR(255),
     opening_date   DATE,
     manager_id     VARCHAR(100),
-    load_timestamp DATETIME,
+    load_timestamp DATETIME2,
     source_file    VARCHAR(255)
 );
 GO
 
-;WITH deduplicate AS (
-    SELECT *,
-           ROW_NUMBER() OVER (
-               PARTITION BY store_id
-               ORDER BY load_timestamp DESC
-           ) AS rn
-    FROM staging.stores_clean
-)
 INSERT INTO core.dim_store (
     store_id,
     store_name,
@@ -186,6 +256,7 @@ SELECT
     manager_id,
     load_timestamp,
     source_file
-FROM deduplicate
-WHERE rn = 1;
+FROM staging.stores_clean
+WHERE is_duplicate = 0
+  AND store_id IS NOT NULL;
 GO
