@@ -233,6 +233,8 @@ This approach mirrors how production retail analytics warehouses are commonly de
 
 ### 4️. Inventory Star Schema
 
+![Inventory Star Schema](diagrams/Inventory%20Star%20Schema.png)
+
 **Fact Table**
 - `fact_inventory_snapshots` — Point-in-time inventory levels by product and store
 
@@ -249,6 +251,8 @@ This approach mirrors how production retail analytics warehouses are commonly de
 ---
 
 ### 5️. Returns Star Schema
+
+![Returns Star Schema](diagrams/Returns%20Star%20Schema.png)
 
 **Fact Table**
 - `fact_returns` — Product return events and refund amounts
