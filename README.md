@@ -179,7 +179,7 @@ This approach mirrors how production retail analytics warehouses are commonly de
 
 ### 1️. In-Store Sales Star Schema (POS)
 
-![Store_Star_Schema](diagrams/In-Store Star Schema.png)
+![Store Star Schema](diagrams/In-Store%20Star%20Schema.png)
 
 **Fact Table**
 - `fact_pos_transactions` — In-store transaction-level revenue and payment data
