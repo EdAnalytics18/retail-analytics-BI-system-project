@@ -79,7 +79,7 @@ Primary datasets include:
 
 ### 1️. POS Transactions Dataset
 
-![POS Raw Data](images/pos%20transactions%20raw.png)
+![POS Raw Data](images/pos_transactions_raw.png)
 
 **Grain:** One row per in-store transaction  
 **Purpose:** Capture in-store revenue, payment methods, discounts, and taxes  
@@ -99,7 +99,7 @@ Primary datasets include:
 
 ### 2️. E-Commerce Orders Dataset
 
-![E-Commerce Raw Data](images/ecom%20orders%20raw.png)
+![E-Commerce Raw Data](images/ecom_orders_raw.png)
 
 **Grain:** One row per e-commerce order  
 **Purpose:** Capture online order revenue and digital attributes  
