@@ -1,15 +1,16 @@
-# 📐 Metrics Definitions
+#  Metrics Definitions
 
 This document defines the **core business KPIs** supported by the Retail Analytics BI System.  
-All metrics are calculated from **Gold-layer (core) tables**, ensuring consistency, accuracy,
-and reuse across dashboards and ad-hoc analyses.
+All metrics are calculated from **conformed fact and dimension tables** in the Core layer and
+exposed through **analytics-layer (Gold) views**, ensuring consistency, accuracy, and reuse
+across dashboards and ad-hoc analyses.
 
 ---
 
-## Revenue Metrics
+##  Revenue Metrics
 
 ### Total Revenue
-Total sales generated before discounts and refunds, calculated at the line-item level.
+Total sales revenue generated at the product line-item level, before refunds.
 
 **Formula**  
 `SUM(line_revenue)`
@@ -20,10 +21,12 @@ Total sales generated before discounts and refunds, calculated at the line-item 
 ---
 
 ### Net Revenue
-Revenue earned after discounts, shipping, and adjustments, representing realized revenue.
+Revenue realized after discounts, shipping, and adjustments.  
+Calculated separately for in-store (POS) and e-commerce channels.
 
 **Formula**  
-`SUM(net_revenue)`
+`POS Net Revenue  = SUM(net_revenue)`  
+`ECOM Net Revenue = SUM(net_revenue)`
 
 **Source**  
 - `core.fact_pos_transactions`  
@@ -32,7 +35,7 @@ Revenue earned after discounts, shipping, and adjustments, representing realized
 ---
 
 ### Average Order Value (AOV)
-Average net revenue generated per transaction, calculated **per channel**.
+Average net revenue generated per completed transaction, calculated **per channel**.
 
 **Formula**  
 `POS AOV  = SUM(net_revenue) / COUNT(DISTINCT transaction_id)`  
@@ -44,10 +47,10 @@ Average net revenue generated per transaction, calculated **per channel**.
 
 ---
 
-## Sales & Volume Metrics
+##  Sales & Volume Metrics
 
 ### Units Sold
-Total number of product units sold.
+Total number of product units sold across all channels.
 
 **Formula**  
 `SUM(quantity)`
@@ -58,17 +61,21 @@ Total number of product units sold.
 ---
 
 ### Order Count
-Total number of distinct transactions across all sales channels.
+Total number of completed sales transactions, calculated by channel.
 
 **Formula**  
-`COUNT(DISTINCT transaction_id)`
+`POS Orders  = COUNT(DISTINCT transaction_id)`  
+`ECOM Orders = COUNT(DISTINCT order_id)`
 
 **Source**  
-`core.fact_sales_items`
+- `core.fact_pos_transactions`  
+- `core.fact_ecom_orders`
+
+> **Note:** Unified order counts across channels are derived at the analytics layer when required.
 
 ---
 
-## Profitability Metrics
+##  Profitability Metrics
 
 ### Unit Gross Margin
 Per-unit profit after cost of goods sold.
@@ -82,7 +89,7 @@ Per-unit profit after cost of goods sold.
 ---
 
 ### Total Contribution Margin
-Total margin generated from product sales.
+Total margin generated from product sales across all channels.
 
 **Formula**  
 `SUM(quantity × margin)`
@@ -93,10 +100,10 @@ Total margin generated from product sales.
 
 ---
 
-## Inventory Metrics
+##  Inventory Metrics
 
 ### Inventory Value
-Total value of on-hand inventory at the time of snapshot.
+Total monetary value of on-hand inventory at the time of each snapshot.
 
 **Formula**  
 `SUM(inventory_value)`
@@ -107,7 +114,7 @@ Total value of on-hand inventory at the time of snapshot.
 ---
 
 ### Inventory Delta
-Change in inventory levels between the beginning and end of a given period.
+Change in inventory levels within a single snapshot, used as a sanity and operational check.
 
 **Formula**  
 `ending_inventory − beginning_inventory`
@@ -115,12 +122,15 @@ Change in inventory levels between the beginning and end of a given period.
 **Source**  
 `core.fact_inventory_snapshots`
 
+> **Note:** Period-over-period inventory change is derived analytically using multiple snapshots
+and the date dimension.
+
 ---
 
-## Returns Metrics
+##  Returns Metrics
 
 ### Return Count
-Total number of return transactions.
+Total number of return events recorded.
 
 **Formula**  
 `COUNT(DISTINCT return_id)`
@@ -142,8 +152,8 @@ Percentage of sold units that were returned.
 
 ---
 
-### Revenue Return Rate (Optional Advanced KPI)
-Percentage of revenue lost due to refunds.
+### Revenue Return Rate (Advanced KPI)
+Percentage of gross revenue lost due to refunds.
 
 **Formula**  
 `SUM(refund_amount) / SUM(line_revenue)`
@@ -152,3 +162,9 @@ Percentage of revenue lost due to refunds.
 - `core.fact_returns`  
 - `core.fact_sales_items`
 
+---
+
+> **Metric Governance Note**  
+> All metrics defined above are derived from **conformed fact tables** and exposed through
+> analytics-layer views, ensuring that KPIs remain **consistent, explainable, and reproducible**
+> across BI tools and analytical workflows.
