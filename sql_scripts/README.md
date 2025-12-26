@@ -13,7 +13,7 @@ Scripts are intended to be executed **sequentially** in numeric order.
 ##  Execution Order & Purpose
 
 ### `00_database_and_schemas.sql`
-Creates the database and core schemas used throughout the project.
+Creates the data warehouse and core schemas used throughout the project.
 
 **Responsibilities**
 - Create database (if not exists)
@@ -141,4 +141,4 @@ Defines **analytics-layer (Gold) SQL views** used for reporting and dashboards.
 
 - Scripts are written for **SQL Server**
 - Designed for batch processing using CSV extracts
-- Can be adapted to other relational data warehouses with minimal changes
+- Can be adapted to other data warehouses with minimal changes
