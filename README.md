@@ -107,7 +107,7 @@ Primary datasets include:
 
 ---
 
-### 1️. POS Raw Data
+### 1️. POS Transactions Dataset
 
 ![POS Raw Data](images/pos_transactions_raw.png)
 
@@ -127,7 +127,7 @@ Primary datasets include:
 
 ---
 
-### 2️. E-Commerce Raw Data
+### 2️. E-Commerce Orders Dataset
 
 ![E-Commerce Raw Data](images/ecom_orders_raw.png)
 
@@ -205,6 +205,23 @@ This dataset is derived by unifying POS and e-commerce line items during the tra
 **Business value**
 - Enables return rate and refund impact analysis
 - Identifies product quality and customer experience issues
+
+---
+
+### Product & Store Master Data (Reference Data)
+
+![Products Raw Data](images/products_raw.png)
+
+![Stores Raw Data](images/stores_raw.png)
+
+The `products_raw` and `stores_raw` datasets represent **master data**
+used to enrich transactional and operational facts.
+
+These datasets do not generate KPIs directly, but provide the descriptive
+context required for product-, store-, and region-level analysis.
+
+They are transformed into conformed dimensions and reused across all
+analytical domains.
 
 ---
 
