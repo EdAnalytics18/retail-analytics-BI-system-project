@@ -58,6 +58,36 @@ This approach mirrors **real-world analytics engineering workflows** used by ret
 
 ---
 
+## High-Level Architecture
+
+![High-Level Architecture](images/architecture.png)
+
+**Figure:** End-to-end ELT data warehouse architecture illustrating how raw retail data flows from source systems through layered staging (Bronze/Silver), a conformed dimensional core (Star Schema), and a business semantic layer consumed by BI tools and ad-hoc SQL queries.
+
+### Architecture Overview
+
+The Retail Analytics BI System follows a modern **ELT (Extract, Load, Transform)** architecture designed for scalability, auditability, and analytics performance.
+
+- **Source Systems**  
+  Batch CSV extracts from POS, E-commerce, Inventory Management, and Product & Store Master Data systems.
+
+- **Staging Layer (Bronze & Silver)**  
+  - Raw staging tables preserve source data exactly as received (schema-on-read).  
+  - Clean staging tables standardize data types, normalize business fields, apply data quality checks, and flag duplicates without data loss.
+
+- **Core Layer (Star Schema)**  
+  Conformed fact and dimension tables provide a single source of truth, enforce clear grains, and support high-performance analytical queries.
+
+- **Analytics Layer (Semantic / Gold)**  
+  Business-ready views encapsulate joins and KPI logic, enabling fast dashboard development and consistent metrics across BI tools.
+
+- **Consumption Layer**  
+  Power BI dashboards, Tableau reports, and ad-hoc SQL analysis consume analytics views directly without reimplementing business logic.
+
+This layered design mirrors production analytics architectures used by retail and e-commerce organizations, ensuring that insights are reliable, explainable, and scalable.
+
+---
+
 ##  Definition of Key Project Deliverables
 
 ###  Datasets
