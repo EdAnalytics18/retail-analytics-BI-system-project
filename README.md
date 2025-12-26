@@ -60,7 +60,7 @@ This approach mirrors **real-world analytics engineering workflows** used by ret
 
 ## High-Level Architecture
 
-![High-Level Architecture](images/architecture.png)
+![High-Level Architecture](diagrams/architecture.png)
 
 **Figure:** End-to-end ELT data warehouse architecture illustrating how raw retail data flows from source systems through layered staging (Bronze/Silver), a conformed dimensional core (Star Schema), and a business semantic layer consumed by BI tools and ad-hoc SQL queries.
 
