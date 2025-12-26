@@ -1,25 +1,26 @@
-# 📊 Business Questions
+# Business Questions
 
-This analytics layer is designed to support data-driven decision-making across **Retail, E-commerce, Finance, and Operations** teams.  
-All questions below are **fully supported by the dimensional model** and reflect real-world stakeholder use cases.
+This analytics layer is designed to support data-driven decision-making across **Retail, E-commerce, Finance, and Operations** teams.
+
+All questions below are **directly supported by the dimensional model and analytics-layer views**, and reflect real-world stakeholder use cases commonly addressed by production retail analytics teams.
 
 ---
 
-## 1. Revenue & Sales Performance
+## 1️. Revenue & Sales Performance
 
-These questions help leadership understand overall financial performance, growth drivers, and channel mix.
+These questions help leadership understand overall financial performance, growth drivers, and channel mix across time.
 
 - How does total **net revenue** evolve over time (daily, monthly, yearly)?
-- What is the **revenue split** between in-store (POS) and e-commerce channels?
-- Which products and categories drive the **highest revenue and unit sales**?
-- Which stores are the **top contributors** to overall performance?
+- What is the revenue split between **in-store (POS)** and **e-commerce** channels?
+- Which products and categories drive the highest **revenue** and **unit sales**?
+- Which stores are the **top contributors** to overall revenue performance?
 - How does **Average Order Value (AOV)** trend over time by channel?
 - What is driving revenue growth — **price, volume, or product mix**?
-- Which products and stores contribute most to **MoM and YoY growth**?
+- Which products and stores contribute most to **month-over-month (MoM)** and **year-over-year (YoY)** growth?
 
 ---
 
-## 2. Product Performance & Profitability
+## 2️. Product Performance & Profitability
 
 These insights enable merchandising, pricing, and assortment optimization.
 
@@ -28,42 +29,48 @@ These insights enable merchandising, pricing, and assortment optimization.
 - Are there products with **low or negative profitability** that require intervention?
 - Which categories and subcategories contribute most to **overall margin**?
 - How do **seasonal products** perform compared to core, year-round items?
-- How does **product profitability** evolve over time?
+- How does **product profitability evolve over time** (monthly and quarterly)?
 
 ---
 
-## 3. Inventory & Operations
+## 3️. Inventory & Operations
 
-These questions support inventory control, demand planning, and operational efficiency.
+These questions support inventory control, demand planning, and operational efficiency using snapshot-based inventory data.
 
-- Where are **potential stock-out risks** occurring across stores and products?
+- Where are potential **stock-out risks emerging over time** across stores and products?
 - Which products frequently fall **below safety stock thresholds**?
 - How does **inventory value** change over time by store and category?
 - Which stores experience **inefficient inventory turnover**?
-- How does **inventory turnover** trend over time by product and store?
-- Are there misalignments between **sales demand and available inventory**?
-- Which products are consistently **overstocked relative to sales velocity**?
+- How does inventory turnover trend over time by **product and store**?
+- Are there misalignments between **sales demand** and available inventory?
+- Which products are **consistently overstocked** relative to their sales velocity?
 
 ---
 
-## 4. Returns & Customer Behavior
+## 4️. Returns & Customer Behavior
 
 These insights help reduce revenue leakage and improve customer experience.
 
-- What is the **unit-based return rate** by product, category, and channel?
+- What is the **unit-based return rate** by product, category, channel, and time period?
 - What are the most common **return reasons**, and where do they concentrate?
-- How much **revenue is lost** due to refunds and returns?
-- Are return patterns different between **in-store and online purchases**?
-- Which products exhibit **abnormally high return behavior**?
+- How much **revenue is lost** due to refunds and returns over time?
+- What percentage of **gross revenue** is lost to returns and refunds?
+- Are return patterns different between **in-store** and **online** purchases?
+- Which products exhibit **abnormally high return behavior** over time?
 
 ---
 
-## 5. Channel & Marketing Insights
+## 5️. Channel & Digital Performance Insights
 
-These questions support channel strategy, digital performance, and marketing effectiveness.
+These questions support channel strategy, digital performance analysis, and marketing effectiveness.
 
 - Which sales channels drive the **highest net revenue**?
-- How does **device type** (mobile vs desktop) impact order value?
-- Which **traffic sources** contribute most effectively to conversions?
+- How does **device type** (mobile vs desktop) impact order value and volume?
+- Which **traffic sources** contribute most effectively to revenue generation?
 - How does net revenue vary by traffic source **after discounts and returns**?
-- How does customer behavior differ between **acquisition channels**?
+- How does order behavior differ between acquisition channels (AOV, order volume, and net revenue)?
+
+---
+
+> **Note:**  
+> All business questions listed above are directly supported by analytics-layer views built on **conformed fact and dimension tables**, ensuring **consistent definitions**, **reproducible insights**, and **trusted metrics** across dashboards and ad-hoc SQL analysis.
