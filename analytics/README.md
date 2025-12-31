@@ -25,16 +25,10 @@ across dashboards and ad-hoc analysis.
 
 ---
 
-### `metrics_definitions.md`
-Provides a **formal data catalog** for the Core (Gold) layer, documenting:
-- Dimension and fact tables
-- Column names, data types, and descriptions
-- Table purpose and analytical grain  
-
-This catalog serves as a **single source of truth** for understanding the analytical data model and supports:
-- Faster onboarding for analysts
-- Correct metric usage
-- Strong data governance and documentation standards
+### `data_catalog.md`
+Provides a formal data catalog for the Core (Gold) layer, documenting fact and
+dimension tables, column definitions, analytical grain, and table purpose to
+support consistent understanding and trustworthy use of the data model.
 
 ---
 
