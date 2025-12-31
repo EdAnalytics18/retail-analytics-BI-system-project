@@ -9,12 +9,12 @@
 - [Project Description](#project-description)
 - [High-Level Architecture](#high-level-architecture)
 - [Data Flow & Lineage](#data-flow--lineage)
-- [Definition of Key Project Deliverables](#definition-of-key-project-deliverables)
+- [Repository Structure](#repository-structure)
+- [Definition of Source Data](#definition-of-source-data)
 - [Database Schema & Dimensional Model](#database-schema--dimensional-model)
 - [Project Processes](#project-processes)
 - [Business Impact](#business-impact)
 - [Business Impact Summary](#business-impact-summary)
-- [Key Skills Demonstrated](#key-skills-demonstrated)
 
 ---
 
@@ -109,20 +109,25 @@ retail-analytics-bi-system/
 │
 ├── analytics/                          # Business-facing analytics & semantic layer
 │   ├── README.md                       # Overview of analytics artifacts
-│   ├── business_questions.md           # Business questions supported by the warehouse
+│   ├── business_questions.md           # Business questions supported by the data warehouse
 │   ├── metrics_definitions.md          # KPI definitions, formulas, and sources
 │   ├── data_catalog.md                 # Data catalog for core (Gold) tables
 │   └── sample_queries.sql              # Example analytical SQL queries
 │
 ├── dashboards/                         # BI dashboards and visual outputs
-│   └── README.md                       # Dashboard scope, KPIs, and usage notes
+│   └── README.md                       # Dashboards created with the data warehouse
 │
 ├── diagrams/                           # Architecture, lineage, and data flow diagrams
-│   ├── architecture.png                # High-level ELT architecture (Bronze–Silver–Gold)
-│   └── data_flow_diagram.png            # End-to-end data lineage and flow
+├── architecture.png                # High-level ELT architecture (Bronze–Silver–Gold)
+│   ├── data_flow_diagram.png            # End-to-end data lineage and flow
+│   ├── instore_star_schema.png          # Star schema for in-store (POS) analytics
+│   ├── ecommerce_star_schema.png        # Star schema for e-commerce analytics
+│   ├── sales_line_item_star_schema.png  # Unified sales line-item star schema
+│   ├── returns_star_schema.png          # Star schema for returns analysis
+│   └── inventory_star_schema.png        # Star schema for inventory snapshots
 │
 ├── images/                             # Screenshots and visuals used in documentation
-│   └── *.png                           # Data previews, dashboard screenshots
+│   └── *.png                           # Data previews
 │
 ├── raw_data/                           # Raw source datasets (CSV extracts)
 │   └── *.csv                           # POS, E-commerce, Inventory, Products, Stores, Returns
@@ -148,7 +153,7 @@ retail-analytics-bi-system/
 ```
 ---
 
-## Definition of Key Project Deliverables
+## Definition of Source Data
 
 ### Datasets
 
@@ -483,19 +488,5 @@ This system enables the organization to:
 - Improve inventory efficiency and cash flow
 - Reduce return-related revenue leakage
 - Empower analysts with self-service, analytics-ready data
-
----
-
-## Key Skills Demonstrated
-
-- ELT data warehouse design (Bronze / Silver / Gold)
-- SQL-based data ingestion using `BULK INSERT`
-- Data cleaning, standardization, and validation
-- Dimensional modeling with conformed star schemas
-- Fact and dimension table design
-- Data quality flagging and deterministic deduplication
-- KPI and semantic layer design using SQL views
-- BI-ready data modeling for Power BI and Tableau
-- Analytics engineering best practices
 
 ---
