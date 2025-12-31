@@ -79,12 +79,26 @@ The Retail Analytics BI System follows a modern **ELT (Extract, Load, Transform)
 - Fact and dimension tables provide a single source of truth, enforce clear grains, and support high-performance analytical queries
 
 #### Analytics Layer (Semantic / Gold)
-- Business-ready SQL views encapsulate joins and KPI logic, enabling consistent metrics and efficient BI queries
+- Business-ready SQL views encapsulate business logic, enabling consistent metrics and efficient ad-hoc SQL queries
 
 #### Consumption Layer
-- Power BI dashboards, Tableau reports, and ad-hoc SQL analysis consume analytics views directly without reimplementing business logic
+- Power BI dashboards, Tableau dashboards, and ad-hoc SQL analysis consume analytics views directly without reimplementing business logic
 
 This layered design mirrors production analytics architectures used by retail and e-commerce organizations, ensuring insights are reliable, explainable, and scalable.
+
+---
+
+## Data Flow & Lineage
+
+![Retail Analytics Data Flow Diagram](diagrams/data_flow_diagram.png)
+
+Figure: Table-level data lineage illustrating how raw source datasets are ingested
+into staging (Bronze), standardized in clean staging (Silver), and transformed
+into conformed fact and dimension tables in the Core layer.
+
+> **Note:** The `dim_date` table is a generated conformed dimension and does not
+> originate from operational source systems. It is created independently and
+> reused across all fact tables.
 
 ---
 
