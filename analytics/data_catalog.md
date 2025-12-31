@@ -83,7 +83,7 @@ Serve as the single source of truth for KPIs across the organization
 
 ### 4. **core.fact_pos_transactions**
 - **Purpose:** Captures completed in-store point-of-sale transactions at the transaction (header) level.
-- **Grain:** One row per POS transaction
+- **Grain:** One row per POS transaction.
 - **Columns:**
 
 | Column Name          | Data Type        | Description                                       |
@@ -105,7 +105,7 @@ Serve as the single source of truth for KPIs across the organization
 
 ### 5. **core.fact_ecom_orders**
 - **Purpose:** Stores completed e-commerce orders with digital channel attributes.
-- **Grain:** One row per e-commerce order
+- **Grain:** One row per e-commerce order.
 - **Columns:**
 
 | Column Name       | Data Type        | Description                               |
@@ -128,7 +128,7 @@ Serve as the single source of truth for KPIs across the organization
 
 ### 6. **core.fact_sales_items**
 - **Purpose:** Unified product-level sales fact across POS and E-commerce.
-- **Grain:** One row per product per transaction per channel per date
+- **Grain:** One row per product per transaction per channel per date.
 - **Columns:**
 
 | Column Name        | Data Type        | Description                                        |
@@ -149,7 +149,7 @@ Serve as the single source of truth for KPIs across the organization
 
 ### 7. **core.fact_returns**
 - **Purpose:** Captures customer return events across sales channels.
-- **Grain:** One row per return event
+- **Grain:** One row per return event.
 - **Columns:**
 
 | Column Name          | Data Type        | Description                                      |
@@ -165,4 +165,25 @@ Serve as the single source of truth for KPIs across the organization
 | return_channel       | VARCHAR(50)      | POS or ECOM                                      |
 | load_timestamp       | DATETIME2        | Ingestion timestamp                              |
 | source_file          | VARCHAR(255)     | Source file name                                 |
+
+---
+
+### 8. **core.fact_inventory_snapshots**
+- **Purpose:** Stores point-in-time inventory levels by product and store.
+- **Grain:** One row per product per store per snapshot date.
+- **Columns:**
+
+| Column Name             | Data Type        | Description                                   |
+|-------------------------|------------------|-----------------------------------------------|
+| inventory_sk            | INT              | Surrogate key                                 |
+| product_sk              | INT              | Foreign key to `dim_product`                  |
+| store_sk                | INT              | Foreign key to `dim_store`                    |
+| date_sk                 | INT              | Foreign key to `dim_date`                     |
+| beginning_inventory     | INT              | Inventory at start of period                  |
+| ending_inventory        | INT              | Inventory at end of period                    |
+| inventory_value         | DECIMAL(14,2)    | Inventory valuation                           |
+| safety_stock            | INT              | Safety stock threshold                        |
+| stock_status            | VARCHAR(50)      | Inventory status                              |
+| load_timestamp          | DATETIME2        | Ingestion timestamp                           |
+| source_file             | VARCHAR(255)     | Source file name                              |
 
