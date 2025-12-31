@@ -85,3 +85,84 @@ Serve as the single source of truth for KPIs across the organization
 - **Purpose:** Captures completed in-store point-of-sale transactions at the transaction (header) level.
 - **Grain:** One row per POS transaction
 - **Columns:**
+
+| Column Name          | Data Type        | Description                                       |
+|----------------------|------------------|---------------------------------------------------|
+| pos_transaction_sk   | INT              | Surrogate key                                     |
+| transaction_id       | VARCHAR(100)     | POS transaction identifier                        |
+| store_sk             | INT              | Foreign key to `dim_store`                        |
+| date_sk              | INT              | Foreign key to `dim_date`                         |
+| cashier_id           | VARCHAR(100)     | Cashier identifier                                |
+| payment_method       | VARCHAR(50)      | Payment method                                    |
+| total_amount         | DECIMAL(12,2)    | Gross transaction amount                          |
+| discount_amount      | DECIMAL(12,2)    | Discount applied                                  |
+| tax_amount           | DECIMAL(12,2)    | Tax amount                                        |
+| net_revenue          | DECIMAL(12,2)    | Net revenue after discounts and tax               |
+| load_timestamp       | DATETIME2        | Ingestion timestamp                               |
+| source_file          | VARCHAR(255)     | Source file name                                  |
+
+---
+
+### 5. **core.fact_ecom_orders**
+- **Purpose:** Stores completed e-commerce orders with digital channel attributes.
+- **Grain:** One row per e-commerce order
+- **Columns:**
+
+| Column Name       | Data Type        | Description                               |
+|-------------------|------------------|-------------------------------------------|
+| ecom_order_sk     | INT              | Surrogate key                             |
+| order_id          | VARCHAR(100)     | E-commerce order identifier               |
+| date_sk           | INT              | Foreign key to `dim_date`                 |
+| order_status      | VARCHAR(50)      | Order status                              |
+| channel           | VARCHAR(50)      | Sales channel                             |
+| device_type       | VARCHAR(50)      | Device used                               |
+| traffic_source    | VARCHAR(50)      | Marketing traffic source                  |
+| total_amount      | DECIMAL(12,2)    | Gross order amount                        |
+| discount_amount   | DECIMAL(12,2)    | Discount applied                          |
+| shipping_cost     | DECIMAL(12,2)    | Shipping cost                             |
+| net_revenue       | DECIMAL(12,2)    | Net revenue                               |
+| load_timestamp    | DATETIME2        | Ingestion timestamp                       |
+| source_file       | VARCHAR(255)     | Source file name                          |
+
+---
+
+### 6. **core.fact_sales_items**
+- **Purpose:** Unified product-level sales fact across POS and E-commerce.
+- **Grain:** One row per product per transaction per channel per date
+- **Columns:**
+
+| Column Name        | Data Type        | Description                                        |
+|--------------------|------------------|----------------------------------------------------|
+| sales_item_sk      | INT              | Surrogate key                                      |
+| source_system      | VARCHAR(10)      | POS or ECOM                                        |
+| transaction_id     | VARCHAR(100)     | Transaction or order identifier                    |
+| product_sk         | INT              | Foreign key to `dim_product`                       |
+| store_sk           | INT              | Foreign key to `dim_store` (nullable for ECOM)     |
+| date_sk            | INT              | Foreign key to `dim_date`                          |
+| quantity           | INT              | Units sold                                         |
+| unit_price         | DECIMAL(12,2)    | Unit price                                         |
+| line_revenue       | DECIMAL(12,2)    | Revenue for the line item                          |
+| load_timestamp     | DATETIME2        | Ingestion timestamp                                |
+| source_file        | VARCHAR(255)     | Source file name                                   |
+
+---
+
+### 7. **core.fact_returns**
+- **Purpose:** Captures customer return events across sales channels.
+- **Grain:** One row per return event
+- **Columns:**
+
+| Column Name          | Data Type        | Description                                      |
+|----------------------|------------------|--------------------------------------------------|
+| return_sk            | INT              | Surrogate key                                    |
+| return_id            | VARCHAR(100)     | Return identifier                                |
+| product_sk           | INT              | Foreign key to `dim_product`                     |
+| store_sk             | INT              | Foreign key to `dim_store` (nullable)            |
+| date_sk              | INT              | Foreign key to `dim_date`                        |
+| quantity_returned    | INT              | Units returned                                   |
+| refund_amount        | DECIMAL(12,2)    | Refund value                                     |
+| return_reason        | VARCHAR(100)     | Reason for return                                |
+| return_channel       | VARCHAR(50)      | POS or ECOM                                      |
+| load_timestamp       | DATETIME2        | Ingestion timestamp                              |
+| source_file          | VARCHAR(255)     | Source file name                                 |
+
