@@ -60,3 +60,28 @@ Serve as the single source of truth for KPIs across the organization
 | source_file      | VARCHAR(255)  | Source file name                                                                              |
 
 ---
+
+### 3. **core.dim_store**
+- **Purpose:** Represents physical retail locations and their organizational attributes.
+- **Grain:** One row per store (natural key: store_id).
+- **Columns:**
+
+| Column Name      | Data Type     | Description                                                                                   |
+|------------------|---------------|-----------------------------------------------------------------------------------------------|
+| store_sk         | INT           | Surrogate key identifying the store                                                           |
+| store_id         | INT           | Natural product identifier                                                                    |
+| store_name       | VARCHAR(255)  | Store name                                                                                    |
+| store_type       | VARCHAR(50)   | Store type                                                                                    |
+| region           | VARCHAR(50)   | Geographic region                                                                             |
+| address          | VARCHAR(255)  | Store address                                                                                 |
+| opening_date     | DATE          | Store opening date                                                                            |
+| manager_id       | VARCHAR(100)  | Store manager identifier                                                                      |
+| load_timestamp   | DATETIME2     | Ingestion timestamp                                                                           |
+| source_file      | VARCHAR(255)  | Source file name                                                                              |
+
+---
+
+### 4. **core.fact_pos_transactions**
+- **Purpose:** Captures completed in-store point-of-sale transactions at the transaction (header) level.
+- **Grain:** One row per POS transaction
+- **Columns:**
