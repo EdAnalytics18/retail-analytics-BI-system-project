@@ -25,6 +25,19 @@ across dashboards and ad-hoc analysis.
 
 ---
 
+### `metrics_definitions.md`
+Provides a **formal data catalog** for the Core (Gold) layer, documenting:
+- Dimension and fact tables
+- Column names, data types, and descriptions
+- Table purpose and analytical grain  
+
+This catalog serves as a **single source of truth** for understanding the analytical data model and supports:
+- Faster onboarding for analysts
+- Correct metric usage
+- Strong data governance and documentation standards
+
+---
+
 ### `sample_queries.sql`
 Contains example SQL queries demonstrating how business questions are answered
 using the dimensional model. These queries illustrate how facts and dimensions
