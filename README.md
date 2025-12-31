@@ -8,7 +8,7 @@
 - [Project Objectives](#project-objectives)
 - [Project Description](#project-description)
 - [High-Level Architecture](#high-level-architecture)
-- [Data Flow & Lineage](#data-flow-&-lineage)
+- [Data Flow & Lineage](#data-flow--lineage)
 - [Definition of Key Project Deliverables](#definition-of-key-project-deliverables)
 - [Database Schema & Dimensional Model](#database-schema--dimensional-model)
 - [Project Processes](#project-processes)
