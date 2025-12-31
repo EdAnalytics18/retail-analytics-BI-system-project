@@ -103,6 +103,51 @@ into conformed fact and dimension tables in the Core layer.
 
 ---
 
+## 📂 Repository Structure
+```
+retail-analytics-bi-system/
+│
+├── analytics/                          # Business-facing analytics & semantic layer
+│   ├── README.md                       # Overview of analytics artifacts
+│   ├── business_questions.md           # Business questions supported by the warehouse
+│   ├── metrics_definitions.md          # KPI definitions, formulas, and sources
+│   ├── data_catalog.md                 # Data catalog for core (Gold) tables
+│   └── sample_queries.sql              # Example analytical SQL queries
+│
+├── dashboards/                         # BI dashboards and visual outputs
+│   └── README.md                       # Dashboard scope, KPIs, and usage notes
+│
+├── diagrams/                           # Architecture, lineage, and data flow diagrams
+│   ├── architecture.png                # High-level ELT architecture (Bronze–Silver–Gold)
+│   └── data_flow_diagram.png            # End-to-end data lineage and flow
+│
+├── images/                             # Screenshots and visuals used in documentation
+│   └── *.png                           # Data previews, dashboard screenshots
+│
+├── raw_data/                           # Raw source datasets (CSV extracts)
+│   └── *.csv                           # POS, E-commerce, Inventory, Products, Stores, Returns
+│
+├── sql_scripts/                        # SQL-based ELT pipeline
+│   ├── README.md                       # Execution order and script descriptions
+│   ├── 00_database_and_schemas.sql     # Database and schema setup
+│   ├── 01_staging_raw_tables.sql       # Bronze: raw staging tables
+│   ├── 02_bulk_ingestion.sql           # CSV ingestion procedures
+│   ├── 03_data_validation.sql          # Initial raw data validation
+│   ├── 04_staging_cleaning.sql         # Silver: cleaning, standardization, flagging
+│   ├── 05_dimension_tables.sql         # Gold: dimension tables
+│   ├── 06_fact_tables.sql              # Gold: fact tables
+│   ├── 07_constraints_and_indexes.sql  # Keys, constraints, and performance indexes
+│   └── 08_analytics_views.sql          # Analytics-layer (semantic) views
+│
+├── tests/                              # Data quality and integrity checks
+│   ├── staging_quality_checks.sql      # Silver-layer quality validation
+│   └── core_quality_checks.sql         # Gold-layer integrity and KPI safety checks
+│
+├── LICENSE                             # License information
+└── README.md                           # Project overview, architecture, and business impact
+```
+---
+
 ## Definition of Key Project Deliverables
 
 ### Datasets
