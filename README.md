@@ -151,6 +151,46 @@ retail-analytics-bi-system/
 ├── LICENSE                             # License information
 └── README.md                           # Project overview, architecture, and business impact
 ```
+
+---
+
+## Execution Flow (ELT Pipeline)
+
+This project implements a SQL-based ELT pipeline following a Bronze → Silver → Gold architecture.
+
+The pipeline is executed in the following order:
+
+1. **Database and schema setup**
+   - `00_database_and_schemas.sql`
+
+2. **Raw data ingestion (Bronze layer)**
+   - `01_staging_raw_tables.sql`
+   - `02_bulk_ingestion.sql`
+
+3. **Initial data validation**
+   - `03_data_validation.sql`
+
+4. **Data cleaning and standardization (Silver layer)**
+   - `04_staging_cleaning.sql`
+
+5. **Dimensional modeling (Gold layer)**
+   - `05_dimension_tables.sql`
+   - `06_fact_tables.sql`
+
+6. **Constraints, keys, and performance optimization**
+   - `07_constraints_and_indexes.sql`
+
+7. **Analytics and semantic layer**
+   - `08_analytics_views.sql`
+
+📂 Detailed execution instructions and script descriptions are available in:
+`sql_scripts/README.md`
+
+**Expected output:**
+- Populated fact and dimension tables
+- Analytics-ready views aligned with defined KPIs
+- Data quality checks applied to core entities
+
 ---
 
 ## Definition of Source Data
