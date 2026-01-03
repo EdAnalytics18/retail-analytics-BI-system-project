@@ -10,6 +10,7 @@
 - [High-Level Architecture](#high-level-architecture)
 - [Data Flow & Lineage](#data-flow--lineage)
 - [Repository Structure](#repository-structure)
+- [Execution Flow (ELT Pipeline)](#execution-flow-elt-pipeline)
 - [Definition of Source Data](#definition-of-source-data)
 - [Database Schema & Dimensional Model](#database-schema--dimensional-model)
 - [Project Processes](#project-processes)
