@@ -1,0 +1,21 @@
+﻿product_sk,product_id,sku,product_name,category,subcategory,brand,cost,price,margin,season,launch_date,status,load_timestamp,source_file
+1,1,SKU0001,New Balance Backpacks 1,Backpacks,Backpacks,New Balance,25.62,38.29,12.67,Spring,2024-05-14,Active,2025-12-16 22:34,products_raw.csv
+2,2,SKU0002,Nike Hoodies 2,Hoodies,Hoodies,Nike,11.86,15.18,3.32,Summer,2024-07-08,Seasonal,2025-12-16 22:34,products_raw.csv
+3,3,SKU0003,New Balance Running Shoes 3,Running Shoes,Running Shoes,New Balance,29.45,37.88,8.43,Winter,2022-07-18,Discontinued,2025-12-16 22:34,products_raw.csv
+4,4,SKU0004,Under Armour Saandals 4,Sandals,Sandals,Under Armour,42.16,52.7,10.54,Fall,2024-01-11,Seasonal,2025-12-16 22:34,products_raw.csv
+5,5,SKU0005,Adidas T-Shirts 5,T-Shirts,T-Shirts,Adidas,64.11,102.2,38.09,Winter,2023-07-24,Discontinued,2025-12-16 22:34,products_raw.csv
+6,6,SKU0006,Puma Socks 6,Socks,Socks,Puma,56.91,84.27,27.36,Summer,2024-12-29,Seasonal,2025-12-16 22:34,products_raw.csv
+7,7,SKU0007,Reebok Shorts 7,Shorts,Shorts,Reebok,74.78,110.32,35.54,Spring,2023-04-15,Active,2025-12-16 22:34,products_raw.csv
+8,8,SKU0008,Adidas Sandals 8,Sandals,Sandals,Adidas,76,117.84,41.84,Winter,2024-07-28,Active,2025-12-16 22:34,products_raw.csv
+9,9,SKU0009,New Balance Running Shoes 9,Running Shoes,Running Shoes,New Balance,28.39,40.71,12.32,Summer,2022-10-11,Seasonal,2025-12-16 22:34,products_raw.csv
+10,10,SKU0010,Under Armour Sneakerss 10,Sneakers,Sneakers,Under Armour,53.92,81.79,27.87,Winter,2024-08-16,Seasonal,2025-12-16 22:34,products_raw.csv
+11,11,SKU0011,New Balance Sneakers 11,Sneakers,Sneakers,New Balance,57.72,81.66,23.94,Spring,2023-08-25,Discontinued,2025-12-16 22:34,products_raw.csv
+12,12,SKU0012,New Balance T-Shirts 12,T-Shirts,T-Shirts,New Balance,28.44,39.82,11.38,Fall,2024-11-05,Seasonal,2025-12-16 22:34,products_raw.csv
+13,13,SKU0013,Under Armour Jackets 13,Jackets,Jackets,Under Armour,76.74,120.4,43.66,Winter,2022-02-09,Active,2025-12-16 22:34,products_raw.csv
+14,14,SKU0014,Adidas Running Shoes 14,Running Shoes,Running Shoes,Adidas,49.71,61.22,11.51,All Year,2022-09-15,Active,2025-12-16 22:34,products_raw.csv
+15,15,SKU0015,Nike Bags 15,Bags,Bags,Nike,71.07,97.31,26.24,Summer,2023-10-01,Discontinued,2025-12-16 22:34,products_raw.csv
+16,16,SKU0016,Reebok Hats 16,Hats,Hats,Reebok,41.6,54.05,12.45,All Year,2023-04-17,Seasonal,2025-12-16 22:34,products_raw.csv
+17,17,SKU0017,New Balance T-Shirts 17,T-Shirts,T-Shirts,New Balance,26.03,40.66,14.63,Summer,2023-07-25,Seasonal,2025-12-16 22:34,products_raw.csv
+18,18,SKU0018,New Balance Running Shoes 18,Running Shoes,Running Shoes,New Balance,49.97,69.41,19.44,Summer,2022-07-13,Active,2025-12-16 22:34,products_raw.csv
+19,19,SKU0019,Reebok Hats 19,Hats,Hats,Reebok,70.47,86.09,15.62,Spring,2024-04-04,Seasonal,2025-12-16 22:34,products_raw.csv
+20,20,SKU0020,Nike Running Shoes 20,Running Shoes,Running Shoes,Nike,41.4,56.67,15.27,Spring,2024-06-26,Seasonal,2025-12-16 22:34,products_raw.csv

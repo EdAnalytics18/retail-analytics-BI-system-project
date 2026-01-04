@@ -1,0 +1,41 @@
+﻿ecom_order_sk,order_id,date_sk,order_status,channel,device_type,traffic_source,total_amount,discount_amount,shipping_cost,net_revenue,load_timestamp,source_file
+1,ECOM000002,20240430,Completed,Web,Mobile,Google,385.1,46.18,1.88,340.8,2025-12-16 22:34,ecom_orders_raw.csv
+2,ECOM000003,20240503,Pending,Web,Mobile,Instagram,36.71,6.61,16.55,46.65,2025-12-16 22:34,ecom_orders_raw.csv
+3,ECOM000004,20240910,Completed,Marketplace,Desktop,Facebook,300.04,43.88,3.7,259.86,2025-12-16 22:34,ecom_orders_raw.csv
+4,ECOM000005,20241203,Cancelled,Mobile App,Desktop,Instagram,320.94,7.73,12.98,326.19,2025-12-16 22:34,ecom_orders_raw.csv
+5,ECOM000007,20240529,Completed,Mobile App,Mobile,Google,213.61,8.8,8.4,213.21,2025-12-16 22:34,ecom_orders_raw.csv
+6,ECOM000009,20240131,Completed,Marketplace,Mobile,Facebook,41.71,5.04,1.84,38.51,2025-12-16 22:34,ecom_orders_raw.csv
+7,ECOM000011,20241016,Completed,Mobile App,Desktop,Instagram,178.31,4.63,3.55,177.23,2025-12-16 22:34,ecom_orders_raw.csv
+8,ECOM000012,20240417,Pending,Mobile App,Mobile,Referral,380.32,73.53,13.03,319.82,2025-12-16 22:34,ecom_orders_raw.csv
+9,ECOM000013,20240511,Completed,Mobile App,Mobile,Google,136.75,18.82,15.53,133.46,2025-12-16 22:34,ecom_orders_raw.csv
+10,ECOM000014,20240416,Pending,Web,Mobile,Facebook,215.77,15.83,19.17,219.11,2025-12-16 22:34,ecom_orders_raw.csv
+11,ECOM000016,20240202,Completed,Web,Desktop,Direct,380.64,70.15,3.77,314.26,2025-12-16 22:34,ecom_orders_raw.csv
+12,ECOM000019,20240109,Pending,Web,Desktop,Facebook,111.22,18.78,17.81,110.25,2025-12-16 22:34,ecom_orders_raw.csv
+13,ECOM000020,20241126,Completed,Web,Desktop,Direct,372.64,51.68,7.57,328.53,2025-12-16 22:34,ecom_orders_raw.csv
+14,ECOM000021,20241024,Completed,Mobile App,Desktop,Google,237.4,44.35,14.24,207.29,2025-12-16 22:34,ecom_orders_raw.csv
+15,ECOM000022,20240613,Pending,Web,Desktop,Instagram,219.76,38.36,0.92,182.32,2025-12-16 22:34,ecom_orders_raw.csv
+16,ECOM000023,20240628,Cancelled,Marketplace,Mobile,Email,223.28,1.22,19.9,241.96,2025-12-16 22:34,ecom_orders_raw.csv
+17,ECOM000024,20240206,Cancelled,Mobile App,Mobile,Google,393.28,74.35,13.88,332.81,2025-12-16 22:34,ecom_orders_raw.csv
+18,ECOM000025,20241225,Completed,Web,Mobile,Facebook,344.64,46.92,3.12,300.84,2025-12-16 22:34,ecom_orders_raw.csv
+19,ECOM000026,20240221,Pending,Web,Mobile,Instagram,222.65,37.79,7.29,192.15,2025-12-16 22:34,ecom_orders_raw.csv
+20,ECOM000027,20240927,Completed,Web,Mobile,Instagram,253.84,37.16,5.37,222.05,2025-12-16 22:34,ecom_orders_raw.csv
+21,ECOM000029,20240526,Completed,Mobile App,Desktop,Facebook,240.58,20.59,7.94,227.93,2025-12-16 22:34,ecom_orders_raw.csv
+22,ECOM000030,20240102,Pending,Web,Mobile,Instagram,198.39,1.21,4.63,201.81,2025-12-16 22:34,ecom_orders_raw.csv
+23,ECOM000032,20240409,Completed,Web,Desktop,Facebook,197.18,1.03,15.37,211.52,2025-12-16 22:34,ecom_orders_raw.csv
+24,ECOM000033,20241118,Completed,Mobile App,Desktop,Direct,142.31,8.91,8.58,141.98,2025-12-16 22:34,ecom_orders_raw.csv
+25,ECOM000035,20240712,Completed,Mobile App,Mobile,Direct,377.06,61.85,19.11,334.32,2025-12-16 22:34,ecom_orders_raw.csv
+26,ECOM000037,20240207,Completed,Mobile App,Mobile,Referral,25.81,1.61,16.23,40.43,2025-12-16 22:34,ecom_orders_raw.csv
+27,ECOM000038,20241219,Completed,Web,Tablet,Facebook,84.53,7.58,11.17,88.12,2025-12-16 22:34,ecom_orders_raw.csv
+28,ECOM000039,20240320,Completed,Web,Desktop,Google,150.58,20.61,11.46,141.43,2025-12-16 22:34,ecom_orders_raw.csv
+29,ECOM000043,20240423,Cancelled,Mobile App,Mobile,Google,38.53,7.14,3.32,34.71,2025-12-16 22:34,ecom_orders_raw.csv
+30,ECOM000044,20240407,Pending,Web,Desktop,Referral,258.41,27.04,1.95,233.32,2025-12-16 22:34,ecom_orders_raw.csv
+31,ECOM000045,20241212,Completed,Web,Desktop,Referral,275.06,20.09,10.38,265.35,2025-12-16 22:34,ecom_orders_raw.csv
+32,ECOM000046,20241023,Cancelled,Web,Tablet,Facebook,336.58,1.62,18.34,353.3,2025-12-16 22:34,ecom_orders_raw.csv
+33,ECOM000049,20240213,Completed,Mobile App,Mobile,Email,390.84,3.2,8.73,396.37,2025-12-16 22:34,ecom_orders_raw.csv
+34,ECOM000050,20240414,Pending,Mobile App,Desktop,Instagram,72.85,14.45,16.46,74.86,2025-12-16 22:34,ecom_orders_raw.csv
+35,ECOM000052,20240925,Completed,Marketplace,Mobile,Facebook,204.37,6.12,10.84,209.09,2025-12-16 22:34,ecom_orders_raw.csv
+36,ECOM000053,20240510,Completed,Marketplace,Tablet,Facebook,183.85,29.3,6.69,161.24,2025-12-16 22:34,ecom_orders_raw.csv
+37,ECOM000054,20240421,Cancelled,Marketplace,Desktop,Direct,312.1,15.64,10.12,306.58,2025-12-16 22:34,ecom_orders_raw.csv
+38,ECOM000055,20240526,Completed,Mobile App,Mobile,Direct,217.42,5.04,16.39,228.77,2025-12-16 22:34,ecom_orders_raw.csv
+39,ECOM000057,20240527,Completed,Marketplace,Mobile,Facebook,223.07,14.93,15.91,224.05,2025-12-16 22:34,ecom_orders_raw.csv
+40,ECOM000059,20241109,Cancelled,Web,Mobile,Referral,246.85,10.86,8.99,244.98,2025-12-16 22:34,ecom_orders_raw.csv

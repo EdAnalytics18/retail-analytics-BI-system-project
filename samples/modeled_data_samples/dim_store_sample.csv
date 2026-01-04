@@ -1,0 +1,21 @@
+﻿store_sk,store_id,store_name,store_type,region,address,opening_date,manager_id,load_timestamp,source_file
+1,1,Store 001,High Street,Vancouver,"""650 W Georgia St",NULL,"BC"",2019-02-15,M001",2025-12-16 22:34:53,stores_raw.csv
+2,2,Store 002,Mall,Ontario,"""1 Yonge St",NULL,"ON"",2019-10-16,M002",2025-12-16 22:34:53,stores_raw.csv
+3,3,Store 003,High Street,Vancouver,"""1055 Canada Pl",NULL,"BC"",2018-11-02,M003",2025-12-16 22:34:53,stores_raw.csv
+4,4,Store 004,Mall,Ontario,"""121 King St W",NULL,"ON"",2021-06-29,M004",2025-12-16 22:34:53,stores_raw.csv
+5,5,Store 005,Outlet,Vancouver,"""400 Robson St",NULL,"BC"",2021-01-16,M005",2025-12-16 22:34:53,stores_raw.csv
+6,6,Store 006,High Street,Ontario,"""1000 Finch Ave W",NULL,"ON"",2018-10-17,M006",2025-12-16 22:34:53,stores_raw.csv
+7,7,Store 007,Outlet,Vancouver,"""650 W Georgia St",NULL,"BC"",2018-12-17,M007",2025-12-16 22:34:53,stores_raw.csv
+8,8,Store 008,Mall,Ontario,"""1 Yonge St",NULL,"ON"",2021-01-12,M008",2025-12-16 22:34:53,stores_raw.csv
+9,9,Store 009,High Street,Vancouver,"""1055 Canada Pl",NULL,"BC"",2020-08-22,M009",2025-12-16 22:34:53,stores_raw.csv
+10,10,Store 010,Outlet,Ontario,"""121 King St W",NULL,"ON"",2018-04-21,M010",2025-12-16 22:34:53,stores_raw.csv
+11,11,Store 011,Mall,Vancouver,"""400 Robson St",NULL,"BC"",2021-12-14,M011",2025-12-16 22:34:53,stores_raw.csv
+12,12,Store 012,Outlet,Ontario,"""1000 Finch Ave W",NULL,"ON"",2019-12-30,M012",2025-12-16 22:34:53,stores_raw.csv
+13,13,Store 013,High Street,Vancouver,"""650 W Georgia St",NULL,"BC"",2022-04-03,M013",2025-12-16 22:34:53,stores_raw.csv
+14,14,Store 014,Outlet,Ontario,"""1 Yonge St",NULL,"ON"",2022-04-15,M014",2025-12-16 22:34:53,stores_raw.csv
+15,15,Store 015,High Street,Vancouver,"""1055 Canada Pl",NULL,"BC"",2022-07-23,M015",2025-12-16 22:34:53,stores_raw.csv
+16,16,Store 016,Outlet,Ontario,"""121 King St W",NULL,"ON"",2019-09-28,M016",2025-12-16 22:34:53,stores_raw.csv
+17,17,Store 017,Outlet,Vancouver,"""400 Robson St",NULL,"BC"",2019-04-20,M017",2025-12-16 22:34:53,stores_raw.csv
+18,18,Store 018,Mall,Ontario,"""1000 Finch Ave W",NULL,"ON"",2020-01-15,M018",2025-12-16 22:34:53,stores_raw.csv
+19,20,Store 020,High Street,Ontario,"""1 Yonge St",NULL,"ON"",2018-05-14,M020",2025-12-16 22:34:53,stores_raw.csv
+20,21,Store 021,High Street,Vancouver,"""1055 Canada Pl",NULL,"BC"",2020-08-02,M021",2025-12-16 22:34:53,stores_raw.csv
