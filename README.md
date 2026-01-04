@@ -395,7 +395,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 ---
 
-### 4️. Inventory Star Schema
+#### 4️. Inventory Star Schema
 
 ![Inventory Star Schema](diagrams/Inventory%20Star%20Schema.png)
 
@@ -414,7 +414,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 ---
 
-### 5️. Returns Star Schema
+#### 5️. Returns Star Schema
 
 ![Returns Star Schema](diagrams/Returns%20Star%20Schema.png)
 
@@ -433,7 +433,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 ---
 
-### Conformed Dimensions
+#### Conformed Dimensions
 
 All star schemas share a set of conformed dimensions, ensuring metric consistency across dashboards and analyses:
 
