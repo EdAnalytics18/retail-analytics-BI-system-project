@@ -184,7 +184,7 @@ The pipeline is executed in the following order:
 7. **Analytics and semantic layer**
    - `08_analytics_views.sql`
 
-📂 Detailed execution instructions and script descriptions are available in:
+ Detailed execution instructions and script descriptions are available in:
 `sql_scripts/README.md`
 
 **Expected output:**
@@ -215,7 +215,7 @@ Primary datasets include:
 
 ### 1️. POS Transactions Dataset
 
-![POS Raw Data](images/pos_transactions_raw.png)
+![POS Raw Data](images/raw_data_samples/pos_transactions_raw.png)
 
 - **Grain:** One row per in-store transaction  
 - **Purpose:** Capture in-store revenue, payment methods, discounts, and taxes  
@@ -235,7 +235,7 @@ Primary datasets include:
 
 ### 2️. E-Commerce Orders Dataset
 
-![E-Commerce Raw Data](images/ecom_orders_raw.png)
+![E-Commerce Raw Data](images/raw_data_samples/ecom_orders_raw.png)
 
 - **Grain:** One row per e-commerce order  
 - **Purpose:** Capture online order revenue and digital attributes  
@@ -256,7 +256,7 @@ Primary datasets include:
 
 ### 3️. Sales Line Items Dataset (Unified – POS + E-Commerce)
 
-![Sales Line Items Raw Data](images/sales_Items_raw.png)
+![Sales Line Items Raw Data](images/raw_data_samples/sales_Items_raw.png)
 
 - **Grain:** One row per product per transaction  
 - **Purpose:** Unified view of all product-level sales activity  
@@ -278,7 +278,7 @@ This dataset is derived by unifying POS and e-commerce line items during the tra
 
 ### 4️. Inventory Snapshots Dataset
 
-![Inventory Raw Data](images/inventory_snapshot_raw.png)
+![Inventory Raw Data](images/raw_data_samples/inventory_snapshot_raw.png)
 
 - **Grain:** One row per product per store per date  
 - **Purpose:** Point-in-time inventory tracking  
@@ -297,7 +297,7 @@ This dataset is derived by unifying POS and e-commerce line items during the tra
 
 ### 5️. Returns Dataset
 
-![Returns Raw Data](images/returns_raw.png)
+![Returns Raw Data](images/raw_data_samples/returns_raw.png)
 
 - **Grain:** One row per return event  
 - **Purpose:** Track refunds and customer dissatisfaction signals  
@@ -316,9 +316,9 @@ This dataset is derived by unifying POS and e-commerce line items during the tra
 
 ### Product & Store Master Data (Reference Data)
 
-![Products Raw Data](images/products_raw.png)
+![Products Raw Data](images/raw_data_samples/products_raw.png)
 
-![Stores Raw Data](images/stores_raw.png)
+![Stores Raw Data](images/raw_data_samples/stores_raw.png)
 
 The `products_raw` and `stores_raw` datasets represent **master data**
 used to enrich transactional and operational facts.
