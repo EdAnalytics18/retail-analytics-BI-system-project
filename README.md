@@ -102,53 +102,66 @@ transformed into conformed fact and dimension tables in the Core layer.
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 ```
 retail-analytics-bi-system/
 │
 ├── analytics/                          # Business-facing analytics & semantic layer
-│   ├── README.md                       # Overview of analytics artifacts
-│   ├── business_questions.md           # Business questions supported by the data warehouse
-│   ├── metrics_definitions.md          # KPI definitions, formulas, and sources
-│   ├── data_catalog.md                 # Data catalog for core (Gold) tables
-│   └── sample_queries.sql              # Example analytical SQL queries
+│   ├── README.md
+│   ├── business_questions.md
+│   ├── data_catalog.md
+│   ├── metrics_definitions.md
+│   └── sample_queries.sql
 │
-├── dashboards/                         # BI dashboards and visual outputs
-│   └── README.md                       # Dashboards created with the data warehouse
+├── dashboards/                         # BI dashboards and documentation
+│   └── README.md
 │
-├── diagrams/                           # Architecture, lineage, and data flow diagrams
-├── architecture.png                # High-level ELT architecture (Bronze–Silver–Gold)
-│   ├── data_flow_diagram.png            # End-to-end data lineage and flow
-│   ├── instore_star_schema.png          # Star schema for in-store (POS) analytics
-│   ├── ecommerce_star_schema.png        # Star schema for e-commerce analytics
-│   ├── sales_line_item_star_schema.png  # Unified sales line-item star schema
-│   ├── returns_star_schema.png          # Star schema for returns analysis
-│   └── inventory_star_schema.png        # Star schema for inventory snapshots
+├── diagrams/                           # Architecture, lineage, and schema diagrams
+│   ├── updated_architecture.png
+│   ├── data_flow_diagram.png
+│   ├── ecommerce_star_schema.png
+│   ├── instore_star_schema.png
+│   ├── inventory_star_schema.png
+│   ├── returns_star_schema.png
+│   └── sales_line_items_star_schema.png
 │
-├── images/                             # Screenshots and visuals used in documentation
-│   └── *.png                           # Data previews
+├── images/                             # Screenshots used in documentation
+│   ├── kpi_samples/
+│   ├── modeled_data_samples/
+│   └── raw_data_samples/
 │
 ├── raw_data/                           # Raw source datasets (CSV extracts)
-│   └── *.csv                           # POS, E-commerce, Inventory, Products, Stores, Returns
+│   ├── ecom_orders_raw.csv
+│   ├── ecom_order_items_raw.csv
+│   ├── pos_transactions_raw.csv
+│   ├── pos_order_items_raw.csv
+│   ├── inventory_raw.csv
+│   ├── products_raw.csv
+│   ├── stores_raw.csv
+│   └── returns_raw.csv
+│
+├── samples/                            # Lightweight, shareable data samples
+│   ├── kpi_samples_csv/
+│   └── modeled_data_samples_csv/
 │
 ├── sql_scripts/                        # SQL-based ELT pipeline
-│   ├── README.md                       # Execution order and script descriptions
-│   ├── 00_database_and_schemas.sql     # Database and schema setup
-│   ├── 01_staging_raw_tables.sql       # Bronze: raw staging tables
-│   ├── 02_bulk_ingestion.sql           # CSV ingestion procedures
-│   ├── 03_data_validation.sql          # Initial raw data validation
-│   ├── 04_staging_cleaning.sql         # Silver: cleaning, standardization, flagging
-│   ├── 05_dimension_tables.sql         # Gold: dimension tables
-│   ├── 06_fact_tables.sql              # Gold: fact tables
-│   ├── 07_constraints_and_indexes.sql  # Keys, constraints, and performance indexes
-│   └── 08_analytics_views.sql          # Analytics-layer (semantic) views
+│   ├── README.md
+│   ├── 00_database_and_schemas.sql
+│   ├── 01_staging_raw_tables.sql
+│   ├── 02_bulk_ingestion.sql
+│   ├── 03_data_validation.sql
+│   ├── 04_staging_cleaning.sql
+│   ├── 05_dimension_tables.sql
+│   ├── 06_fact_tables.sql
+│   ├── 07_constraints_and_indexes.sql
+│   └── 08_analytics_views.sql
 │
 ├── tests/                              # Data quality and integrity checks
-│   ├── staging_quality_checks.sql      # Silver-layer quality validation
-│   └── core_quality_checks.sql         # Gold-layer integrity and KPI safety checks
+│   ├── staging_quality_checks.sql
+│   └── core_quality_checks.sql
 │
-├── LICENSE                             # License information
-└── README.md                           # Project overview, architecture, and business impact
+├── LICENSE
+└── README.md
 ```
 
 ---
