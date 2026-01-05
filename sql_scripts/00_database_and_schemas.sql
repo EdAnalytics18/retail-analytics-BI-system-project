@@ -51,6 +51,7 @@
 
 -- Create the Retail Data Warehouse database if it does not already exist
 -- This ensures the script is safe to run multiple times (idempotent setup)
+
 IF DB_ID('retail_dw') IS NULL
 BEGIN
     CREATE DATABASE retail_dw;
@@ -84,3 +85,4 @@ GO
 IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'analytics')
     EXEC('CREATE SCHEMA analytics');
 GO
+
