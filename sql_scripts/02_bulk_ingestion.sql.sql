@@ -27,56 +27,69 @@
    - Clear separation between ingestion, transformation, and analytics
 ============================================================================= */
 
-
 /* =============================================================================
    1. GENERIC RAW CSV LOADER (REUSABLE INGESTION PROCEDURE)
    -----------------------------------------------------------------------------
    Purpose:
-   This stored procedure standardizes how CSV files are loaded into raw
-   staging tables across the entire data warehouse.
+   Standardized ingestion utility for loading CSV files into raw (bronze)
+   staging tables within the data warehouse.
 
-   Rather than writing one-off BULK INSERT statements, ingestion is handled
-   through a single, reusable component similar to production ETL frameworks.
+   Instead of maintaining one-off BULK INSERT scripts per dataset, this
+   procedure centralizes ingestion logic into a single, reusable component
+   aligned with production ETL / ELT design patterns.
 
    -----------------------------------------------------------------------------
    What This Procedure Does:
-   - Clears the target raw table (idempotent behavior)
-   - Loads data from a CSV file using BULK INSERT
+   - Fully reloads the target raw table (idempotent behavior)
+   - Loads CSV data using BULK INSERT without applying transformations
    - Skips header rows automatically
-   - Preserves NULL values from the source
-   - Supports parameterized ingestion for multiple datasets
+   - Preserves source NULL values
+   - Supports parameterized ingestion across multiple datasets
+
+   -----------------------------------------------------------------------------
+   Operational Guarantees:
+   - Consistent ingestion behavior across all raw tables
+   - Real-time logging for pipeline observability
+   - Fail-fast error propagation to upstream orchestration layers
 
    -----------------------------------------------------------------------------
    Why This Matters:
-   - Reduces copy/paste errors
-   - Makes ingestion easy to extend to new data sources
-   - Encourages consistency and operational discipline
+   - Reduces copy/paste ingestion logic and operational risk
+   - Makes onboarding new raw datasets trivial
+   - Enforces discipline and consistency at the warehouse entry point
 ============================================================================= */
 
 CREATE OR ALTER PROCEDURE staging.usp_load_raw_csv
 (
-    @schema_name SYSNAME,
-    @table_name  SYSNAME,
-    @base_path   NVARCHAR(4000),
-    @file_name   NVARCHAR(255)
+    @schema_name SYSNAME,        -- Target schema
+    @table_name  SYSNAME,        -- Target table
+    @base_path   NVARCHAR(4000), -- Directory containing CSV files
+    @file_name   NVARCHAR(255)   -- CSV file name
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @sql        NVARCHAR(MAX);
+    -- Dynamic SQL container
+    DECLARE @sql NVARCHAR(MAX);
+
+    -- Fully-qualified, safely quoted table name
     DECLARE @full_table SYSNAME =
         QUOTENAME(@schema_name) + '.' + QUOTENAME(@table_name);
-    DECLARE @full_path  NVARCHAR(4000) =
+
+    -- Full CSV file path
+    DECLARE @full_path NVARCHAR(4000) =
         @base_path + @file_name;
 
     BEGIN TRY
+        -- Pipeline start marker
         RAISERROR (
             '[START] Loading %s from %s',
             0, 1, @full_table, @full_path
         ) WITH NOWAIT;
 
-        /* Step 1: Truncate */
+        /* Step 1: Truncate target table
+           Ensures a clean, repeatable raw load */
         RAISERROR (
             '[STEP] Truncating table %s',
             0, 1, @full_table
@@ -85,7 +98,8 @@ BEGIN
         SET @sql = N'TRUNCATE TABLE ' + @full_table;
         EXEC sp_executesql @sql;
 
-        /* Step 2: Bulk Insert */
+        /* Step 2: Bulk insert CSV data
+           No transformations applied (raw system-of-record) */
         RAISERROR (
             '[STEP] Bulk inserting from %s',
             0, 1, @full_path
@@ -95,21 +109,23 @@ BEGIN
             BULK INSERT ' + @full_table + '
             FROM ''' + @full_path + '''
             WITH (
-                FIRSTROW = 2,
+                FIRSTROW = 2,          -- Skip header row
                 FIELDTERMINATOR = '','',
                 ROWTERMINATOR = ''0x0A'',
-                TABLOCK,
-                KEEPNULLS
+                TABLOCK,               -- Improve bulk load performance
+                KEEPNULLS              -- Preserve source NULLs
             );
         ';
         EXEC sp_executesql @sql;
 
+        -- Successful completion marker
         RAISERROR (
             '[SUCCESS] Finished loading %s',
             0, 1, @full_table
         ) WITH NOWAIT;
     END TRY
     BEGIN CATCH
+        -- Surface contextual error and propagate failure
         RAISERROR (
             '[ERROR] Load failed for %s | %s',
             16, 1, @full_table, ERROR_MESSAGE()
@@ -119,20 +135,23 @@ BEGIN
 END;
 GO
 
+   
 /* =============================================================================
    2. INGESTION CONFIGURATION
    -----------------------------------------------------------------------------
    Purpose:
-   Centralizes the file system location for all raw CSV extracts.
+   Centralized configuration for the file system location containing all
+   raw CSV extracts consumed by the ingestion pipeline.
 
-   In production, this path would typically point to:
-   - A secure file share
+   In production environments, this path would typically reference:
+   - A secure network file share
    - An SFTP landing zone
-   - Cloud storage (via external tables or pipelines)
+   - Cloud object storage (accessed via external tables or orchestration tools)
 
    -----------------------------------------------------------------------------
-   Operational Note:
-   The SQL Server service account must have READ access to this directory.
+   Operational Notes:
+   - The SQL Server service account must have READ access to this directory
+   - Path structure is assumed to be stable across ingestion runs
 ============================================================================= */
 
 RAISERROR ('[CONFIG] Initializing ingestion configuration', 0, 1) WITH NOWAIT;
@@ -150,65 +169,148 @@ RAISERROR (
    3. RAW DATA INGESTION (PIPELINE ORCHESTRATION)
    -----------------------------------------------------------------------------
    Purpose:
-   This section orchestrates ingestion by invoking the generic loader
+   Orchestrates raw data ingestion by invoking the generic CSV loader
    once per dataset.
 
-   Each EXEC statement represents a single, traceable ingestion step
-   similar to tasks in tools like Airflow, SSIS, or Azure Data Factory.
+   Each EXEC statement represents an explicit, traceable ingestion step,
+   conceptually similar to tasks in orchestration tools such as Airflow,
+   SSIS, or Azure Data Factory.
 
    -----------------------------------------------------------------------------
    Business Impact:
-   - Makes ingestion transparent and easy to audit
-   - Enables quick onboarding of new data sources
-   - Keeps ingestion logic readable and maintainable
+   - Makes ingestion flow transparent and easy to audit
+   - Simplifies onboarding of new raw data sources
+   - Keeps pipeline logic readable, maintainable, and deterministic
 ============================================================================= */
 
 RAISERROR ('[PIPELINE] Starting raw data ingestion pipeline', 0, 1) WITH NOWAIT;
 
+----------------------------------------------------------------
 -- POS Transactions
-EXEC staging.usp_load_raw_csv 'staging','pos_transactions_raw',@base_path,'pos_transactions_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting POS transactions ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'pos_transactions_raw',
+    @base_path,
+    'pos_transactions_raw.csv';
+
+RAISERROR ('[INGEST] Completed POS transactions ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- POS Order Items
-EXEC staging.usp_load_raw_csv 'staging','pos_items_raw',@base_path,'pos_order_items_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting POS order items ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'pos_items_raw',
+    @base_path,
+    'pos_order_items_raw.csv';
+
+RAISERROR ('[INGEST] Completed POS order items ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- E-Commerce Orders
-EXEC staging.usp_load_raw_csv 'staging','ecom_orders_raw',@base_path,'ecom_orders_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting E-Commerce orders ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'ecom_orders_raw',
+    @base_path,
+    'ecom_orders_raw.csv';
+
+RAISERROR ('[INGEST] Completed E-Commerce orders ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- E-Commerce Order Items
-EXEC staging.usp_load_raw_csv 'staging','ecom_items_raw',@base_path,'ecom_order_items_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting E-Commerce order items ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'ecom_items_raw',
+    @base_path,
+    'ecom_order_items_raw.csv';
+
+RAISERROR ('[INGEST] Completed E-Commerce order items ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- Inventory Snapshots
-EXEC staging.usp_load_raw_csv 'staging','inventory_snapshots_raw',@base_path,'inventory_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting inventory snapshots ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'inventory_snapshots_raw',
+    @base_path,
+    'inventory_raw.csv';
+
+RAISERROR ('[INGEST] Completed inventory snapshots ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- Returns
-EXEC staging.usp_load_raw_csv 'staging','returns_raw',@base_path,'returns_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting returns ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'returns_raw',
+    @base_path,
+    'returns_raw.csv';
+
+RAISERROR ('[INGEST] Completed returns ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- Products
-EXEC staging.usp_load_raw_csv 'staging','products_raw',@base_path,'products_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting products ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'products_raw',
+    @base_path,
+    'products_raw.csv';
+
+RAISERROR ('[INGEST] Completed products ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 -- Stores
-EXEC staging.usp_load_raw_csv 'staging','stores_raw',@base_path,'stores_raw.csv';
+----------------------------------------------------------------
+RAISERROR ('[INGEST] Starting stores ingestion', 0, 1) WITH NOWAIT;
 
+EXEC staging.usp_load_raw_csv
+    'staging',
+    'stores_raw',
+    @base_path,
+    'stores_raw.csv';
+
+RAISERROR ('[INGEST] Completed stores ingestion', 0, 1) WITH NOWAIT;
+
+----------------------------------------------------------------
 RAISERROR ('[PIPELINE] Raw data ingestion completed', 0, 1) WITH NOWAIT;
 
+
 /* =============================================================================
-   4. METADATA ENRICHMENT - DATA LINEAGE & TRACEABILITY
+   4. METADATA ENRICHMENT – DATA LINEAGE & TRACEABILITY
    -----------------------------------------------------------------------------
    Purpose:
-   After raw ingestion completes successfully, ingestion metadata is added
-   to each table.
+   Enriches raw tables with ingestion metadata after successful load
+   completion.
 
    This enables:
-   - Data lineage tracking
-   - Auditability for compliance and debugging
-   - Visibility into when and from where data was loaded
+   - End-to-end data lineage tracking
+   - Auditability for compliance, debugging, and root-cause analysis
+   - Visibility into when, how, and from where data was ingested
 
    -----------------------------------------------------------------------------
    Why This Matters to the Business:
-   When numbers are questioned, the team can quickly answer:
-   - Which file did this data come from?
+   When metrics are questioned, teams can quickly answer:
+   - Which source file produced this data?
    - When was it loaded?
-   - Can it be reprocessed safely?
+   - Can it be safely reprocessed?
 ============================================================================= */
 
 RAISERROR (
@@ -216,7 +318,9 @@ RAISERROR (
     0, 1
 ) WITH NOWAIT;
 
--- POS TRANSACTIONS
+----------------------------------------------------------------
+-- POS Transactions
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching pos_transactions_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.pos_transactions_raw
@@ -228,7 +332,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed pos_transactions_raw', 0, 1) WITH NOWAIT;
 
--- POS ORDER ITEMS
+----------------------------------------------------------------
+-- POS Order Items
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching pos_items_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.pos_items_raw
@@ -240,7 +346,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed pos_items_raw', 0, 1) WITH NOWAIT;
 
--- E-COMMERCE ORDERS
+----------------------------------------------------------------
+-- E-Commerce Orders
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching ecom_orders_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.ecom_orders_raw
@@ -252,7 +360,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed ecom_orders_raw', 0, 1) WITH NOWAIT;
 
--- E-COMMERCE ORDER ITEMS
+----------------------------------------------------------------
+-- E-Commerce Order Items
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching ecom_items_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.ecom_items_raw
@@ -264,7 +374,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed ecom_items_raw', 0, 1) WITH NOWAIT;
 
--- INVENTORY SNAPSHOTS
+----------------------------------------------------------------
+-- Inventory Snapshots
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching inventory_snapshots_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.inventory_snapshots_raw
@@ -276,7 +388,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed inventory_snapshots_raw', 0, 1) WITH NOWAIT;
 
--- RETURNS
+----------------------------------------------------------------
+-- Returns
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching returns_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.returns_raw
@@ -288,7 +402,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed returns_raw', 0, 1) WITH NOWAIT;
 
--- PRODUCTS
+----------------------------------------------------------------
+-- Products
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching products_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.products_raw
@@ -300,7 +416,9 @@ SET load_timestamp = GETDATE(),
 
 RAISERROR ('[METADATA] Completed products_raw', 0, 1) WITH NOWAIT;
 
--- STORES
+----------------------------------------------------------------
+-- Stores
+----------------------------------------------------------------
 RAISERROR ('[METADATA] Enriching stores_raw', 0, 1) WITH NOWAIT;
 
 ALTER TABLE staging.stores_raw
@@ -311,4 +429,3 @@ SET load_timestamp = GETDATE(),
     source_file    = 'stores_raw.csv';
 
 RAISERROR ('[METADATA] Completed stores_raw', 0, 1) WITH NOWAIT;
-
