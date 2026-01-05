@@ -514,7 +514,7 @@ All star schemas share a set of conformed dimensions, ensuring metric consistenc
 
 The following example shows a KPI query executed against the analytics layer:
 
-![Monthly Net Revenue KPI](images/kpi_samples/monthly_net_revenue_trend_sample.png)
+![Monthly Net Revenue KPI](images/kpi_samples/revenue_by_channel_over_time.png)
 
 Additional KPI samples are available in:
 `samples/kpis/`
