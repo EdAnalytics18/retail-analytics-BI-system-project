@@ -343,7 +343,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 #### 1️. In-Store Sales Star Schema (POS)
 
-![Store Star Schema](diagrams/In-Store%20Star%20Schema.png)
+![Store Star Schema](diagrams/instore_star_schema.png)
 
 **Fact Table**
 - `fact_pos_transactions` — In-store transaction-level revenue and payment data
@@ -361,7 +361,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 #### 2. E-Commerce Orders Star Schema
 
-![Ecom Star Schema](diagrams/E-Commerce%20Star%20Schema.png)
+![Ecom Star Schema](diagrams/ecommerce_star_schema.png)
 
 **Fact Table**
 - `fact_ecom_orders` — Online order-level revenue and digital attributes
@@ -378,7 +378,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 #### 3️. Sales Line Items Star Schema (POS + E-Commerce)
 
-![Sales Line Star Schema](diagrams/Sales%20Line%20Item%20Star%20Schema.png)
+![Sales Line Star Schema](diagrams/sales_line_items_star_schema.png)
 
 **Fact Table**
 - `fact_sales_items` — Unified product-level sales across all channels
@@ -397,7 +397,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 #### 4️. Inventory Star Schema
 
-![Inventory Star Schema](diagrams/Inventory%20Star%20Schema.png)
+![Inventory Star Schema](diagrams/inventory_star_schema.png)
 
 **Fact Table**
 - `fact_inventory_snapshots` — Point-in-time inventory levels by product and store
@@ -416,7 +416,7 @@ This design mirrors how production retail analytics warehouses support diverse s
 
 #### 5️. Returns Star Schema
 
-![Returns Star Schema](diagrams/Returns%20Star%20Schema.png)
+![Returns Star Schema](diagrams/returns_star_schema.png)
 
 **Fact Table**
 - `fact_returns` — Product return events and refund amounts
