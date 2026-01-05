@@ -11,9 +11,11 @@
 - [Data Flow & Lineage](#data-flow--lineage)
 - [Repository Structure](#repository-structure)
 - [Execution Flow (ELT Pipeline)](#execution-flow-elt-pipeline)
+- [Modeled Data Sample (Gold Layer)](#modeled-data-sample-gold-layer)
 - [Definition of Source Data](#definition-of-source-data)
 - [Database Schema & Dimensional Model](#database-schema--dimensional-model)
 - [Project Processes](#project-processes)
+- [Sample KPI Outputs](#sample-kpi-outputs)
 - [Business Impact](#business-impact)
 - [Business Impact Summary](#business-impact-summary)
 
@@ -187,6 +189,17 @@ Detailed execution instructions and script descriptions are available in:
 - Populated fact and dimension tables
 - Analytics-ready views aligned with defined KPIs
 - Data quality checks applied to core entities
+
+---
+
+### Modeled Data Sample (Gold Layer)
+
+Example output from the `fact_sales_items` table after ELT processing:
+
+![Fact Sales Items Sample](images/modeled_data_samples/fact_sales_items_sample.png)
+
+Full data samples are available in:
+`samples/`
 
 ---
 
@@ -481,6 +494,17 @@ All star schemas share a set of conformed dimensions, ensuring metric consistenc
 - Build BI-ready SQL views that abstract complex joins
 - Define consistent business logic for KPI calculations
 - Design read-optimized views for BI tools and analytical workloads
+
+---
+
+### Sample KPI Output
+
+The following example shows a KPI query executed against the analytics layer:
+
+![Monthly Net Revenue KPI](images/kpi_samples/monthly_net_revenue_trend_sample.png)
+
+Additional KPI samples are available in:
+`samples/kpis/`
 
 ---
 
