@@ -55,48 +55,69 @@
 
 CREATE OR ALTER PROCEDURE staging.usp_load_raw_csv
 (
-    @schema_name SYSNAME,          -- Target schema (e.g. staging)
-    @table_name  SYSNAME,          -- Target raw table
-    @base_path   NVARCHAR(4000),   -- Directory containing CSV files
-    @file_name   NVARCHAR(255)     -- CSV file name
+    @schema_name SYSNAME,
+    @table_name  SYSNAME,
+    @base_path   NVARCHAR(4000),
+    @file_name   NVARCHAR(255)
 )
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @sql NVARCHAR(MAX);
+    DECLARE @sql        NVARCHAR(MAX);
+    DECLARE @full_table SYSNAME =
+        QUOTENAME(@schema_name) + '.' + QUOTENAME(@table_name);
+    DECLARE @full_path  NVARCHAR(4000) =
+        @base_path + @file_name;
 
     BEGIN TRY
-        -- Step 1: Clear existing data to support repeatable loads
-        SET @sql = '
-            TRUNCATE TABLE '
-            + QUOTENAME(@schema_name) + '.' + QUOTENAME(@table_name) + ';
-        ';
+        RAISERROR (
+            '[START] Loading %s from %s',
+            0, 1, @full_table, @full_path
+        ) WITH NOWAIT;
+
+        /* Step 1: Truncate */
+        RAISERROR (
+            '[STEP] Truncating table %s',
+            0, 1, @full_table
+        ) WITH NOWAIT;
+
+        SET @sql = N'TRUNCATE TABLE ' + @full_table;
         EXEC sp_executesql @sql;
 
-        -- Step 2: Load raw CSV data without transformation
-        SET @sql = '
-            BULK INSERT '
-            + QUOTENAME(@schema_name) + '.' + QUOTENAME(@table_name) + '
-            FROM ''' + @base_path + @file_name + '''
+        /* Step 2: Bulk Insert */
+        RAISERROR (
+            '[STEP] Bulk inserting from %s',
+            0, 1, @full_path
+        ) WITH NOWAIT;
+
+        SET @sql = N'
+            BULK INSERT ' + @full_table + '
+            FROM ''' + @full_path + '''
             WITH (
-                FIRSTROW = 2,         -- Skip header row
+                FIRSTROW = 2,
                 FIELDTERMINATOR = '','',
                 ROWTERMINATOR = ''0x0A'',
-                TABLOCK,              -- Improves bulk load performance
-                KEEPNULLS             -- Preserve original NULL values
+                TABLOCK,
+                KEEPNULLS
             );
         ';
         EXEC sp_executesql @sql;
 
+        RAISERROR (
+            '[SUCCESS] Finished loading %s',
+            0, 1, @full_table
+        ) WITH NOWAIT;
     END TRY
     BEGIN CATCH
-        -- Surface ingestion failures clearly for operational visibility
+        RAISERROR (
+            '[ERROR] Load failed for %s | %s',
+            16, 1, @full_table, ERROR_MESSAGE()
+        );
         THROW;
     END CATCH
 END;
 GO
-
 
 /* =============================================================================
    2. INGESTION CONFIGURATION
@@ -114,8 +135,15 @@ GO
    The SQL Server service account must have READ access to this directory.
 ============================================================================= */
 
+RAISERROR ('[CONFIG] Initializing ingestion configuration', 0, 1) WITH NOWAIT;
+
 DECLARE @base_path NVARCHAR(4000)
     = 'C:\Retail Analytics BI System Project\raw_data\';
+
+RAISERROR (
+    '[CONFIG] Base path set to %s',
+    0, 1, @base_path
+) WITH NOWAIT;
 
 
 /* =============================================================================
@@ -135,62 +163,33 @@ DECLARE @base_path NVARCHAR(4000)
    - Keeps ingestion logic readable and maintainable
 ============================================================================= */
 
--- POS Transactions (Transaction Header Level)
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'pos_transactions_raw',
-    @base_path   = @base_path,
-    @file_name   = 'pos_transactions_raw.csv';
+RAISERROR ('[PIPELINE] Starting raw data ingestion pipeline', 0, 1) WITH NOWAIT;
 
--- POS Order Items (Transaction Line Level)
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'pos_items_raw',
-    @base_path   = @base_path,
-    @file_name   = 'pos_order_items_raw.csv';
+-- POS Transactions
+EXEC staging.usp_load_raw_csv 'staging','pos_transactions_raw',@base_path,'pos_transactions_raw.csv';
+
+-- POS Order Items
+EXEC staging.usp_load_raw_csv 'staging','pos_items_raw',@base_path,'pos_order_items_raw.csv';
 
 -- E-Commerce Orders
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'ecom_orders_raw',
-    @base_path   = @base_path,
-    @file_name   = 'ecom_orders_raw.csv';
+EXEC staging.usp_load_raw_csv 'staging','ecom_orders_raw',@base_path,'ecom_orders_raw.csv';
 
 -- E-Commerce Order Items
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'ecom_items_raw',
-    @base_path   = @base_path,
-    @file_name   = 'ecom_order_items_raw.csv';
+EXEC staging.usp_load_raw_csv 'staging','ecom_items_raw',@base_path,'ecom_order_items_raw.csv';
 
 -- Inventory Snapshots
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'inventory_snapshots_raw',
-    @base_path   = @base_path,
-    @file_name   = 'inventory_raw.csv';
+EXEC staging.usp_load_raw_csv 'staging','inventory_snapshots_raw',@base_path,'inventory_raw.csv';
 
 -- Returns
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'returns_raw',
-    @base_path   = @base_path,
-    @file_name   = 'returns_raw.csv';
+EXEC staging.usp_load_raw_csv 'staging','returns_raw',@base_path,'returns_raw.csv';
 
--- Products Master Data
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'products_raw',
-    @base_path   = @base_path,
-    @file_name   = 'products_raw.csv';
+-- Products
+EXEC staging.usp_load_raw_csv 'staging','products_raw',@base_path,'products_raw.csv';
 
--- Stores Master Data
-EXEC staging.usp_load_raw_csv
-    @schema_name = 'staging',
-    @table_name  = 'stores_raw',
-    @base_path   = @base_path,
-    @file_name   = 'stores_raw.csv';
+-- Stores
+EXEC staging.usp_load_raw_csv 'staging','stores_raw',@base_path,'stores_raw.csv';
 
+RAISERROR ('[PIPELINE] Raw data ingestion completed', 0, 1) WITH NOWAIT;
 
 /* =============================================================================
    4. METADATA ENRICHMENT - DATA LINEAGE & TRACEABILITY
@@ -212,90 +211,104 @@ EXEC staging.usp_load_raw_csv
    - Can it be reprocessed safely?
 ============================================================================= */
 
+RAISERROR (
+    '[METADATA] Starting metadata enrichment',
+    0, 1
+) WITH NOWAIT;
+
 -- POS TRANSACTIONS
+RAISERROR ('[METADATA] Enriching pos_transactions_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.pos_transactions_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.pos_transactions_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'pos_transactions_raw.csv';
 
+RAISERROR ('[METADATA] Completed pos_transactions_raw', 0, 1) WITH NOWAIT;
+
 -- POS ORDER ITEMS
+RAISERROR ('[METADATA] Enriching pos_items_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.pos_items_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.pos_items_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'pos_order_items_raw.csv';
 
+RAISERROR ('[METADATA] Completed pos_items_raw', 0, 1) WITH NOWAIT;
+
 -- E-COMMERCE ORDERS
+RAISERROR ('[METADATA] Enriching ecom_orders_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.ecom_orders_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.ecom_orders_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'ecom_orders_raw.csv';
 
+RAISERROR ('[METADATA] Completed ecom_orders_raw', 0, 1) WITH NOWAIT;
+
 -- E-COMMERCE ORDER ITEMS
+RAISERROR ('[METADATA] Enriching ecom_items_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.ecom_items_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.ecom_items_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'ecom_order_items_raw.csv';
 
+RAISERROR ('[METADATA] Completed ecom_items_raw', 0, 1) WITH NOWAIT;
+
 -- INVENTORY SNAPSHOTS
+RAISERROR ('[METADATA] Enriching inventory_snapshots_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.inventory_snapshots_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.inventory_snapshots_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'inventory_raw.csv';
 
+RAISERROR ('[METADATA] Completed inventory_snapshots_raw', 0, 1) WITH NOWAIT;
+
 -- RETURNS
+RAISERROR ('[METADATA] Enriching returns_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.returns_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.returns_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'returns_raw.csv';
 
+RAISERROR ('[METADATA] Completed returns_raw', 0, 1) WITH NOWAIT;
+
 -- PRODUCTS
+RAISERROR ('[METADATA] Enriching products_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.products_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.products_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'products_raw.csv';
 
+RAISERROR ('[METADATA] Completed products_raw', 0, 1) WITH NOWAIT;
+
 -- STORES
+RAISERROR ('[METADATA] Enriching stores_raw', 0, 1) WITH NOWAIT;
+
 ALTER TABLE staging.stores_raw
-ADD
-    load_timestamp DATETIME,
-    source_file    VARCHAR(255);
+ADD load_timestamp DATETIME, source_file VARCHAR(255);
 
 UPDATE staging.stores_raw
-SET
-    load_timestamp = GETDATE(),
+SET load_timestamp = GETDATE(),
     source_file    = 'stores_raw.csv';
+
+RAISERROR ('[METADATA] Completed stores_raw', 0, 1) WITH NOWAIT;
+
