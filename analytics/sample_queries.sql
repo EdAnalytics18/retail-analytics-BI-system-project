@@ -51,22 +51,58 @@ ORDER BY
 
 
 /* ============================================================================
-   2. Revenue by Channel (POS vs E-Commerce)
-   ----------------------------------------------------------------------------
-   Business Goal:
-   - Compare revenue contribution by sales channel
-   - Supports channel strategy and investment decisions
+   2. Revenue by Channel Over Time (POS vs E-Commerce)
+----------------------------------------------------------------------------
+Business Goal:
+- Compare revenue contribution by sales channel over time
+- Identify channel mix shifts and growth trends
+- Support channel strategy and investment decisions
 
-   Logic:
-   - Use unified fact_sales_items
-   - Uses line_revenue to support product-level comparisons
+Logic:
+- Uses unified core.fact_sales_items
+- Aggregates line_revenue at the desired time grain
+- Joins to dim_date for temporal analysis
 ============================================================================ */
+WITH channel_revenue AS (
+    SELECT
+        d.year_num,
+        d.month_num,
+        f.source_system,
+        SUM(f.line_revenue) AS channel_revenue
+    FROM core.fact_sales_items f
+    JOIN core.dim_date d
+        ON f.date_sk = d.date_sk
+    GROUP BY
+        d.year_num,
+        d.month_num,
+        f.source_system
+),
+total_revenue AS (
+    SELECT
+        year_num,
+        month_num,
+        SUM(channel_revenue) AS total_revenue
+    FROM channel_revenue
+    GROUP BY
+        year_num,
+        month_num
+)
 SELECT
-    source_system,
-    SUM(line_revenue) AS total_revenue
-FROM core.fact_sales_items
-GROUP BY
-    source_system;
+    c.year_num,
+    c.month_num,
+    c.source_system,
+    c.channel_revenue,
+    ROUND(
+        c.channel_revenue / t.total_revenue * 100, 2
+    ) AS channel_revenue_pct
+FROM channel_revenue c
+JOIN total_revenue t
+    ON c.year_num = t.year_num
+   AND c.month_num = t.month_num
+ORDER BY
+    c.year_num,
+    c.month_num,
+    c.source_system;
 
 
 /* ============================================================================
@@ -93,28 +129,59 @@ ORDER BY
 
 
 /* ============================================================================
-   4. Products Below Safety Stock
+   4. Slow-Moving Inventory (Low Turnover Risk)
    ----------------------------------------------------------------------------
    Business Goal:
-   - Detect potential stock-out risks
-   - Supports replenishment planning and inventory availability
+   - Identify products with excess inventory relative to sales velocity
+   - Support markdown planning, assortment optimization, and cash efficiency
 
    Logic:
-   - Compare ending inventory to defined safety stock thresholds
-   - Snapshot-based (point-in-time) inventory analysis
+   - Compare average ending inventory to total units sold over a time window
+   - Uses inventory snapshots and sales line items
+   - Aggregated at product and store level
 ============================================================================ */
+
+WITH inventory_avg AS (
+    SELECT
+        i.product_sk,
+        i.store_sk,
+        AVG(i.ending_inventory) AS avg_inventory
+    FROM core.fact_inventory_snapshots i
+    GROUP BY
+        i.product_sk,
+        i.store_sk
+),
+sales_volume AS (
+    SELECT
+        f.product_sk,
+        f.store_sk,
+        SUM(f.quantity) AS total_units_sold
+    FROM core.fact_sales_items f
+    GROUP BY
+        f.product_sk,
+        f.store_sk
+)
 SELECT
     p.product_name,
     s.store_name,
-    i.ending_inventory,
-    i.safety_stock
-FROM core.fact_inventory_snapshots i
+    ia.avg_inventory,
+    sv.total_units_sold,
+    CASE
+        WHEN sv.total_units_sold = 0 THEN 'No Sales'
+        WHEN ia.avg_inventory / sv.total_units_sold > 2 THEN 'Slow-Moving'
+        ELSE 'Healthy'
+    END AS inventory_status
+FROM inventory_avg ia
+LEFT JOIN sales_volume sv
+    ON ia.product_sk = sv.product_sk
+   AND ia.store_sk = sv.store_sk
 JOIN core.dim_product p
-    ON i.product_sk = p.product_sk
+    ON ia.product_sk = p.product_sk
 JOIN core.dim_store s
-    ON i.store_sk = s.store_sk
-WHERE
-    i.ending_inventory < i.safety_stock;
+    ON ia.store_sk = s.store_sk
+ORDER BY
+    inventory_status DESC,
+    ia.avg_inventory DESC;
 
 
 /* ============================================================================
@@ -162,5 +229,8 @@ JOIN returns r
     ON s.product_sk = r.product_sk
 JOIN core.dim_product p
     ON p.product_sk = s.product_sk
+WHERE
+    r.returned_units > 0
 ORDER BY
     return_rate DESC;
+
