@@ -86,10 +86,12 @@ SELECT
     LTRIM(RTRIM(r.cashier_id)),
     NULLIF(LTRIM(RTRIM(r.customer_id)), ''),
     CASE
-        WHEN UPPER(r.payment_method) LIKE '%CASH%'   THEN 'CASH'
-        WHEN UPPER(r.payment_method) LIKE '%DEBIT%'  THEN 'DEBIT'
-        WHEN UPPER(r.payment_method) LIKE '%CREDIT%' THEN 'CREDIT_CARD'
-        ELSE UPPER(LTRIM(RTRIM(r.payment_method)))
+        WHEN UPPER(r.payment_method) LIKE '%CASH%'   THEN 'Cash'
+        WHEN UPPER(r.payment_method) LIKE '%DEBIT%'  THEN 'Debit'
+        WHEN UPPER(r.payment_method) LIKE '%CREDIT%' THEN 'Credit Card'
+        WHEN UPPER(r.payment_method) LIKE '%GIFT%'   THEN 'Gift Card'
+        WHEN UPPER(r.payment_method) LIKE '%MOBILE%' THEN 'Mobile Pay'
+        ELSE UPPER(r.payment_method)
     END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) END,
@@ -252,9 +254,25 @@ SELECT
     LTRIM(RTRIM(r.order_id)),
     NULLIF(LTRIM(RTRIM(r.customer_id)), ''),
     TRY_CONVERT(DATETIME2, r.order_timestamp),
-    UPPER(LTRIM(RTRIM(r.order_status))),
-    UPPER(LTRIM(RTRIM(r.channel))),
-    UPPER(LTRIM(RTRIM(r.device_type))),  
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%COMPLETE%'  THEN 'Completed'
+        WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%COMPLETED%' THEN 'Completed'
+        WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%PENDING%'   THEN 'Pending'
+        WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%CANCELLED%' THEN 'Cancelled'
+        ELSE UPPER(LTRIM(RTRIM(r.order_status)))
+    END,
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%WEB%'         THEN 'Web'
+        WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%MARKETPLACE%' THEN 'Marketplace'
+        WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%MOBILE_APP%'  THEN 'Mobile App'
+        ELSE UPPER(LTRIM(RTRIM(r.channel)))
+    END,  
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%TABLET%' THEN 'Tablet'
+        WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%DESKTOP%' THEN 'Desktop'
+        WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%MOBILE%' THEN 'Mobile'
+        ELSE UPPER(LTRIM(RTRIM(r.device_type)))
+    END,
     NULLIF(LTRIM(RTRIM(r.traffic_source)), ''), 
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.shipping_cost) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.shipping_cost) END,
     TRY_CONVERT(DECIMAL(12,2), r.total_amount),
@@ -445,10 +463,11 @@ SELECT
          THEN TRY_CONVERT(INT, r.safety_stock) END,
 
     CASE
-        WHEN UPPER(r.stock_status) LIKE '%OUT%'  THEN 'OUT_OF_STOCK'
-        WHEN UPPER(r.stock_status) LIKE '%LOW%'  THEN 'LOW_STOCK'
-        WHEN UPPER(r.stock_status) LIKE '%IN%'   THEN 'IN_STOCK'
-        WHEN UPPER(r.stock_status) LIKE '%BACK%' THEN 'BACKORDER'
+        WHEN UPPER(r.stock_status) LIKE '%OUT%'      THEN 'Out-of-Stock'
+        WHEN UPPER(r.stock_status) LIKE '%LOW%'      THEN 'Low-Stock'
+        WHEN UPPER(r.stock_status) LIKE '%IN%'       THEN 'In-Stock'
+        WHEN UPPER(r.stock_status) LIKE '%NEGATIVE%' THEN 'Negative'
+        WHEN UPPER(r.stock_status) LIKE '%ERROR%' THEN 'Error'
         ELSE UPPER(LTRIM(RTRIM(r.stock_status)))
     END,
 
@@ -757,3 +776,4 @@ JOIN dups d
   ON c.store_id = d.store_id
 WHERE d.rn > 1;
 GO
+
