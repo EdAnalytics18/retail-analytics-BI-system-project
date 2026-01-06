@@ -85,6 +85,7 @@ SELECT
     TRY_CONVERT(DATETIME2, r.transaction_timestamp),
     LTRIM(RTRIM(r.cashier_id)),
     NULLIF(LTRIM(RTRIM(r.customer_id)), ''),
+   
     CASE
         WHEN UPPER(r.payment_method) LIKE '%CASH%'   THEN 'Cash'
         WHEN UPPER(r.payment_method) LIKE '%DEBIT%'  THEN 'Debit'
@@ -93,13 +94,18 @@ SELECT
         WHEN UPPER(r.payment_method) LIKE '%MOBILE%' THEN 'Mobile Pay'
         ELSE UPPER(r.payment_method)
     END,
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) END,
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) END,
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.tax_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.tax_amount) END,
+   
     CASE WHEN TRY_CONVERT(DATETIME2, r.transaction_timestamp) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(INT, r.store_id) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) IS NULL THEN 1 ELSE 0 END,
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.pos_transactions_raw r;
@@ -165,13 +171,16 @@ INSERT INTO staging.pos_items_clean
 SELECT
     LTRIM(RTRIM(r.transaction_id)),
     TRY_CONVERT(INT, r.product_id),
+   
     CASE WHEN TRY_CONVERT(INT, r.quantity) >= 0 THEN TRY_CONVERT(INT, r.quantity) END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.unit_price) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.unit_price) END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.line_total) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.line_total) END,
+   
     ROUND(
         COALESCE(TRY_CONVERT(INT, r.quantity),0)
         * COALESCE(TRY_CONVERT(DECIMAL(12,2), r.unit_price),0), 2
     ),
+   
     CASE WHEN TRY_CONVERT(INT, r.quantity) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.unit_price) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.line_total) IS NULL THEN 1 ELSE 0 END,
@@ -180,6 +189,7 @@ SELECT
       - (TRY_CONVERT(INT, r.quantity) * TRY_CONVERT(DECIMAL(12,2), r.unit_price))
     ) > 0.05 THEN 1 ELSE 0 END,
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.pos_items_raw r;
@@ -254,6 +264,7 @@ SELECT
     LTRIM(RTRIM(r.order_id)),
     NULLIF(LTRIM(RTRIM(r.customer_id)), ''),
     TRY_CONVERT(DATETIME2, r.order_timestamp),
+   
     CASE
         WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%COMPLETE%'  THEN 'Completed'
         WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%COMPLETED%' THEN 'Completed'
@@ -261,30 +272,39 @@ SELECT
         WHEN UPPER(LTRIM(RTRIM(r.order_status))) LIKE '%CANCELLED%' THEN 'Cancelled'
         ELSE UPPER(LTRIM(RTRIM(r.order_status)))
     END,
+   
     CASE
         WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%WEB%'         THEN 'Web'
         WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%MARKETPLACE%' THEN 'Marketplace'
         WHEN UPPER(LTRIM(RTRIM(r.channel))) LIKE '%MOBILE_APP%'  THEN 'Mobile App'
         ELSE UPPER(LTRIM(RTRIM(r.channel)))
     END,  
+   
     CASE
         WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%TABLET%' THEN 'Tablet'
         WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%DESKTOP%' THEN 'Desktop'
         WHEN UPPER(LTRIM(RTRIM(r.device_type))) LIKE '%MOBILE%' THEN 'Mobile'
         ELSE UPPER(LTRIM(RTRIM(r.device_type)))
     END,
+   
     NULLIF(LTRIM(RTRIM(r.traffic_source)), ''), 
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.shipping_cost) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.shipping_cost) END,
-    TRY_CONVERT(DECIMAL(12,2), r.total_amount),
+    
+   TRY_CONVERT(DECIMAL(12,2), r.total_amount),
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) >= 0 THEN TRY_CONVERT(DECIMAL(12,2), r.discount_amount) END,
-    ROUND(
+    
+   ROUND(
         COALESCE(TRY_CONVERT(DECIMAL(12,2), r.total_amount),0)
       - COALESCE(TRY_CONVERT(DECIMAL(12,2), r.discount_amount),0)
       + COALESCE(TRY_CONVERT(DECIMAL(12,2), r.shipping_cost),0), 2
     ),
+   
     CASE WHEN TRY_CONVERT(DATETIME2, r.order_timestamp) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.total_amount) IS NULL THEN 1 ELSE 0 END,
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.ecom_orders_raw r;
@@ -377,8 +397,8 @@ SELECT
         TRY_CONVERT(DECIMAL(12,2), r.line_total)
       - (TRY_CONVERT(INT, r.quantity) * TRY_CONVERT(DECIMAL(12,2), r.unit_price))
     ) > 0.05 THEN 1 ELSE 0 END,
-
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.ecom_items_raw r;
@@ -479,8 +499,8 @@ SELECT
     CASE WHEN TRY_CONVERT(INT, r.ending_inventory)
            < TRY_CONVERT(INT, r.safety_stock)
          THEN 1 ELSE 0 END,
-
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.inventory_snapshots_raw r;
@@ -556,10 +576,15 @@ SELECT
     TRY_CONVERT(DATE, r.return_date),
 
     CASE
-        WHEN UPPER(r.return_reason) LIKE '%DEFECT%' THEN 'DEFECTIVE'
-        WHEN UPPER(r.return_reason) LIKE '%DAMAG%'  THEN 'DAMAGED'
-        WHEN UPPER(r.return_reason) LIKE '%SIZE%'   THEN 'SIZE_FIT'
-        ELSE UPPER(LTRIM(RTRIM(r.return_reason)))
+        WHEN r.return_reason IS NULL THEN 'NULL'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) = 'N/A' THEN 'N/A'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) LIKE '%DEFECT%' THEN 'Defective'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) LIKE '%DAMAG%'  THEN 'Damaged'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) LIKE '%SIZE%'   THEN 'Size / Fit'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) LIKE '%LATE DELIVERY%' THEN 'Late Delivery'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) LIKE '%CHANGED MIND%'  THEN 'Changed Mind'
+        WHEN UPPER(LTRIM(RTRIM(r.return_reason))) IN ('???', 'ASDF123', 'LOREM IPSUM') THEN 'Unknown'
+        ELSE 'Unknown'
     END,
 
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.refund_amount) >= 0
@@ -568,17 +593,13 @@ SELECT
     CASE WHEN TRY_CONVERT(INT, r.quantity_returned) > 0
          THEN TRY_CONVERT(INT, r.quantity_returned) END,
 
-    CASE
-        WHEN UPPER(r.return_channel) LIKE '%STORE%'  THEN 'IN_STORE'
-        WHEN UPPER(r.return_channel) LIKE '%ONLINE%' THEN 'ONLINE'
-        ELSE UPPER(LTRIM(RTRIM(r.return_channel)))
-    END,
+   UPPER(LTRIM(RTRIM(r.return_channel))),
 
     CASE WHEN TRY_CONVERT(DATE, r.return_date) IS NULL THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(INT, r.quantity_returned) <= 0 THEN 1 ELSE 0 END,
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.refund_amount) IS NULL THEN 1 ELSE 0 END,
-
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.returns_raw r;
@@ -667,28 +688,78 @@ SELECT
     TRY_CONVERT(INT, r.product_id),
     LTRIM(RTRIM(r.sku)),
     LTRIM(RTRIM(r.product_name)),
-    UPPER(LTRIM(RTRIM(r.category))),
-    UPPER(LTRIM(RTRIM(r.subcategory))),  
-    UPPER(LTRIM(RTRIM(r.brand))),
+
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.category))) LIKE '%ACCESSORIES%' THEN 'Accessories'
+        WHEN UPPER(LTRIM(RTRIM(r.category))) LIKE '%APPAREL%' THEN 'Apparel'
+        WHEN UPPER(LTRIM(RTRIM(r.category))) LIKE '%FOOTWEAR%' THEN 'Footwear'
+        ELSE UPPER(LTRIM(RTRIM(r.category)))
+    END,
+   
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%BACKPACKS%' THEN 'Backpacks'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%BAGS%'      THEN 'Bags'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%BOOTS%'     THEN 'Boots'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%GLOVES%'    THEN 'Gloves'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%HATS%'      THEN 'Hats'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%HOODIES%'   THEN 'Hoodies'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%JACKETS%'   THEN 'Jackets'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%Pants%'     THEN 'Pants'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%RUNNING SHOES%' THEN 'Running Shoes'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%SANDALS%'   THEN 'Sandals' 
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%SHORTS%'    THEN 'Shorts'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%SNEAKERS%'  THEN 'Sneakers'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%SOCKS%'     THEN 'Socks'
+        WHEN UPPER(LTRIM(RTRIM(r.subcategory))) LIKE '%T-SHIRTS%'  THEN 'T-Shirts' 
+    END,
+   
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%ADIDAS%'  THEN 'Adidas'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%JD ESSENTIALS%'  THEN 'JD Essentials'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%NEW BALANCE%'  THEN 'New Balance'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%NIKE%'  THEN 'Nike'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%PUMA%'  THEN 'Puma'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%REEBOK%'  THEN 'Reebok'
+        WHEN UPPER(LTRIM(RTRIM(r.brand))) LIKE '%UNDER ARMOUR%'  THEN 'Under Armour'
+        ELSE UPPER(LTRIM(RTRIM(r.brand)))
+    END,
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.cost) >= 0
          THEN TRY_CONVERT(DECIMAL(12,2), r.cost) END,
+   
     CASE WHEN TRY_CONVERT(DECIMAL(12,2), r.price) >= 0
          THEN TRY_CONVERT(DECIMAL(12,2), r.price) END,
+   
     CASE
         WHEN TRY_CONVERT(DECIMAL(12,2), r.price) IS NOT NULL
          AND TRY_CONVERT(DECIMAL(12,2), r.cost)  IS NOT NULL
         THEN TRY_CONVERT(DECIMAL(12,2), r.price)
            - TRY_CONVERT(DECIMAL(12,2), r.cost)
     END,
-    UPPER(LTRIM(RTRIM(r.season))),
-    TRY_CONVERT(DATE, r.launch_date),
-    UPPER(LTRIM(RTRIM(r.status))),
+   
     CASE
+        WHEN UPPER(LTRIM(RTRIM(r.season))) LIKE '%ALL YEAR%'  THEN 'All Year'
+        WHEN UPPER(LTRIM(RTRIM(r.season))) LIKE '%FALL%'  THEN 'Fall'
+        WHEN UPPER(LTRIM(RTRIM(r.season))) LIKE '%SPRING%'  THEN 'Spring'
+        WHEN UPPER(LTRIM(RTRIM(r.season))) LIKE '%SUMMER%'  THEN 'Summer'
+        WHEN UPPER(LTRIM(RTRIM(r.season))) LIKE '%WINTER%'  THEN 'Winter'
+    END,
+   
+    TRY_CONVERT(DATE, r.launch_date),
+    
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.status))) LIKE '%ACTIVE%'  THEN 'Active'
+        WHEN UPPER(LTRIM(RTRIM(r.status))) LIKE '%DISCONTINUED%'  THEN 'Discontinued'
+        WHEN UPPER(LTRIM(RTRIM(r.status))) LIKE '%SEASONAL%'  THEN 'Seasonal'
+    END,
+   
+   CASE
         WHEN TRY_CONVERT(DECIMAL(12,2), r.price)
            < TRY_CONVERT(DECIMAL(12,2), r.cost)
         THEN 1 ELSE 0
     END,
     0, 
+   
     r.load_timestamp,
     r.source_file
 FROM staging.products_raw r;
@@ -749,12 +820,24 @@ INSERT INTO staging.stores_clean (
 SELECT
     TRY_CONVERT(INT, r.store_id),
     LTRIM(RTRIM(r.store_name)),
-    UPPER(LTRIM(RTRIM(r.store_type))),
-    UPPER(LTRIM(RTRIM(r.region))),
+   
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.store_type))) LIKE '%HIGH STREET%' THEN 'High Street'
+        WHEN UPPER(LTRIM(RTRIM(r.store_type))) LIKE '%MALL%' THEN 'Mall'
+        WHEN UPPER(LTRIM(RTRIM(r.store_type))) LIKE '%OUTLET%' THEN 'Outlet'
+    END,
+   
+    CASE
+        WHEN UPPER(LTRIM(RTRIM(r.region))) LIKE '%ONTARIO%' THEN 'Ontario'
+        WHEN UPPER(LTRIM(RTRIM(r.region))) LIKE '%VANCOUVER%' THEN 'Vancouver'
+    END,
+   
     LTRIM(RTRIM(r.address)),
     TRY_CONVERT(DATE, r.opening_date),
     NULLIF(LTRIM(RTRIM(r.manager_id)), ''),
+   
     0,
+   
     r.load_timestamp,
     r.source_file
 FROM staging.stores_raw r;
@@ -776,4 +859,3 @@ JOIN dups d
   ON c.store_id = d.store_id
 WHERE d.rn > 1;
 GO
-
